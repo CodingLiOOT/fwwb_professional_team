@@ -42,8 +42,8 @@ public class UserLogInController {
             return ResponseEntity.status(401).body(Result.fail("用户名或密码错误"));
         }
         Map<String, Object> data = new HashMap<>();
-        data.put("user", user);
-        String token = JWTUtils.sign(user);
+        data.put("user", userBeans.get(0));
+        String token = JWTUtils.sign(userBeans.get(0));
         data.put("token", token);
         return ResponseEntity.ok(Result.success(data, "登陆成功"));
     }

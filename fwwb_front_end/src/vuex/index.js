@@ -10,10 +10,10 @@ const store = new Vuex.Store({
   },
   mutations:{
     login(state,payload){
-      state.user=payload.user;
+      state.user=JSON.stringify(payload.user);
       state.token=payload.token;
       sessionStorage.token = payload.token;
-      sessionStorage.user=payload.user;
+      sessionStorage.user=JSON.stringify(payload.user);
     },
     logout(state){
       state.user=undefined;
@@ -40,6 +40,17 @@ const store = new Vuex.Store({
     },
     removeToken(context,payload){
       context.commit('logout',payload);
+    }
+  },
+  getters:{
+    getUser:state => {
+      return JSON.parse(state.user)
+    },
+    getUserAttribute:(state, getters) =>(name)=> {
+      return getters.getUser[name];
+    },
+    getToken:state => {
+      return state.token
     }
   }
 })

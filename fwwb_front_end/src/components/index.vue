@@ -28,7 +28,8 @@ export default {
       })
     },
     test(){
-      this.$API.g_getAllUser("empty")
+      //alert(this.$store.getters.getUserAttribute('userName'))
+      this.$API.g_getAllUser()
         .then(
           data=>{
             alert(data[0].userName);
@@ -43,10 +44,10 @@ export default {
   },
   computed: {
     token() {
-      return this.$store.state.token
+      return this.$store.getters.getToken
     },
     user(){
-      return this.$store.state.user
+      return this.$store.getters.getUser
     }
   }
 }
