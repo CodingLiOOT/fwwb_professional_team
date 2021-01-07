@@ -22,5 +22,5 @@ export default class api {
    * @param p
    * @returns {Promise<unknown>}
    */
-  static g_getAllUser=p=>get('/user/getAllUser',p);
+  static g_getAllUser=()=>get('/user/getAllUser',null);
 }

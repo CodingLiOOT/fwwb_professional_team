@@ -1,5 +1,6 @@
 package com.fwwb.back_end.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.javafx.beans.IDProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,6 +19,7 @@ public class UserBean implements Serializable {
     @ApiModelProperty(name = "password",value = "用户密码",required = false)
     private String password;
     @ApiModelProperty(name = "submission_date",value = "用户注册日期",required = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Timestamp submission_date;
     @ApiModelProperty(name = "email",value = "用户邮箱",required = false)
     private String email;
