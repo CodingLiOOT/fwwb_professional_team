@@ -1,6 +1,7 @@
-package com.fwwb.back_end.entity;
+package com.fwwb.back_end.utils;
 
 import lombok.Data;
+import java.io.Serializable;
 
 /**
  * @program: demo
@@ -10,7 +11,7 @@ import lombok.Data;
  * @version: 1.0
  **/
 @Data
-public class Result {
+public class Result implements Serializable {
     private int code;
     private String msg;
     private Object data;

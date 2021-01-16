@@ -22,11 +22,13 @@ const router = new Router({
     {
       path: '/',
       name: 'Home',
+      meta: {requiresAuth: false},
       component: () => import("../components/Home")
     },
     {
       path: '/home',
       name: 'Home',
+      meta: {requiresAuth: false},
       component: () => import("../components/Home")
     },
     {
@@ -44,6 +46,7 @@ const router = new Router({
     {
       path: '/register',
       name: 'register',
+      meta: {requiresAuth: false},
       component: () => import("../components/Register")
     }
   ],

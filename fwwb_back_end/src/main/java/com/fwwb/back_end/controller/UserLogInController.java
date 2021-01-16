@@ -1,18 +1,13 @@
 package com.fwwb.back_end.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.fwwb.back_end.entity.Result;
+import com.fwwb.back_end.utils.Result;
 import com.fwwb.back_end.entity.UserBean;
 import com.fwwb.back_end.service.UserService;
 import com.fwwb.back_end.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,19 +19,20 @@ public class UserLogInController {
     @Autowired
     private UserService userService;
 
-
-    @ResponseBody
-    @RequestMapping(value = "/test")
-    public String hello() {
-        return "Hello,Spring";
-    }
-
+    /**
+     * @Title: doLogin
+     * @Description: 登录响应Controller
+     * @param user:
+     * @return: org.springframework.http.ResponseEntity
+     * @throw:
+     * @Author: CodeingLiOOT
+     * @Date: 2021/1/16 17:57
+     */
     @CrossOrigin
     @ResponseBody
     @PostMapping(value = "/login")
     public ResponseEntity doLogin(@RequestBody UserBean user) {
         //response.setHeader("Access-Control-Allow-Origin","http://localhost:8080");
-        //System.out.println(user.getUserName()+user.getPassword());
         List<UserBean> userBeans = userService.login(user.getUserName());
         if (userBeans.size() == 0 || !userBeans.get(0).getPassword().equals(user.getPassword())) {
             return ResponseEntity.status(401).body(Result.fail("用户名或密码错误"));
@@ -79,5 +75,13 @@ public class UserLogInController {
         map.put("msg", "查询成功");
         map.put("data", userBeans);
         return ResponseEntity.ok(Result.success(userBeans, "查询成功"));
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    @GetMapping(value = "/test")
+    public ResponseEntity test(@RequestParam(value = "params")int value)
+    {
+        return ResponseEntity.ok(Result.success(value));
     }
 }

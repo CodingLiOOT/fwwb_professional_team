@@ -13,7 +13,7 @@ def load_csv(csv_file_path, table_name, database='fwwb_dataset'):
     column = column[:-1]
     # 编写sql，create_sql负责创建表，data_sql负责导入数据
     create_sql = 'create table if not exists ' + table_name + ' ' + '(' + column + ')' + ' DEFAULT CHARSET=utf8'
-    data_sql = "LOAD DATA LOCAL INFILE '%s' INTO TABLE %s FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\r\\n' IGNORE 1 LINES" % (
+    data_sql = "LOAD DATA INFILE '%s' INTO TABLE %s FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\r\\n' IGNORE 1 LINES" % (
         csv_file_path, table_name)
 
     # 使用数据库
@@ -29,19 +29,30 @@ def load_csv(csv_file_path, table_name, database='fwwb_dataset'):
 
 
 if __name__ == '__main__':
+    # config = {
+    #     'host': '39.107.205.151',
+    #     'port': 3306,
+    #     'user': 'root',
+    #     'passwd': '123456',
+    #     'local_infile': 1
+    # }
     config = {
-        'host': '39.107.205.151',
+        'host': '127.0.0.1',
         'port': 3306,
         'user': 'root',
-        'passwd': '123456',
-        'local_infile': 1
+        'passwd': 'ljz123hhh',
+        'local_infile': 0
     }
     conn = pymysql.connect(**config)
     cur = conn.cursor()
     load_csv('usersdata.csv', 'users')
+    print('users load successful')
     load_csv('tripsdata.csv', 'trips')
+    print('trips load successful')
     load_csv('stationdata.csv', 'stations')
+    print('stations load successful')
     load_csv('workdays2020data.csv', 'workdays')
+    print('workdays load successful')
     # 关闭连接
     conn.close()
     cur.close()

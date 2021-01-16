@@ -9,6 +9,7 @@ if (process.env.NODE_ENV === 'development') {
 } else if (process.env.NODE_ENV === 'production') {
 
 }
+//axios.defaults.baseURL='api'
 
 //请求超时时间
 axios.defaults.timeout = 10000;
