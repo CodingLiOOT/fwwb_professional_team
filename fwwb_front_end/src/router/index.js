@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import Home from "../components/Home"
 import index from '../components/index'
 import store from "../vuex";
+import MainPage from "../components/MainPage";
+import data_V from "../components/data_V";
+import baiduMap from "../components/baiduMap";
 
 Vue.use(Router)
 
@@ -48,7 +51,24 @@ const router = new Router({
       name: 'register',
       meta: {requiresAuth: false},
       component: () => import("../components/Register")
-    }
+    },
+    {
+      path: '/mainPage',
+      name: 'mainPage',
+      component: () => import("../components/MainPage"),
+      children: [
+        {
+          path: 'data_V',
+          name: 'data_V',
+          component: data_V
+        },
+        {
+          path: 'baiduMap',
+          name: 'baiduMap',
+          component: baiduMap
+        },
+      ]
+    },
   ],
 })
 router.beforeEach((to, from, next) => {
