@@ -34,7 +34,15 @@
     </el-row>
     <el-row :gutter="10">
       <el-col :span="16">
-        <dv-digital-flop :config="config_rank" style="width:100px;height:50px;" />
+        <dv-scroll-ranking-board :config="configRank" v-html="this.configRank.data.value" v-text="this.configRank.data.value"style="width:500px;height:300px" />
+      </el-col>
+      <el-col :span="8">
+        <dv-percent-pond :config="configPercent" style="width:200px;height:100px;" />
+      </el-col>
+    </el-row>
+        <el-row :gutter="10">
+      <el-col :span="16">
+        <dv-scroll-ranking-board :config="configRank" v-html="this.configRank.data.value" v-text="this.configRank.data.value"style="width:500px;height:300px" />
       </el-col>
       <el-col :span="8">
         <dv-active-ring-chart :config="chart_data" style="width:300px;height:300px" />
@@ -44,20 +52,30 @@
 </template>
 
 <script>
+  const fullWidth = 300
+  const borderGap = 3
+  const borderWidth = 3
+  const usefulWidth = fullWidth - (borderGap + borderWidth) * 2
+
+  const pieceLength = [0.25, 0.5, 0.25]
+  const pieceGap = 3
+
+  const lineDash = pieceLength
+    .map(l => [usefulWidth * l, pieceGap])
+    .reduce((all, current) => [...all, ...current], [])
     export default {
         name: "dataV",
-
       data() {
         return {
           config : {
             number: [100],
             content: '{nt}个'
           },
-          config_rank:{
-           data: [
+          configRank: {
+            data: [
               {
-                name: '周口',
-                value: 55
+                name: "<div style='color:black'>周口</div>",
+                value: "<p style='color:black'>55</p>",
               },
               {
                 name: '南阳',
@@ -82,8 +100,15 @@
               {
                 name: '漯河',
                 value: 29
-              }
-            ]
+              },
+            ],
+          },
+          configPercent:{
+            value: 100,
+            colors: ['#01c4f9', '#c135ff'],
+            // 百分比调为透明色
+            textColor:'rgba(1,196,249,0)',
+            lineDash
           },
           value1: new Date(2016, 9, 10, 18, 40),
           value2: new Date(2016, 9, 10, 18, 40),
@@ -128,19 +153,25 @@
             }
           },
         }
+      },
+      created() {
+
       }
     }
 </script>
 
 <style scoped>
-  el-row {
-    margin-bottom: 20px;
+  .el-row {
+    margin-bottom: 60px;
   /*&:last-child {*/
   /*   margin-bottom: 0;*/
   /* }*/
   }
   el-col {
     border-radius: 4px;
+  }
+  .configRank>>>name{
+    color:black
   }
 
 </style>
