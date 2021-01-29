@@ -18,7 +18,7 @@
             <el-menu
               default-active="2"
               class="el-menu-vertical-demo"
-              router="true"
+              router
               @open="handleOpen"
               @close="handleClose">
               <el-menu-item index="/mainPage/data_V">
