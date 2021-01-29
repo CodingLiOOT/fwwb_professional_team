@@ -40,6 +40,14 @@
         <dv-percent-pond :config="configPercent" style="width:200px;height:100px;" />
       </el-col>
     </el-row>
+        <el-row :gutter="10">
+      <el-col :span="16">
+        <dv-scroll-ranking-board :config="configRank" v-html="this.configRank.data.value" v-text="this.configRank.data.value"style="width:500px;height:300px" />
+      </el-col>
+      <el-col :span="8">
+        <dv-active-ring-chart :config="chart_data" style="width:300px;height:300px" />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -120,8 +128,30 @@
             value: '选项5',
             label: '9号线'
           }],
-          value: ''
-
+          value: '',
+          chart_data:{
+            /*radius: '40%',
+            activeRadius: '45%',*/
+            data: [
+              {
+                name: '儿童',
+                value: 55
+              },
+              {
+                name: '青年',
+                value: 120
+              },
+              {
+                name: '老年',
+                value: 78
+              },
+            ],
+            /*lineWidth: 30,*/
+            digitalFlopStyle: {
+              fontSize: 30,
+              fill: '#7d7777'
+            }
+          },
         }
       },
       created() {
