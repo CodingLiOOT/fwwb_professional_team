@@ -135,7 +135,7 @@
                 value: 29
               }
             ],
-              unit: '单位',
+              unit: '人',
               valueFormatter ({ value }) {
               console.warn(arguments)
               const reverseNumber = (value + '').split('').reverse()
