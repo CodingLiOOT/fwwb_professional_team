@@ -33,13 +33,40 @@
       </el-col>
     </el-row>
     <el-row :gutter="10">
-      <el-col :span="16">
-        <dv-digital-flop :config="config_rank" style="width:100px;height:50px;" />
+      <el-col :offset="0" :span="6">
+        <h1 style=color:#3fdcdc;>时间段内入站人数：</h1>
       </el-col>
-      <el-col :span="8">
-        <h1>进度池</h1>
+      <el-col :offset="7" :span="8">
+        <h1 style=color:#3fdcdc;>进度池</h1>
       </el-col>
     </el-row>
+
+    <el-row :gutter="10">
+      <el-col :offset="2" :span="14">
+        <dv-scroll-ranking-board :config="config_rank" style="width:1000px;height:400px" />
+      </el-col>
+      <el-col :span="8">
+        <dv-percent-pond :config="config" style="width:200px;height:100px;" />
+      </el-col>
+    </el-row>
+
+    <el-row :gutter="10">
+      <el-col :offset="0" :span="6">
+      <h1 style=color:#3fdcdc;>时间段内出站人数：</h1>
+    </el-col>
+      <el-col :offset="7" :span="8">
+        <h1 style=color:#3fdcdc;>人员比例</h1>
+      </el-col>
+    </el-row>
+    <el-row :gutter="10">
+      <el-col :offset="2" :span="14">
+        <dv-scroll-ranking-board :config="config_rank" style="width:1000px;height:400px" />
+      </el-col>
+      <el-col :span="8">
+        <dv-active-ring-chart :config="config" style="width:200px;height:200px" />
+      </el-col>
+    </el-row>
+
   </div>
 </template>
 
@@ -53,8 +80,32 @@
             number: [100],
             content: '{nt}个'
           },
+
           config_rank:{
-           data: [
+            carousel: "single",
+            rowNum: 6,
+            waitTime: 10000,
+            data: [
+              {
+                name: '周口',
+                value: 55123
+              },
+              {
+                name: '南阳',
+                value: 12022
+              },
+              {
+                name: '西峡',
+                value: 78932
+              },
+              {
+                name: '驻马店',
+                value: 63411
+              },
+              {
+                name: '新乡',
+                value: 44231
+              },
               {
                 name: '周口',
                 value: 55
@@ -83,10 +134,26 @@
                 name: '漯河',
                 value: 29
               }
-            ]
+            ],
+              unit: '单位',
+              valueFormatter ({ value }) {
+              console.warn(arguments)
+              const reverseNumber = (value + '').split('').reverse()
+              let valueStr = ''
+
+              while (reverseNumber.length) {
+                const seg = reverseNumber.splice(0, 3).join('')
+                valueStr += seg
+                if (seg.length === 3) valueStr += ','
+              }
+
+              return valueStr.split('').reverse().join('')
+            }
           },
+
           value1: new Date(2016, 9, 10, 18, 40),
           value2: new Date(2016, 9, 10, 18, 40),
+
           options: [{
             value: '选项1',
             label: '1号线'
@@ -106,7 +173,14 @@
           value: ''
 
         }
-      }
+      },
+
+      mounted() {
+        document.querySelector('body').setAttribute('style', 'background-color:#16191D')
+      },
+      beforeDestroy() {
+        document.querySelector('body').removeAttribute('style')
+      },
     }
 </script>
 
