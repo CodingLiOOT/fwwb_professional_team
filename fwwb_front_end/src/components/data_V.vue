@@ -66,7 +66,6 @@
         <dv-active-ring-chart :config="config" style="width:200px;height:200px" />
       </el-col>
     </el-row>
-
   </div>
 </template>
 
@@ -182,8 +181,14 @@
     /*&:last-child {*/
     /*   margin-bottom: 0;*/
     /* }*/
+
   }
   el-col {
     border-radius: 4px;
   }
+
+  .configRank>>>name{
+    color:black
+  }
+
 </style>
