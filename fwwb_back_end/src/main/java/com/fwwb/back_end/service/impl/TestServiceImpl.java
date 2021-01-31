@@ -1,9 +1,8 @@
 package com.fwwb.back_end.service.impl;
 
-import com.fwwb.back_end.dao.UserMapper;
-import com.fwwb.back_end.dao.UsersMapper;
+import com.fwwb.back_end.dao.TestMapper;
 import com.fwwb.back_end.entity.UsersBean;
-import com.fwwb.back_end.service.UsersService;
+import com.fwwb.back_end.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +16,18 @@ import java.util.List;
  * @version: 1.0
  **/
 @Service("usersService")
-public class UsersServiceImpl implements UsersService {
+public class TestServiceImpl implements TestService {
 
     @Autowired
-    private UsersMapper usersMapper;
+    private TestMapper usersMapper;
 
     @Override
     public List<UsersBean> selectAll() {
         return usersMapper.selectAll();
+    }
+
+    @Override
+    public List<UsersBean> selectRangeByTime() {
+        return usersMapper.selectRangeByTime();
     }
 }

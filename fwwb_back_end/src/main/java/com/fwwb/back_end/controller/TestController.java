@@ -2,7 +2,7 @@ package com.fwwb.back_end.controller;
 
 
 import com.fwwb.back_end.entity.UsersBean;
-import com.fwwb.back_end.service.UsersService;
+import com.fwwb.back_end.service.TestService;
 import com.fwwb.back_end.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +19,9 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping(value = "/api/users")
-public class UsersController {
+public class TestController {
     @Autowired
-    private UsersService usersService;
+    private TestService usersService;
 
     @GetMapping("/getAll")
     @CrossOrigin
@@ -29,6 +29,7 @@ public class UsersController {
     public ResponseEntity getAll()
     {
         List<UsersBean> users=usersService.selectAll();
-        return ResponseEntity.ok(Result.success(users.get(0)));
+
+        return ResponseEntity.ok(Result.success(users));
     }
 }
