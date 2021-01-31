@@ -1,8 +1,8 @@
 package com.fwwb.back_end.controller;
 
 import com.fwwb.back_end.utils.Result;
-import com.fwwb.back_end.entity.UserBean;
-import com.fwwb.back_end.service.UserService;
+import com.fwwb.back_end.entity.AccountBean;
+import com.fwwb.back_end.service.AccountService;
 import com.fwwb.back_end.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.Map;
 public class UserLogInController {
 
     @Autowired
-    private UserService userService;
+    private AccountService userService;
 
     /**
      * @Title: doLogin
@@ -31,15 +31,15 @@ public class UserLogInController {
     @CrossOrigin
     @ResponseBody
     @PostMapping(value = "/login")
-    public ResponseEntity doLogin(@RequestBody UserBean user) {
+    public ResponseEntity doLogin(@RequestBody AccountBean user) {
         //response.setHeader("Access-Control-Allow-Origin","http://localhost:8080");
-        List<UserBean> userBeans = userService.login(user.getUserName());
-        if (userBeans.size() == 0 || !userBeans.get(0).getPassword().equals(user.getPassword())) {
+        List<AccountBean> accountBeans = userService.login(user.getUserName());
+        if (accountBeans.size() == 0 || !accountBeans.get(0).getPassword().equals(user.getPassword())) {
             return ResponseEntity.status(401).body(Result.fail("用户名或密码错误"));
         }
         Map<String, Object> data = new HashMap<>();
-        data.put("user", userBeans.get(0));
-        String token = JWTUtils.sign(userBeans.get(0));
+        data.put("user", accountBeans.get(0));
+        String token = JWTUtils.sign(accountBeans.get(0));
         data.put("token", token);
         return ResponseEntity.ok(Result.success(data, "登陆成功"));
     }
@@ -47,11 +47,11 @@ public class UserLogInController {
     @CrossOrigin
     @ResponseBody
     @PostMapping(value = "/register")
-    public ResponseEntity doRegister(@RequestBody UserBean user) {
+    public ResponseEntity doRegister(@RequestBody AccountBean user) {
         //response.setHeader("Access-Control-Allow-Origin","http://localhost:8080");
         //System.out.println(user.getUserName()+user.getPassword());
-        List<UserBean> userBean = userService.login(user.getUserName());
-        if (userBean.size() != 0) {
+        List<AccountBean> accountBean = userService.login(user.getUserName());
+        if (accountBean.size() != 0) {
             return ResponseEntity.status(401).body(Result.fail("该用户名已被注册"));
         }
         userService.register(user);
@@ -62,19 +62,19 @@ public class UserLogInController {
     @ResponseBody
     @GetMapping(value = "/getAllUser")
     public ResponseEntity doTest() {
-        List<UserBean> userBeans = userService.selectAll();
-        if (userBeans.size() == 0) {
+        List<AccountBean> accountBeans = userService.selectAll();
+        if (accountBeans.size() == 0) {
             Map<String, Object> map = new HashMap<>();
             map.put("code", 1);
             map.put("msg", "没有用户");
-            map.put("data", userBeans);
+            map.put("data", accountBeans);
             return ResponseEntity.status(401).body(Result.fail("没有用户"));
         }
         Map<String, Object> map = new HashMap<>();
         map.put("code", 0);
         map.put("msg", "查询成功");
-        map.put("data", userBeans);
-        return ResponseEntity.ok(Result.success(userBeans, "查询成功"));
+        map.put("data", accountBeans);
+        return ResponseEntity.ok(Result.success(accountBeans, "查询成功"));
     }
 
     @CrossOrigin
