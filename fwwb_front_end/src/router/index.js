@@ -6,6 +6,7 @@ import store from "../vuex";
 import MainPage from "../components/MainPage";
 import data_V from "../components/data_V";
 import baiduMap from "../components/baiduMap";
+import Echarts_station from "../components/Echarts_station";
 
 Vue.use(Router)
 
@@ -66,6 +67,11 @@ const router = new Router({
           path: 'baiduMap',
           name: 'baiduMap',
           component: baiduMap
+        },
+        {
+          path: 'echarts',
+          name: 'echarts',
+          component: Echarts_station
         },
       ]
     },
