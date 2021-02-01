@@ -15,7 +15,7 @@ import java.util.List;
  * @create: 2021-01-30 17:26
  * @version: 1.0
  **/
-@Service("usersService")
+@Service("testService")
 public class TestServiceImpl implements TestService {
 
     @Autowired

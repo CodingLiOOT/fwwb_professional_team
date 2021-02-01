@@ -48,7 +48,4 @@ public class AccountServiceImpl implements AccountService {
         accountMapper.register(userBean);
     }
 
-    @Override
-    public List<AccountBean> selectAll(){
-        return accountMapper.selectALL();}
 }

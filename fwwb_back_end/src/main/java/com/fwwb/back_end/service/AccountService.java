@@ -11,6 +11,5 @@ public interface AccountService {
 
     public void register(AccountBean bean);
 
-    public List<AccountBean> selectAll();
 }
 

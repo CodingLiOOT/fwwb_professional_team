@@ -57,31 +57,4 @@ public class UserLogInController {
         userService.register(user);
         return ResponseEntity.ok(Result.success("注册成功"));
     }
-
-    @CrossOrigin
-    @ResponseBody
-    @GetMapping(value = "/getAllUser")
-    public ResponseEntity doTest() {
-        List<AccountBean> accountBeans = userService.selectAll();
-        if (accountBeans.size() == 0) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("code", 1);
-            map.put("msg", "没有用户");
-            map.put("data", accountBeans);
-            return ResponseEntity.status(401).body(Result.fail("没有用户"));
-        }
-        Map<String, Object> map = new HashMap<>();
-        map.put("code", 0);
-        map.put("msg", "查询成功");
-        map.put("data", accountBeans);
-        return ResponseEntity.ok(Result.success(accountBeans, "查询成功"));
-    }
-
-    @CrossOrigin
-    @ResponseBody
-    @GetMapping(value = "/test")
-    public ResponseEntity test(@RequestParam(value = "params")int value)
-    {
-        return ResponseEntity.ok(Result.success(value));
-    }
 }
