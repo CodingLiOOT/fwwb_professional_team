@@ -1,4 +1,4 @@
-package com.fwwb.back_end.utils;
+package com.fwwb.back_end.utils.redis;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;

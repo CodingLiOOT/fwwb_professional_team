@@ -1,4 +1,4 @@
-package com.fwwb.back_end.utils;
+package com.fwwb.back_end.utils.token;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

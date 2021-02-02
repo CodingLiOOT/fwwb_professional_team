@@ -1,6 +1,7 @@
 package com.fwwb.back_end.service.impl;
 
 import com.fwwb.back_end.dao.TestMapper;
+import com.fwwb.back_end.entity.TripBean;
 import com.fwwb.back_end.entity.UsersBean;
 import com.fwwb.back_end.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,35 @@ import java.util.List;
 public class TestServiceImpl implements TestService {
 
     @Autowired
-    private TestMapper usersMapper;
-
-    @Override
-    public List<UsersBean> selectAll() {
-        return usersMapper.selectAll();
-    }
+    private TestMapper testMapper;
 
     @Override
     public List<UsersBean> selectRangeByTime() {
-        return usersMapper.selectRangeByTime();
+        return testMapper.selectRangeByTime();
+    }
+
+    @Override
+    public List<UsersBean> selectRangeByBetween() {
+        return testMapper.selectRangeByBetween();
+    }
+
+    @Override
+    public List<UsersBean> selectAllUsersByStar() {
+        return testMapper.selectAllUsersByStar();
+    }
+
+    @Override
+    public List<TripBean> selectAllStationsByInOut() {
+        return testMapper.selectAllStationsByInOut();
+    }
+
+    @Override
+    public List<TripBean> selectAllTrip() {
+        return testMapper.selectAllTrip();
+    }
+
+    @Override
+    public List<UsersBean> selectByJoin() {
+        return testMapper.selectByJoin();
     }
 }

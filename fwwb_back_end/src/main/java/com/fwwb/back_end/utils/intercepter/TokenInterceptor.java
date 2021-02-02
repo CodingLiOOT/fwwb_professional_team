@@ -1,8 +1,8 @@
-package com.fwwb.back_end.intercepter;
+package com.fwwb.back_end.utils.intercepter;
 
 import com.alibaba.fastjson.JSON;
 
-import com.fwwb.back_end.utils.JWTUtils;
+import com.fwwb.back_end.utils.token.JWTUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 

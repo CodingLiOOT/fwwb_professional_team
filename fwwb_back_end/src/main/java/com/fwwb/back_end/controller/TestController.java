@@ -1,17 +1,16 @@
 package com.fwwb.back_end.controller;
 
 
-import com.fwwb.back_end.entity.UsersBean;
+import com.fwwb.back_end.entity.TripBean;
 import com.fwwb.back_end.service.TestService;
-import com.fwwb.back_end.utils.JedisInstance;
-import com.fwwb.back_end.utils.Result;
-import lombok.Cleanup;
+import com.fwwb.back_end.utils.resultUtils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import redis.clients.jedis.Jedis;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: back_end
@@ -24,16 +23,17 @@ import java.util.List;
 @RequestMapping(value = "/api/test")
 public class TestController {
     @Autowired
-    private TestService usersService;
+    private TestService testService;
 
     @GetMapping("/getAll")
     @CrossOrigin
     @ResponseBody
     public ResponseEntity getAll()
     {
-        List<UsersBean> users=usersService.selectAll();
-        @Cleanup Jedis jedis= JedisInstance.getInstance().getResource();
-        jedis.set("abc","abc");
-        return ResponseEntity.ok(Result.success(users.get(0)));
+        //List<UsersBean> users=usersService.selectAllUsersByID();
+        List<TripBean> trips=testService.selectAllStationsByInOut();
+        Map<Integer, Integer> cnt=new HashMap<>();
+        trips.forEach(tripBean -> cnt.merge(tripBean.getIn_station(),1,Integer::sum));
+        return ResponseEntity.ok(Result.success(cnt));
     }
 }

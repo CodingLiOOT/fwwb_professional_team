@@ -1,11 +1,13 @@
 package com.fwwb.back_end.controller;
 
-import com.fwwb.back_end.utils.Result;
+import com.fwwb.back_end.utils.exceptionHandler.exception.DefinitionException;
+import com.fwwb.back_end.utils.exceptionHandler.exception.ErrorEnum;
 import com.fwwb.back_end.entity.AccountBean;
 import com.fwwb.back_end.service.AccountService;
-import com.fwwb.back_end.utils.JWTUtils;
+import com.fwwb.back_end.utils.resultUtils.ResponseResultBody;
+import com.fwwb.back_end.utils.resultUtils.Result;
+import com.fwwb.back_end.utils.token.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -17,7 +19,7 @@ import java.util.Map;
 public class UserLogInController {
 
     @Autowired
-    private AccountService userService;
+    private AccountService accountService;
 
     /**
      * @Title: doLogin
@@ -31,30 +33,28 @@ public class UserLogInController {
     @CrossOrigin
     @ResponseBody
     @PostMapping(value = "/login")
-    public ResponseEntity doLogin(@RequestBody AccountBean user) {
+    public Map<String,Object> doLogin(@RequestBody AccountBean user) {
         //response.setHeader("Access-Control-Allow-Origin","http://localhost:8080");
-        List<AccountBean> accountBeans = userService.login(user.getUserName());
+        List<AccountBean> accountBeans = accountService.login(user.getUserName());
         if (accountBeans.size() == 0 || !accountBeans.get(0).getPassword().equals(user.getPassword())) {
-            return ResponseEntity.status(401).body(Result.fail("用户名或密码错误"));
+            throw new DefinitionException(ErrorEnum.ERROR_NICKNAME_OR_PASSWORD);
         }
         Map<String, Object> data = new HashMap<>();
         data.put("user", accountBeans.get(0));
         String token = JWTUtils.sign(accountBeans.get(0));
         data.put("token", token);
-        return ResponseEntity.ok(Result.success(data, "登陆成功"));
+        return data;
     }
 
     @CrossOrigin
-    @ResponseBody
+    @ResponseResultBody
     @PostMapping(value = "/register")
-    public ResponseEntity doRegister(@RequestBody AccountBean user) {
-        //response.setHeader("Access-Control-Allow-Origin","http://localhost:8080");
-        //System.out.println(user.getUserName()+user.getPassword());
-        List<AccountBean> accountBean = userService.login(user.getUserName());
+    public Result doRegister(@RequestBody AccountBean user) {
+        List<AccountBean> accountBean = accountService.login(user.getUserName());
         if (accountBean.size() != 0) {
-            return ResponseEntity.status(401).body(Result.fail("该用户名已被注册"));
+            throw new DefinitionException(ErrorEnum.DUPLICATE_USERNAME);
         }
-        userService.register(user);
-        return ResponseEntity.ok(Result.success("注册成功"));
+        accountService.register(user);
+        return Result.success("注册成功");
     }
 }
