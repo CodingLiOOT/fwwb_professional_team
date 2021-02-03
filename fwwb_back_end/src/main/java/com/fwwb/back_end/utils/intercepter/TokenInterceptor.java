@@ -2,6 +2,8 @@ package com.fwwb.back_end.utils.intercepter;
 
 import com.alibaba.fastjson.JSON;
 
+import com.fwwb.back_end.utils.exceptionHandler.exception.DefinitionException;
+import com.fwwb.back_end.utils.exceptionHandler.exception.ErrorEnum;
 import com.fwwb.back_end.utils.token.JWTUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -37,20 +39,21 @@ public class TokenInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json; charset=utf-8");
-        try{
-            Map<String,String>res=new HashMap<>();
-            res.put("msg","token 验证失败");
-            res.put("code","402");
-            response.setStatus(402);
-            response.getWriter().append(JSON.toJSONString(res));
-            //System.out.println("认证失败，未通过拦截器");
-        }catch (Exception e){
-            e.printStackTrace();
-            response.sendError(500);
-            return false;
-        }
-        return false;
+        throw new DefinitionException(ErrorEnum.SIGNATURE_NOT_MATCH);
+//        response.setCharacterEncoding("UTF-8");
+//        response.setContentType("application/json; charset=utf-8");
+//        try{
+//            Map<String,String>res=new HashMap<>();
+//            res.put("msg","token 验证失败");
+//            res.put("code","402");
+//            response.setStatus(402);
+//            response.getWriter().append(JSON.toJSONString(res));
+//            //System.out.println("认证失败，未通过拦截器");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            response.sendError(500);
+//            return false;
+//        }
+//        return false;
     }
 }

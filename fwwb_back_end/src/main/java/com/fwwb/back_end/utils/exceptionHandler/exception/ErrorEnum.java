@@ -10,7 +10,7 @@ public enum ErrorEnum implements BaseErrorInfoInterface, Serializable {
     SUCCESS(200,"成功！"),
     BODY_NOT_MATCH(400,"请求数据格式不符"),
     DUPLICATE_USERNAME(400,"该用户名已被注册"),
-    SIGNATURE_NOT_MATCH(401,"请求的数字签名不匹配"),
+    SIGNATURE_NOT_MATCH(401,"Token验证失败"),
     ERROR_NICKNAME_OR_PASSWORD(401,"用户名或密码错误"),
     NOT_FOUND(404, "未找到该资源!"),
     INTERNAL_SERVER_ERROR(500, "服务器内部错误!"),

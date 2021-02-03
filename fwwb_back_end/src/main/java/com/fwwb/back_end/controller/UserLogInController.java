@@ -31,7 +31,7 @@ public class UserLogInController {
      * @Date: 2021/1/16 17:57
      */
     @CrossOrigin
-    @ResponseBody
+    @ResponseResultBody
     @PostMapping(value = "/login")
     public Map<String,Object> doLogin(@RequestBody AccountBean user) {
         //response.setHeader("Access-Control-Allow-Origin","http://localhost:8080");
