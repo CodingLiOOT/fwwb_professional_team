@@ -7,6 +7,8 @@ import './element'
 import store from './vuex'
 import api from './request/api'
 import dataV from '@jiaminghi/data-view'
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 Vue.use(dataV)
 
 //axios.defaults.baseURL='http://localhost:8090/api'

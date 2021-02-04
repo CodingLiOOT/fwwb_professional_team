@@ -54,10 +54,6 @@
         isFold: true,
       }
     },
-
-    mounted: function () {
-      //this.load();
-    },
     methods: {
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
