@@ -27,7 +27,7 @@ const router = new Router({
       path: '/',
       name: 'Home',
       meta: {requiresAuth: false},
-      component: () => import("../components/Home")
+      component: () => import("../components/Echarts_station")
     },
     {
       path: '/home',
