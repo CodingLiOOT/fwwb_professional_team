@@ -28,5 +28,5 @@ public class StationServiceImpl implements StationService {
      * @return {@link List< HashMap< String, Integer>>}
      * @throws
      **/
-    public List<HashMap<String,Integer>> getPassenger(){return stationMapper.getPassenger();};
+    public List<HashMap<String,Object>> getPassenger(){return stationMapper.getPassenger();};
 }

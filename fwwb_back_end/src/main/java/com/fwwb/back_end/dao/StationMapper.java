@@ -17,7 +17,6 @@ import java.util.List;
 @Mapper
 @Repository
 public interface StationMapper {
-    @MapKey("in_hour")
     @Select("select " +
             "date_format(in_time,'%Y-%m-%d %H:00:00') in_hour," +
             "count(userID) " +
@@ -26,5 +25,5 @@ public interface StationMapper {
             "and '2020-02-02 16:00:00' " +
             "group by in_hour " +
             "order by in_time;")
-    List<HashMap<String,Integer>> getPassenger();
+    List<HashMap<String,Object>> getPassenger();
 }

@@ -9,5 +9,5 @@ import java.util.List;
  * @date: Created in 12:01 2021/2/4
  */
 public interface StationService {
-    public List<HashMap<String,Integer>> getPassenger();
+    public List<HashMap<String,Object>> getPassenger();
 }
