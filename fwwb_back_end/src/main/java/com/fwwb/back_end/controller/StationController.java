@@ -1,12 +1,10 @@
 package com.fwwb.back_end.controller;
 
+import com.fwwb.back_end.entity.StationInfo;
 import com.fwwb.back_end.service.StationService;
 import com.fwwb.back_end.utils.resultUtils.ResponseResultBody;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +28,27 @@ public class StationController {
     @ResponseResultBody
     @CrossOrigin
     public List<HashMap<String, Object>> test(){
-        return stationService.getPassenger();
+        return stationService.getPassengerInfoByHour(null);
+    }
+
+    @CrossOrigin
+    @ResponseResultBody
+    @PostMapping(value = "/getPassengerByTime")
+    public List<HashMap<String, Object>> getPassengerInfoByTime(@RequestBody StationInfo info){
+        switch (info.getGranularity()){
+            case 1:
+                return stationService.getPassengerInfoByHour(info);
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                break;
+        }
+
+        return stationService.getPassengerInfoByHour(info);
+
     }
 }

@@ -1,6 +1,7 @@
 package com.fwwb.back_end.service.impl;
 
 import com.fwwb.back_end.dao.StationMapper;
+import com.fwwb.back_end.entity.StationInfo;
 import com.fwwb.back_end.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,5 @@ public class StationServiceImpl implements StationService {
      * @return {@link List< HashMap< String, Integer>>}
      * @throws
      **/
-    public List<HashMap<String,Object>> getPassenger(){return stationMapper.getPassenger();};
+    public List<HashMap<String,Object>> getPassengerInfoByHour(StationInfo info){return stationMapper.getPassengerInfoByHour(info);};
 }

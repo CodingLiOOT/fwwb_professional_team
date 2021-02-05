@@ -1,5 +1,6 @@
 package com.fwwb.back_end.dao;
 
+import com.fwwb.back_end.entity.StationInfo;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -18,12 +19,13 @@ import java.util.List;
 @Repository
 public interface StationMapper {
     @Select("select " +
-            "date_format(in_time,'%Y-%m-%d %H:00:00') in_hour," +
-            "count(userID) " +
+            "date_format(in_time,'%Y-%m-%d %H:00:00') time," +
+            "count(userID) entranceNum " +
             "from trips " +
-            "where in_time between '2020-02-02 12:00:00' " +
-            "and '2020-02-02 16:00:00' " +
-            "group by in_hour " +
+            "where in_station = #{stationName} "+
+            "and in_time between #{startTime} " +
+            "and #{endTime} " +
+            "group by time " +
             "order by in_time;")
-    List<HashMap<String,Object>> getPassenger();
+    List<HashMap<String,Object>> getPassengerInfoByHour(StationInfo info);
 }

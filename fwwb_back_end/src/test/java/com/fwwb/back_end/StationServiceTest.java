@@ -4,7 +4,6 @@ import com.fwwb.back_end.service.StationService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,8 +21,8 @@ public class StationServiceTest extends BackEndApplicationTests{
 
     @Test
     public void test(){
-        List<HashMap<String,Object>> list=stationService.getPassenger();
+        List<HashMap<String,Object>> list=stationService.getPassengerInfoByHour(null);
         System.out.println(list.get(0));
-        Assert.assertEquals("登录失败",20L,stationService.getPassenger().get(3).get("count(userID)"));
+        Assert.assertEquals("登录失败",20L,stationService.getPassengerInfoByHour(null).get(3).get("count(userID)"));
     }
 }
