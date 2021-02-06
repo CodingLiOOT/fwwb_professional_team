@@ -64,18 +64,35 @@ public class StationController {
             out_age_map.put(strokeBean.getAgeRange(),strokeBean);
         });
 
-        Set<String> keySet=new HashSet<>();
-        keySet.addAll(in_people_map.keySet());
-        keySet.addAll(out_people_map.keySet());
-
-        List<HashMap<String, Object>> stationData = new ArrayList<>();
-        keySet.forEach((key) -> {
+        List<HashMap<String,Object>>stationData =new ArrayList<>();
+        DateTime start =new DateTime(info.getStartTime());
+        DateTime end=new DateTime(info.getEndTime());
+        while(start.isBefore(end)){
+            String key=start.toString(formatter[info.getGranularity()-1]);
             HashMap<String, Object> time = new HashMap<>();
             time.put("entranceNum", in_people_map.get(key).size());
             time.put("outboundNum",out_people_map.get(key).size());
-            time.put("time", key);
+            time.put("time",key);
             stationData.add(time);
-        });
+            switch (info.getGranularity()){
+                case 1: start=start.plusHours(1);break;
+                case 2: start=start.plusDays(1);break;
+                case 3: start=start.plusWeeks(1);break;
+                case 4: start=start.plusMonths(1);break;
+            }
+        }
+//        Set<String> keySet=new HashSet<>();
+//        keySet.addAll(in_people_map.keySet());
+//        keySet.addAll(out_people_map.keySet());
+//
+//        List<HashMap<String, Object>> stationData = new ArrayList<>();
+//        keySet.forEach((key) -> {
+//            HashMap<String, Object> time = new HashMap<>();
+//            time.put("entranceNum", in_people_map.get(key).size());
+//            time.put("outboundNum",out_people_map.get(key).size());
+//            time.put("time", key);
+//            stationData.add(time);
+//        });
 
         HashMap<String, Integer> age = new HashMap<>();
         age.put("underage", in_age_map.get(1).size()+out_age_map.get(1).size());
