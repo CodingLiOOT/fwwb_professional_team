@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.joda.time.DateTime;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -19,7 +20,7 @@ import java.sql.Timestamp;
 @Data
 public class StrokeBean implements Serializable {
     @ApiModelProperty(name = "time",value = "进出站时间",required = true)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Timestamp time;
     @ApiModelProperty(name = "stationName",value = "站名",required = false)
     private int stationName;

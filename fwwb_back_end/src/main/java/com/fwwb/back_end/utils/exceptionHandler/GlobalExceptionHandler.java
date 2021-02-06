@@ -26,6 +26,12 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    @ResponseBody
+    public ResponseEntity IllegalArgumentExceptionHandler(IllegalArgumentException e){
+        return DefinitionExceptionHandler(new DefinitionException(ErrorEnum.BODY_NOT_MATCH));
+    }
+
     @ExceptionHandler(value = DefinitionException.class)
     @ResponseBody
     public ResponseEntity DefinitionExceptionHandler(DefinitionException de){
@@ -34,11 +40,13 @@ public class GlobalExceptionHandler {
                 .body(Result.fail(de));
     }
 
-    @ExceptionHandler(value = Exception.class)
-    @ResponseBody
-    public ResponseEntity<Result> OtherExceptionHandler(Exception e){
-        return ResponseEntity
-                .status(ErrorEnum.INTERNAL_SERVER_ERROR.getResultCode())
-                .body(Result.fail(ErrorEnum.INTERNAL_SERVER_ERROR));
-    }
+
+
+//    @ExceptionHandler(value = Exception.class)
+//    @ResponseBody
+//    public ResponseEntity<Result> OtherExceptionHandler(Exception e){
+//        return ResponseEntity
+//                .status(ErrorEnum.INTERNAL_SERVER_ERROR.getResultCode())
+//                .body(Result.fail(ErrorEnum.INTERNAL_SERVER_ERROR));
+//    }
 }
