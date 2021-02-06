@@ -1,7 +1,6 @@
 package com.fwwb.back_end.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.javafx.beans.IDProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

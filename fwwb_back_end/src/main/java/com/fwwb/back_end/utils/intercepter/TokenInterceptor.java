@@ -1,7 +1,5 @@
 package com.fwwb.back_end.utils.intercepter;
 
-import com.alibaba.fastjson.JSON;
-
 import com.fwwb.back_end.utils.exceptionHandler.exception.DefinitionException;
 import com.fwwb.back_end.utils.exceptionHandler.exception.ErrorEnum;
 import com.fwwb.back_end.utils.token.JWTUtils;
@@ -10,8 +8,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @program: demo

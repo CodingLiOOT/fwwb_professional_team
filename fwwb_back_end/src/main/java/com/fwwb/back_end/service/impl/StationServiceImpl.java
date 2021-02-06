@@ -33,22 +33,12 @@ public class StationServiceImpl implements StationService {
     public List<HashMap<String,Object>> getPassengerInfoByHour(StationInfo info){return stationMapper.getPassengerInfoByHour(info);}
 
     @Override
-    public List<StrokeBean> getStrokeRangeHour(StationInfo info) {
-        return stationMapper.getStrokeRangeHour(info);
+    public List<StrokeBean> getEntranceStrokeByTime(StationInfo info) {
+        return stationMapper.getEntranceStrokeByTime(info);
     }
 
     @Override
-    public List<StrokeBean> getStrokeRangeWeek(StationInfo info) {
-        return stationMapper.getStrokeRangeWeek(info);
-    }
-
-    @Override
-    public List<StrokeBean> getStrokeRangeDay(StationInfo info) {
-        return stationMapper.getStrokeRangeDay(info);
-    }
-
-    @Override
-    public List<StrokeBean> getStrokeRangeMonth(StationInfo info) {
-        return stationMapper.getStrokeRangeMonth(info);
+    public List<StrokeBean> getOutStrokeByTime(StationInfo info) {
+        return stationMapper.getOutStrokeByTime(info);
     }
 }

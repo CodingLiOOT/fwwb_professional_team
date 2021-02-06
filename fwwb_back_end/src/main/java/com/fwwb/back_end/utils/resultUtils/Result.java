@@ -37,12 +37,7 @@ public class Result implements Serializable {
                 .code(0)
                 .msg(msg);
     }
-//    public static Result fail(DefinitionException de){
-//        return new Result()
-//                .code(1)
-//                .msg(de.getResultMsg())
-//                .data(de.getResultData());
-//    }
+
     public static Result fail(BaseErrorInfoInterface error){
         return new Result()
                 .code(1)

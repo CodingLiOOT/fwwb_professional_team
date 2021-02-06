@@ -2,7 +2,6 @@ package com.fwwb.back_end.dao;
 
 import com.fwwb.back_end.entity.StationInfo;
 import com.fwwb.back_end.entity.StrokeBean;
-import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -32,25 +31,25 @@ public interface StationMapper {
 
     @Select("select " +
             //"date_format(in_time,'%Y-%m-%d %H:00:00') as time," +
-            "in_time as time, "+
+            "out_time as time, "+
             "Year(Now()) - users.birthYear as age, " +
             "1 as tripType, "+
             "stations.lineID as lineID, "+
-            "trips.in_station as stationName, "+
+            "trips.out_station as stationName, "+
             "users.gender as gender "+
             "from trips,users,stations " +
-            "where trips.userID = users.userID and stations.stationName=trips.in_station "+
-            "and trips.in_station = #{stationName} "+
-            "and trips.in_time between #{startTime} " +
+            "where trips.userID = users.userID and stations.stationName=trips.out_station "+
+            "and trips.out_station = #{stationName} "+
+            "and trips.out_time between #{startTime} " +
             "and #{endTime} " +
-            "order by in_time;")
-    List<StrokeBean> getStrokeRangeHour(StationInfo info);
+            "order by out_time;")
+    List<StrokeBean> getOutStrokeByTime(StationInfo info);
 
     @Select("select " +
-            //"date_format(in_time,'%x年第%v周') as time," +
+            //"date_format(in_time,'%Y-%m-%d %H:00:00') as time," +
             "in_time as time, "+
             "Year(Now()) - users.birthYear as age, " +
-            "1 as tripType, "+
+            "2 as tripType, "+
             "stations.lineID as lineID, "+
             "trips.in_station as stationName, "+
             "users.gender as gender "+
@@ -60,38 +59,6 @@ public interface StationMapper {
             "and trips.in_time between #{startTime} " +
             "and #{endTime} " +
             "order by in_time;")
-    List<StrokeBean> getStrokeRangeWeek(StationInfo info);
-
-    @Select("select " +
-            //"date_format(in_time,'%Y-%m-%d') as time," +
-            "in_time as time, "+
-            "Year(Now()) - users.birthYear as age, " +
-            "1 as tripType, "+
-            "stations.lineID as lineID, "+
-            "trips.in_station as stationName, "+
-            "users.gender as gender "+
-            "from trips,users,stations " +
-            "where trips.userID = users.userID and stations.stationName=trips.in_station "+
-            "and trips.in_station = #{stationName} "+
-            "and trips.in_time between #{startTime} " +
-            "and #{endTime} " +
-            "order by in_time;")
-    List<StrokeBean> getStrokeRangeDay(StationInfo info);
-
-    @Select("select " +
-            //"date_format(in_time,'%Y-%m') as time," +
-            "in_time as time, "+
-            "Year(Now()) - users.birthYear as age, " +
-            "1 as tripType, "+
-            "stations.lineID as lineID, "+
-            "trips.in_station as stationName, "+
-            "users.gender as gender "+
-            "from trips,users,stations " +
-            "where trips.userID = users.userID and stations.stationName=trips.in_station "+
-            "and trips.in_station = #{stationName} "+
-            "and trips.in_time between #{startTime} " +
-            "and #{endTime} " +
-            "order by in_time;")
-    List<StrokeBean> getStrokeRangeMonth(StationInfo info);
+    List<StrokeBean> getEntranceStrokeByTime(StationInfo info);
 }
 
