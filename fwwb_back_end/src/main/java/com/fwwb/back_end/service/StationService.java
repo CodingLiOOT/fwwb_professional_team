@@ -1,6 +1,7 @@
 package com.fwwb.back_end.service;
 
 import com.fwwb.back_end.entity.StationInfo;
+import com.fwwb.back_end.entity.StrokeBean;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,4 +13,6 @@ import java.util.List;
  */
 public interface StationService {
     public List<HashMap<String,Object>> getPassengerInfoByHour(StationInfo info);
+
+    public List<StrokeBean> getStroke(StationInfo info);
 }
