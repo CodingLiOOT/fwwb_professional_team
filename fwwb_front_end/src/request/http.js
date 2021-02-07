@@ -2,15 +2,15 @@ import axios from 'axios';
 import Vue from 'vue';
 import store from "../vuex";
 //环境切换时的url设置
-if (process.env.NODE_ENV === 'development') {
-  axios.defaults.baseURL = 'api';
-} else if (process.env.NODE_ENV === 'debug') {
-  axios.defaults.baseURL = 'api';
-} else if (process.env.NODE_ENV === 'production') {
-
-}
-//axios.defaults.baseURL='api'
-
+// if (process.env.NODE_ENV === 'development') {
+//   axios.defaults.baseURL = 'api';
+// } else if (process.env.NODE_ENV === 'debug') {
+//   axios.defaults.baseURL = 'api';
+// } else if (process.env.NODE_ENV === 'production') {
+//
+// }
+// //axios.defaults.baseURL='api'
+axios.defaults.baseURL='http://127.0.0.1:8090/api'
 //请求超时时间
 axios.defaults.timeout = 10000;
 
