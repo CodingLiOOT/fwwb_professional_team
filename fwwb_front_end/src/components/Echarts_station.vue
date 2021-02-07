@@ -282,8 +282,6 @@ export default {
         .catch(err => {
 
         })
-    },
-
     handleChange(value) {
       console.log(value);
     }
