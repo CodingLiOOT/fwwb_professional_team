@@ -1,7 +1,6 @@
 package com.fwwb.back_end.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.javafx.beans.IDProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -11,7 +10,7 @@ import java.sql.Timestamp;
 
 @ApiModel(value = "用户")
 @Data
-public class UserBean implements Serializable {
+public class AccountBean implements Serializable {
     @ApiModelProperty(name = "ID",value = "用户ID",required = false)
     private long ID;
     @ApiModelProperty(name = "userName",value = "用户名",required = true)

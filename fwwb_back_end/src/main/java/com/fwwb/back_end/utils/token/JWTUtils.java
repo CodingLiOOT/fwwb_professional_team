@@ -1,10 +1,10 @@
-package com.fwwb.back_end.utils;
+package com.fwwb.back_end.utils.token;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.fwwb.back_end.entity.UserBean;
+import com.fwwb.back_end.entity.AccountBean;
 
 
 import java.util.Date;
@@ -21,7 +21,7 @@ public class JWTUtils {
     private static final long EXPIRE_TIME=10*60*60*1000;
     private static final String TOKEN_SECRET="CodeingLiOOT";
 
-    public static String sign(UserBean user){
+    public static String sign(AccountBean user){
         String token=null;
         try{
             Date expiresAt=new Date(System.currentTimeMillis()+EXPIRE_TIME);
