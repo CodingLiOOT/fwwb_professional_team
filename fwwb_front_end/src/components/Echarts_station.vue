@@ -184,10 +184,6 @@
           }]
         };
         let optionOut = {
-          // title: {
-          //   text: '出站人数',
-          //   left: 'center'
-          // },
           visualMap: [{
             show: false,
             type: 'continuous',
@@ -272,7 +268,11 @@
                 }
               }
             }
-          ]
+          },
+          series: [{
+            data: outValueList,
+            type: 'line'
+          }]
         };
         // 使用刚指定的配置项和数据显示图表。
         inChart.setOption(optionIn);
