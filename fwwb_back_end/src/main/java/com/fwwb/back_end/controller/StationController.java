@@ -7,6 +7,8 @@ import com.fwwb.back_end.utils.resultUtils.ResponseResultBody;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Range;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +41,8 @@ public class StationController {
     @PostMapping(value = "/getPassengerByTime")
     public HashMap<String, Object> getPassengerInfoByTime(@RequestBody StationInfo info) {
         checkArgument(Range.closed(1,4).contains(info.getGranularity()),"时间粒度不合法");
-
+        info.setStartTime(new DateTime(info.getStartTime()).toString("yyyy-MM-dd HH:mm:ss"));
+        info.setEndTime(new DateTime(info.getEndTime()).toString("yyyy-MM-dd HH:mm:ss"));
         List<StrokeBean> entranceStrokes;
         List<StrokeBean> outStrokes;
         ArrayListMultimap<String, StrokeBean> in_people_map = ArrayListMultimap.create();
@@ -64,9 +67,11 @@ public class StationController {
             out_age_map.put(strokeBean.getAgeRange(),strokeBean);
         });
 
+        DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+        DateTime start = format.parseDateTime(info.getStartTime());
+        DateTime end=format.parseDateTime(info.getEndTime());
         List<HashMap<String,Object>>stationData =new ArrayList<>();
-        DateTime start =new DateTime(info.getStartTime());
-        DateTime end=new DateTime(info.getEndTime());
+
         while(start.isBefore(end)){
             String key=start.toString(formatter[info.getGranularity()-1]);
             HashMap<String, Object> time = new HashMap<>();
