@@ -1,7 +1,7 @@
 package com.fwwb.back_end;
 
 
-import com.fwwb.back_end.intercepter.TokenInterceptor;
+import com.fwwb.back_end.utils.intercepter.TokenInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
 import org.springframework.web.servlet.config.annotation.*;
@@ -46,9 +46,10 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
         List<String> excludePath = new ArrayList<>();
         //排除拦截，除了注册登录(此时还没token)，其他都拦截
-        excludePath.add("/api/user/register");  //登录
-        excludePath.add("/api/user/login");     //注册
-        excludePath.add("/api/user/test");      //test
+        excludePath.add("/api/user/register");  //注册
+        excludePath.add("/api/user/login");     //登录
+        excludePath.add("/api/test/**"); //测试用例
+        excludePath.add("/error");
         excludePath.add("/static/**");  //静态资源
         excludePath.add("/assets/**");  //静态资源
 

@@ -1,8 +1,8 @@
 package com.fwwb.back_end.service.impl;
 
-import com.fwwb.back_end.dao.UserMapper;
-import com.fwwb.back_end.entity.UserBean;
-import com.fwwb.back_end.service.UserService;
+import com.fwwb.back_end.dao.AccountMapper;
+import com.fwwb.back_end.entity.AccountBean;
+import com.fwwb.back_end.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +16,9 @@ import java.util.List;
  * @version: 1.0
  **/
 @Service("accountService")
-public class UserServiceImpl implements UserService {
+public class AccountServiceImpl implements AccountService {
     @Autowired
-    private UserMapper userMapper;
+    private AccountMapper accountMapper;
 
     @Override
     /**
@@ -30,16 +30,22 @@ public class UserServiceImpl implements UserService {
      * @Author: CodeingLiOOT
      * @Date: 2021/1/5 13:24
      */
-    public List<UserBean> login(String userName){
-        return userMapper.loginByUsername(userName);
+    public List<AccountBean> login(String userName){
+        return accountMapper.loginByUsername(userName);
     }
 
     @Override
-    public void register(UserBean bean){
-        userMapper.register(bean);
+    /**
+     * @Title: register
+     * @Description: 注册接口
+     * @param userBean: 用户注册信息
+     * @return: void
+     * @throw: null
+     * @Author: CodeingLiOOT
+     * @Date: 2021/2/1 0:05
+     */
+    public void register(AccountBean userBean){
+        accountMapper.register(userBean);
     }
 
-    @Override
-    public List<UserBean> selectAll(){
-        return userMapper.selectALL();}
 }
