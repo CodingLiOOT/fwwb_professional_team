@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,5 +61,19 @@ public interface StationMapper {
             "and #{endTime} " +
             "order by in_time;")
     List<StrokeBean> getEntranceStrokeByTime(StationInfo info);
+
+    @Select("select " +
+            "lineID as line, " +
+            "stationName as station " +
+            "from stations " +
+            "order by line,station asc;"
+    )
+    List<HashMap<String, Object>> getLineStationInfo();
+
+    @Select("select distinct " +
+            "lineID as line " +
+            "from stations " +
+            "order by line asc;")
+    ArrayList<Integer> getLine();
 }
 
