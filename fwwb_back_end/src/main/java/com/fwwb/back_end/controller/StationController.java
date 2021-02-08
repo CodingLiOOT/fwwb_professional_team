@@ -110,4 +110,30 @@ public class StationController {
         data.put("age", age);
         return data;
     }
+
+    @GetMapping("/getLineStationInfo")
+    @ResponseResultBody
+    @CrossOrigin
+    public List<HashMap<String, Object>> getLineStationInfo() {
+        ArrayList<Integer> line = stationService.getLine();
+        List<HashMap<String, Object>> data = new ArrayList<HashMap<String,Object>>();
+        HashMap<Integer,Integer> lineIndex = new HashMap<Integer,Integer>();
+
+        for (int i = 0;i<line.size();i++){
+            data.add(new HashMap<String,Object>());
+            data.get(i).put("line",line.get(i));
+            data.get(i).put("station",new ArrayList<Integer>());
+            lineIndex.put(line.get(i),i);
+        }
+
+        List<HashMap<String, Object>> info = stationService.getLineStationInfo();
+
+        for (Object obj: info) {
+            HashMap<String,Object> temp = (HashMap<String,Object>)obj;
+            int index=lineIndex.get(temp.get("line"));
+            ((ArrayList<Integer>)data.get(index).get("station")).add((Integer)temp.get("station"));
+        }
+
+        return data;
+    }
 }
