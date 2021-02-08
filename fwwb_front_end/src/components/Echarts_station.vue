@@ -224,7 +224,7 @@ export default {
         legend: {
           bottom: 10,
           left: 'center',
-          data: ['青年', '中年', '老年']
+          data: ['0-17岁', '18-45岁', '46-69岁','70岁以上']
         },
         series: [
           {
@@ -236,10 +236,11 @@ export default {
             data: [
               {
                 value: this.result.teen,
-                name: '青年',
+                name: '18-45岁',
               },
-              {value: this.result.middle, name: '中年'},
-              {value: this.result.old, name: '老年'},
+              {value: this.result.middle, name: '46-69岁'},
+              {value: this.result.old, name: '70岁以上'},
+              {value: this.result.underage, name: '0-17岁'},
             ],
             emphasis: {
               itemStyle: {
@@ -282,6 +283,8 @@ export default {
         .catch(err => {
 
         })
+    },
+
     handleChange(value) {
       console.log(value);
     }
