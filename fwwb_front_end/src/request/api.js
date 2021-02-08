@@ -25,6 +25,14 @@ export default class api {
   static p_Station=p=>post('/station/getPassengerByTime',p);
 
   /**
+   * 获取所有线路、站点信息以初始化级联选择器
+   * @param null
+   * @returns {Promise<unknown>} [返回所有线路名称、线路下所有站点名称]
+   */
+  static g_getAllStationInfor=()=>get('/station/getLineStationInfo',null);
+
+
+  /**
    * 测试接口，测试token拦截
    * @param null
    * @returns {Promise<unknown>} [返回全部用户信息]
