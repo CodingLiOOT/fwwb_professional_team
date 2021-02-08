@@ -23,7 +23,11 @@
               @close="handleClose">
               <el-menu-item index="/mainPage/data_V">
                 <i class="el-icon-menu"></i>
-                <template slot="title">dataV</template>
+                <template slot="title">总览和线</template>
+              </el-menu-item>
+              <el-menu-item index="/mainPage/echarts">
+                <i class="el-icon-document"></i>
+                <span slot="title">站点</span>
               </el-menu-item>
               <el-menu-item index="/mainPage/baiduMap">
                 <i class="el-icon-document"></i>

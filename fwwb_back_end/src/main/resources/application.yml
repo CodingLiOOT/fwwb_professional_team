@@ -6,7 +6,8 @@ spring:
 #    url: jdbc:mysql://39.107.205.151:3306/fwwb_dataset?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     url: jdbc:mysql://127.0.0.1:3306/fwwb_dataset?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
-    password: 123456
+#输入自己的账户密码
+    password: ljz123hhh
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis:
   mapper-locations: classpath:mapper/*.xml
