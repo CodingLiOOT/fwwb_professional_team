@@ -29,7 +29,7 @@ export default class api {
    * @param null
    * @returns {Promise<unknown>} [返回所有线路名称、线路下所有站点名称]
    */
-  static g_getAllStationInfor=()=>get('/station/getLineStationInfo',null);
+  static g_getAllStationInfo=()=>get('/station/getLineStationInfo',null);
 
 
   /**
