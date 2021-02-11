@@ -68,7 +68,7 @@ public interface StationMapper {
             "from stations " +
             "order by line,station asc;"
     )
-    List<HashMap<String, Object>> getLineStationInfo();
+    List<HashMap<String, Integer>> getLineStationInfo();
 
     @Select("select distinct " +
             "lineID as line " +

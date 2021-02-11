@@ -44,7 +44,7 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public List<HashMap<String, Object>> getLineStationInfo(){return stationMapper.getLineStationInfo();}
+    public List<HashMap<String, Integer>> getLineStationInfo(){return stationMapper.getLineStationInfo();}
 
     @Override
     public ArrayList<Integer> getLine(){return stationMapper.getLine();}

@@ -19,7 +19,7 @@ public interface StationService {
 
     public List<StrokeBean> getOutStrokeByTime(StationInfo info);
 
-    public List<HashMap<String, Object>> getLineStationInfo();
+    public List<HashMap<String, Integer>> getLineStationInfo();
 
     public ArrayList<Integer> getLine();
 }
