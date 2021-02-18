@@ -1,13 +1,13 @@
 <template>
-  <div id="app" >
+  <div id="app">
     <el-row :gutter="5">
       <!--      级联选择器-->
       <el-col :span="4">
-          <el-cascader
-            v-model="valueStation"
-            :options="optionsForStation"
-            :props="{ expandTrigger: 'hover' }"
-            @change="handleChange"></el-cascader>
+        <el-cascader
+          v-model="valueStation"
+          :options="optionsForStation"
+          :props="{ expandTrigger: 'hover' }"
+          @change="handleChange"></el-cascader>
       </el-col>
       <el-col :span="4">
         <el-select v-model="value" filterable placeholder="请选择">
@@ -74,19 +74,20 @@ export default {
   name: "Echarts_station",
   data() {
     return {
-      result:{
-        time:[],
+      stationValue: {},
+      result: {
+        time: [],
         entranceNum: [],
         outboundNum: [],
         teen: '',
         middle: '',
-        old:'',
-        underage:'',
+        old: '',
+        underage: '',
       },
-      value:'',
+      value: '',
       value1: '',
-      valueStation:'',
-      optionsForStation:[{
+      valueStation: '',
+      optionsForStation: [{
         value: 'zhinan',
         label: '指南',
         children: [{
@@ -96,7 +97,7 @@ export default {
           value: 'daohang',
           label: '导航',
         }]
-      }]
+      },]
       ,
       optionsForGranularity: [{
         value: '1',
@@ -104,20 +105,22 @@ export default {
       }, {
         value: '2',
         label: '天'
-      },{
+      }, {
         value: '3',
         label: '周'
       }, {
         value: '4',
         label: '月'
-      }, ],
-    }},
+      },],
+    }
+  },
   methods: {
     drawChart() {
       // 基于准备好的dom，初始化echarts实例
       let inChart = this.$echarts.init(document.getElementById("inChart"));
       let outChart = this.$echarts.init(document.getElementById("outChart"));
-      let ageChart=this.$echarts.init(document.getElementById("ageChart"));
+      let ageChart = this.$echarts.init(document.getElementById("ageChart"));
+
       let dateList = this.result.time;
       let inValueList = this.result.entranceNum;
       let outValueList = this.result.outboundNum;
@@ -140,7 +143,7 @@ export default {
             lineStyle: {
               type: 'solid',
               color: '#fff',//左边线的颜色
-              width:'2'//坐标线的宽度
+              width: '2'//坐标线的宽度
             }
           },
           axisLabel: {
@@ -155,7 +158,7 @@ export default {
             lineStyle: {
               type: 'solid',
               color: '#fff',//左边线的颜色
-              width:'2'//坐标线的宽度
+              width: '2'//坐标线的宽度
             }
           },
           axisLabel: {
@@ -187,7 +190,7 @@ export default {
             lineStyle: {
               type: 'solid',
               color: '#fff',//左边线的颜色
-              width:'2'//坐标线的宽度
+              width: '2'//坐标线的宽度
             }
           },
           axisLabel: {
@@ -202,7 +205,7 @@ export default {
             lineStyle: {
               type: 'solid',
               color: '#fff',//左边线的颜色
-              width:'2'//坐标线的宽度
+              width: '2'//坐标线的宽度
             }
           },
           axisLabel: {
@@ -224,7 +227,7 @@ export default {
         legend: {
           bottom: 10,
           left: 'center',
-          data: ['0-17岁', '18-45岁', '46-69岁','70岁以上']
+          data: ['0-17岁', '18-45岁', '46-69岁', '70岁以上']
         },
         series: [
           {
@@ -258,25 +261,34 @@ export default {
       ageChart.setOption(optionAge);
     },
     // 点击查询按钮以后
-    searchStation(){
+    searchStation() {
+
       this.$API.p_Station({
-        stationName: '47',
+        stationName: this.stationValue,
         startTime: this.value1[0],
         endTime: this.value1[1],
         granularity: this.value,
       })
         .then(
           res => {
-            this.result={};
-            for(let item in res.stationData){
+            this.result = {
+              time: [],
+              entranceNum: [],
+              outboundNum: [],
+              teen: '',
+              middle: '',
+              old: '',
+              underage: '',
+            };
+            for (let item in res.stationData) {
               this.result.time.push(res.stationData[item].time);
               this.result.entranceNum.push(res.stationData[item].entranceNum);
               this.result.outboundNum.push(res.stationData[item].outboundNum);
             }
-            this.result.teen=res.age.teen;
-            this.result.middle=res.age.middle;
-            this.result.old=res.age.old;
-            this.result.underage=res.age.underage;
+            this.result.teen = res.age.teen;
+            this.result.middle = res.age.middle;
+            this.result.old = res.age.old;
+            this.result.underage = res.age.underage;
             this.drawChart();
           }
         )
@@ -284,15 +296,44 @@ export default {
 
         })
     },
-
+    getAllStationInfo() {
+      this.$API.g_getAllStationInfo().then(res => {
+          this.optionsForStation = [];
+          for (let i in res) {
+            let temp = {
+              value: '',
+              label: '',
+              children: []
+            };
+            temp.value = res[i].line;
+            temp.label = res[i].line + "号线";
+            for (let j in res[i].station) {
+              let child = {
+                value: '',
+                label: ''
+              };
+              child.value = res[i].station[j];
+              child.label = res[i].station[j] + "站";
+              temp.children.push(child);
+            }
+            this.optionsForStation.push(temp);
+          }
+          //alert(JSON.stringify(this.optionsForStation));
+        }
+      ).catch(err => {
+        console.log("Error");
+      })
+    },
     handleChange(value) {
-      console.log(value);
+      this.stationValue = value[1];
+      console.log(value[1]);
     }
   },
   mounted() {
-    window.vue=this;
+    window.vue = this;
     document.querySelector('body').setAttribute('style', 'background-color:#16191D')
     this.drawChart();
+    this.getAllStationInfo();
   },
   beforeDestroy() {
     document.querySelector('body').removeAttribute('style')
