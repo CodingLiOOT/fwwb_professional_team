@@ -120,6 +120,7 @@ export default {
       let inChart = this.$echarts.init(document.getElementById("inChart"));
       let outChart = this.$echarts.init(document.getElementById("outChart"));
       let ageChart = this.$echarts.init(document.getElementById("ageChart"));
+
       let dateList = this.result.time;
       let inValueList = this.result.entranceNum;
       let outValueList = this.result.outboundNum;

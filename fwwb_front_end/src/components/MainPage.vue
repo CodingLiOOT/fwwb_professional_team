@@ -29,6 +29,10 @@
                 <i class="el-icon-document"></i>
                 <span slot="title">站点</span>
               </el-menu-item>
+              <el-menu-item index="/mainPage/time">
+                <i class="el-icon-document"></i>
+                <span slot="title">按时间分析</span>
+              </el-menu-item>
               <el-menu-item index="/mainPage/baiduMap">
                 <i class="el-icon-document"></i>
                 <span slot="title">baidu-map</span>
