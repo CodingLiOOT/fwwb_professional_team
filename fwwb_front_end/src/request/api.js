@@ -18,6 +18,21 @@ export default class api {
   static p_Register=p=>post('/user/register',p);
 
   /**
+   * 某一站点信息接口，发送站名，开始时间，结束时间，时间粒度到后端查询
+   * @param {Object} p [发送的参数：站名、起始时间、结束时间、时间粒度]
+   * @returns {Promise<unknown>} [返回进站人数、出站人数、年龄结构]
+   */
+  static p_Station=p=>post('/station/getPassengerByTime',p);
+
+  /**
+   * 获取所有线路、站点信息以初始化级联选择器
+   * @param null
+   * @returns {Promise<unknown>} [返回所有线路名称、线路下所有站点名称]
+   */
+  static g_getAllStationInfor=()=>get('/station/getLineStationInfo',null);
+
+
+  /**
    * 测试接口，测试token拦截
    * @param null
    * @returns {Promise<unknown>} [返回全部用户信息]
