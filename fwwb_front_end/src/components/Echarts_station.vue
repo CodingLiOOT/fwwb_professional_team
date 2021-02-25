@@ -5,12 +5,13 @@
       <el-col :span="4">
         <el-cascader
           v-model="valueStation"
+          placeholder="请选择站点"
           :options="optionsForStation"
           :props="{ expandTrigger: 'hover' }"
           @change="handleChange"></el-cascader>
       </el-col>
       <el-col :span="4">
-        <el-select v-model="value" filterable placeholder="请选择">
+        <el-select v-model="value" filterable placeholder="请选择时间粒度">
           <el-option
             v-for="item in optionsForGranularity"
             :key="item.value"
@@ -120,7 +121,6 @@ export default {
       let inChart = this.$echarts.init(document.getElementById("inChart"));
       let outChart = this.$echarts.init(document.getElementById("outChart"));
       let ageChart = this.$echarts.init(document.getElementById("ageChart"));
-
       let dateList = this.result.time;
       let inValueList = this.result.entranceNum;
       let outValueList = this.result.outboundNum;
@@ -235,7 +235,6 @@ export default {
             radius: '65%',
             center: ['50%', '50%'],
             selectedMode: 'single',
-
             data: [
               {
                 value: this.result.teen,
@@ -262,7 +261,6 @@ export default {
     },
     // 点击查询按钮以后
     searchStation() {
-
       this.$API.p_Station({
         stationName: this.stationValue,
         startTime: this.value1[0],
@@ -293,7 +291,6 @@ export default {
           }
         )
         .catch(err => {
-
         })
     },
     getAllStationInfo() {
@@ -343,4 +340,3 @@ export default {
 
 <style scoped>
 </style>
-
