@@ -8,7 +8,7 @@
   <el-row class="select" gutter="20">
     <el-col :span="6">
 <!--      选择总览还是几号线-->
-      <el-select v-model="value" placeholder="请选择查询线路" style="width: 15rem">
+      <el-select v-model="weekSelectValue" placeholder="请选择查询线路" style="width: 15rem">
         <el-option
           v-for="item in optionsForStation"
           :key="item.value"
@@ -40,7 +40,7 @@
   <el-row class="select" gutter="20">
     <el-col :span="6">
       <!--      选择总览还是几号线-->
-      <el-select v-model="value" placeholder="请选择查询线路" style="width: 15rem">
+      <el-select v-model="valueStation" placeholder="请选择查询线路" style="width: 15rem">
         <el-option
           v-for="item in optionsForStation"
           :key="item.value"
@@ -72,6 +72,7 @@ export default {
   name: "Time",
   data(){
     return {
+      weekSelectValue:'',
       valueStation: '',
       optionsForStation:[],
       weekData:{
@@ -89,8 +90,8 @@ export default {
       }
     }
   },
-  methods:{
-    drawChart(){
+  methods: {
+    drawChart() {
       let chartWeek = this.$echarts.init(document.getElementById("week"));
       let workRing = this.$echarts.init(document.getElementById("workRing"));
       let weekendRing = this.$echarts.init(document.getElementById("weekendRing"));
@@ -100,15 +101,15 @@ export default {
       let optionWeekend;
 
       //数据
-      let weekendList=this.weekData.list;
-      let workday=this.weekData.workday;
-      let weekend=this.weekData.weekend;
+      let weekendList = this.weekData.list;
+      let workday = this.weekData.workday;
+      let weekend = this.weekData.weekend;
 
-      let workRingList=this.workRingData.list;
-      let workValues=this.workRingData.values;
+      let workRingList = this.workRingData.list;
+      let workValues = this.workRingData.values;
 
-      let weekendRingList=this.weekendRingData.list;
-      let weekendValues=this.weekendRingData.values;
+      let weekendRingList = this.weekendRingData.list;
+      let weekendValues = this.weekendRingData.values;
 
       optionWeek = {
         title: {
@@ -173,7 +174,7 @@ export default {
         legend: {
           bottom: 10,
           left: 'center',
-          data: ['1号线','2号线'],
+          data: ['1号线', '2号线'],
         },
         series: [
           {
@@ -183,8 +184,8 @@ export default {
             selectedMode: 'single',
 
             data: [
-              {name:'1号线',value:'23'},
-              {name:'2号线',value:'53'},
+              {name: '1号线', value: '23'},
+              {name: '2号线', value: '53'},
 
             ],
             emphasis: {
@@ -197,13 +198,14 @@ export default {
           }
         ]
       };
-      for(let i in workValues){
+      for (let i in workValues) {
         optionWork.series.data.push({
           value: workValues[i],
           name: workRingList[i],
         })
-      };
-      optionWeekend={
+      }
+      ;
+      optionWeekend = {
         title: {
           text: '周末',
           left: 'center'
@@ -235,18 +237,19 @@ export default {
           }
         ]
       }
-      for(let i in weekendValues){
+      for (let i in weekendValues) {
         optionWeekend.series.data.push({
           value: weekendValues[i],
           name: weekendRingList[i],
         })
-      };
+      }
+      ;
 
       chartWeek.setOption(optionWeek);
       workRing.setOption(optionWork);
       weekendRing.setOption(optionWeekend);
     },
-    drawPeakChart(){
+    drawPeakChart() {
       let chartDay = this.$echarts.init(document.getElementById("day"));
       let peakRing = this.$echarts.init(document.getElementById("peakRing"));
       let normalRing = this.$echarts.init(document.getElementById("normalRing"));
@@ -338,7 +341,7 @@ export default {
           }
         ]
       };
-      optionNormal={
+      optionNormal = {
         title: {
           text: '非高峰',
           left: 'center'
@@ -380,8 +383,8 @@ export default {
       this.$API.g_getAllStationInfo().then(res => {
           this.optionsForStation = [];
           this.optionsForStation.push({
-            value:'0',
-            label:'总览',
+            value: '0',
+            label: '总览',
           })
           for (let i in res) {
             let temp = {
@@ -398,6 +401,14 @@ export default {
         console.log("Error");
       })
     },
+    getWeekData() {
+      this.$API.p_wwhData({
+        lineNo:this.weekSelectValue,
+      })
+      .then(res=>{
+
+      })
+    }
   },
   mounted() {
     window.vue = this;
