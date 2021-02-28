@@ -28,12 +28,8 @@ const router = new Router({
       path: '/',
       name: 'Home',
       meta: {requiresAuth: false},
-<<<<<<< HEAD
-      component: () => import("../components/Echarts_station")
-=======
       component: MainPage,
       redirect:'MainPage/data_V'
->>>>>>> 0e625c1be989031543aa45e35969247434761153
     },
     {
       path: '/home',
