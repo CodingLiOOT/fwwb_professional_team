@@ -29,7 +29,18 @@ export default class api {
    * @param null
    * @returns {Promise<unknown>} [返回所有线路名称、线路下所有站点名称]
    */
+<<<<<<< HEAD
   static g_getAllStationInfor=()=>get('/station/getLineStationInfo',null);
+=======
+  static g_getAllStationInfo=()=>get('/station/getLineStationInfo',null);
+
+  /**
+   * 获取工作日和周末，某条线路或者总览的客流量
+   * @param {Object} p [发送的参数：线路号（或者0，为总览）]
+   * @returns {Promise<unknown>} [返回工作日、周末和节假日，站号或者线号，进站人数，出战人数]
+   */
+  static p_wwhData=p=>post('/line/getPassengerWeek',p);
+>>>>>>> 0e625c1be989031543aa45e35969247434761153
 
 
   /**

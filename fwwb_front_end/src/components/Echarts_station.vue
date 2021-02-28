@@ -5,12 +5,15 @@
       <el-col :span="4">
         <el-cascader
           v-model="valueStation"
+
+          placeholder="请选择站点"
           :options="optionsForStation"
           :props="{ expandTrigger: 'hover' }"
           @change="handleChange"></el-cascader>
       </el-col>
       <el-col :span="4">
-        <el-select v-model="value" filterable placeholder="请选择">
+
+        <el-select v-model="value" filterable placeholder="请选择时间粒度">
           <el-option
             v-for="item in optionsForGranularity"
             :key="item.value"
