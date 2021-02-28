@@ -1,14 +1,15 @@
 <template>
-  <div id="app">
+  <div>
     <el-row :gutter="5">
-      <!--      级联选择器-->
       <el-col :span="4">
-        <el-cascader
-          v-model="valueStation"
-          placeholder="请选择站点"
-          :options="optionsForStation"
-          :props="{ expandTrigger: 'hover' }"
-          @change="handleChange"></el-cascader>
+        <el-select v-model="value" filterable placeholder="请选择线路">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </el-col>
       <el-col :span="4">
         <el-select v-model="value" filterable placeholder="请选择时间粒度">
@@ -21,53 +22,54 @@
         </el-select>
       </el-col>
       <el-col :span=10>
-        <el-date-picker
+        <el-time-picker
           v-model="value1"
-          type="datetimerange"
-          format="yyyy-MM-dd HH:mm:ss"
-          value-format="yyyy-MM-dd HH:mm:ss"
-          range-separator="至"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期">
-        </el-date-picker>
+          :picker-options="{
+      selectableRange: '18:30:00 - 20:30:00'
+    }"
+          placeholder="任意时间点">
+        </el-time-picker>
+        <el-time-picker
+          arrow-control
+          v-model="value2"
+          :picker-options="{
+      selectableRange: '18:30:00 - 20:30:00'
+    }"
+          placeholder="任意时间点">
+        </el-time-picker>
       </el-col>
       <el-col :span=5>
         <el-button @click="searchStation()">查询</el-button>
       </el-col>
+      <el-col :span="8">
+        <dv-digital-flop :config="config" style="width:200px;height:50px;" />
+      </el-col>
     </el-row>
     <el-row :gutter="10">
-      <el-col :offset="0" :span="6">
+      <el-col :offset="0" :span="8">
         <h1 style=color:#3fdcdc;>时间段内入站人数：</h1>
       </el-col>
-      <el-col :offset="7" :span="8">
-        <h1 style=color:#3fdcdc;>年龄比例</h1>
-      </el-col>
-    </el-row>
-
-    <el-row :gutter="10">
-      <el-col :span="12">
-        <!--进站人数折线图-->
-        <div id="inChart" style="width: 40rem;height:25rem;"></div>
-      </el-col>
-      <el-col :span="8">
-        <!--年龄结构图-->
-        <div id="ageChart" style="width: 40rem;height:25rem"></div>
-        <!--        <dv-active-ring-chart :config="config" style="width:200px;height:200px" />-->
-      </el-col>
-    </el-row>
-
-    <el-row :gutter="10">
-      <el-col :offset="0" :span="6">
+      <el-col :offset="0" :span="8">
         <h1 style=color:#3fdcdc;>时间段内出站人数：</h1>
       </el-col>
+      <el-col :offset="0" :span="8">
+        <h1 style=color:#3fdcdc;>年龄占比</h1>
+      </el-col>
     </el-row>
+
     <el-row :gutter="10">
-      <el-col :span="14">
-        <!--出站人数折线图-->
-        <div id="outChart" style="width: 40rem;height:25rem;"></div>
+      <el-col :offset="0" :span="8">
+        <div id="inChart" :style="{width: '550px', height: '550px'}"></div>
+      </el-col>
+      <el-col :offset="0" :span="8">
+        <div id="outChart" :style="{width: '300px', height: '300px'}"></div>
+      </el-col>
+      <el-col :offset="0" :span="8">
+        <dv-active-ring-chart :config="config" style="width:200px;height:200px" />
       </el-col>
     </el-row>
   </div>
+
 </template>
 
 <script>
