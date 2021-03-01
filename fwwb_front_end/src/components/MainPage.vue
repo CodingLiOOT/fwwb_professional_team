@@ -23,17 +23,17 @@
               router
               @open="handleOpen"
               @close="handleClose">
+              <el-menu-item index="/mainPage/overview">
+                <i class="el-icon-menu"></i>
+                <template slot="title">总览</template>
+              </el-menu-item>
               <el-menu-item index="/mainPage/data_V">
                 <i class="el-icon-menu"></i>
-                <template slot="title">总览和线</template>
+                <template slot="title">线</template>
               </el-menu-item>
               <el-menu-item index="/mainPage/echarts">
                 <i class="el-icon-document"></i>
                 <span slot="title">站点</span>
-              </el-menu-item>
-              <el-menu-item index="/mainPage/baiduMap">
-                <i class="el-icon-document"></i>
-                <span slot="title">baidu-map</span>
               </el-menu-item>
             </el-menu>
           </el-col>
