@@ -23,21 +23,15 @@
         </el-select>
       </el-col>
       <el-col :span=10>
-        <el-time-picker
+        <el-date-picker
           v-model="value1"
-          :picker-options="{
-      selectableRange: '18:30:00 - 20:30:00'
-    }"
-          placeholder="任意时间点">
-        </el-time-picker>
-        <el-time-picker
-          arrow-control
-          v-model="value2"
-          :picker-options="{
-      selectableRange: '18:30:00 - 20:30:00'
-    }"
-          placeholder="任意时间点">
-        </el-time-picker>
+          type="datetimerange"
+          format="yyyy-MM-dd HH:mm:ss"
+          value-format="yyyy-MM-dd HH:mm:ss"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+          :default-time="['12:00:00']">
+        </el-date-picker>
       </el-col>
       <el-col :span=5>
         <el-button @click="searchStation()">查询</el-button>
@@ -58,15 +52,15 @@
       </el-col>
     </el-row>
 
-    <el-row :gutter="10">
+    <el-row :gutter="6">
       <el-col :offset="0" :span="8">
-        <div id="inChart" :style="{width: '550px', height: '550px'}"></div>
+        <div id="inChart" :style="{width: '25rem', height: '25rem'}"></div>
       </el-col>
       <el-col :offset="0" :span="8">
-        <div id="outChart" :style="{width: '300px', height: '300px'}"></div>
+        <div id="outChart" :style="{width: '25rem', height: '25rem'}"></div>
       </el-col>
       <el-col :offset="0" :span="8">
-        <dv-active-ring-chart :config="config" style="width:200px;height:200px" />
+        <div id="ageLine" :style="{width: '25rem', height: '25rem'}"></div>
       </el-col>
     </el-row>
   </div>
@@ -119,6 +113,7 @@ export default {
     }
   },
   methods: {
+    // 虽然这个函数没用了，但可以参考里面的接口写法
     drawChart() {
       // 基于准备好的dom，初始化echarts实例
       let inChart = this.$echarts.init(document.getElementById("inChart"));
@@ -262,6 +257,210 @@ export default {
       outChart.setOption(optionOut);
       ageChart.setOption(optionAge);
     },
+    inChartInit(){
+      let inChart = this.$echarts.init(document.getElementById('inChart'))
+      inChart.setOption({
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            crossStyle: {
+              color: '#999'
+            }
+          }
+        },
+        toolbox: {
+          feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+          }
+        },
+        legend: {
+          data: ['蒸发量', '降水量', '平均温度','节假日','周末'],
+          left:'left',
+          width:300,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            axisPointer: {
+              type: 'shadow'
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            min: 0,
+            max: 250,
+            interval: 50,
+            axisLabel: {
+              formatter: '{value} ml'
+            }
+          }
+        ],
+        series: [
+          {
+            name: '蒸发量',
+            type: 'bar',
+            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+          },
+          {
+            name: '降水量',
+            type: 'bar',
+            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+          },
+          {
+            name: '节假日',
+            type: 'line',
+            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+          },
+          {
+            name: '平均温度',
+            type: 'line',
+            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+          },
+          {
+            name: '周末',
+            type: 'line',
+            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+          }
+        ]
+      });
+    },
+    outChartInit(){
+      let outChart = this.$echarts.init(document.getElementById('outChart'))
+      outChart.setOption({
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            crossStyle: {
+              color: '#999'
+            }
+          }
+        },
+        toolbox: {
+          feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+          }
+        },
+        legend: {
+          data: ['蒸发量', '降水量', '平均温度','节假日','周末'],
+          left:'left',
+          width:300,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            axisPointer: {
+              type: 'shadow'
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            min: 0,
+            max: 250,
+            interval: 50,
+            axisLabel: {
+              formatter: '{value} ml'
+            }
+          }
+        ],
+        series: [
+          {
+            name: '蒸发量',
+            type: 'bar',
+            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+          },
+          {
+            name: '降水量',
+            type: 'bar',
+            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+          },
+          {
+            name: '节假日',
+            type: 'line',
+            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+          },
+          {
+            name: '平均温度',
+            type: 'line',
+            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+          },
+          {
+            name: '周末',
+            type: 'line',
+            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+          }
+        ]
+      });
+    },
+    ageLineInit(){
+      let inPie = this.$echarts.init(document.getElementById('ageLine'))
+      inPie.setOption({
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['邮件营销', '联盟广告', '视频广告', '直接访问']
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            name: '邮件营销',
+            type: 'line',
+            stack: '总量',
+            data: [120, 132, 101, 134, 90, 230, 210]
+          },
+          {
+            name: '联盟广告',
+            type: 'line',
+            stack: '总量',
+            data: [220, 182, 191, 234, 290, 330, 310]
+          },
+          {
+            name: '视频广告',
+            type: 'line',
+            stack: '总量',
+            data: [150, 232, 201, 154, 190, 330, 410]
+          },
+          {
+            name: '直接访问',
+            type: 'line',
+            stack: '总量',
+            data: [320, 332, 301, 334, 390, 330, 320]
+          },
+        ]
+      })
+    },
     // 点击查询按钮以后
     searchStation() {
       this.$API.p_Station({
@@ -332,7 +531,10 @@ export default {
   mounted() {
     window.vue = this;
     document.querySelector('body').setAttribute('style', 'background-color:#16191D')
-    this.drawChart();
+    //this.drawChart();
+    this.inChartInit();
+    this.outChartInit();
+    this.ageLineInit();
     this.getAllStationInfo();
   },
   beforeDestroy() {
