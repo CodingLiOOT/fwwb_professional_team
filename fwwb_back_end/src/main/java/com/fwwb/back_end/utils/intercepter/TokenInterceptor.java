@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class TokenInterceptor implements HandlerInterceptor {
 
+    public static ThreadLocal<String> threadLocal=new ThreadLocal<>();
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if(request.getMethod().equals("OPTIONS")){
@@ -27,7 +29,8 @@ public class TokenInterceptor implements HandlerInterceptor {
         }
         response.setCharacterEncoding("utf-8");
         String token = request.getHeader("token");
-        System.out.println(token);
+        threadLocal.set(token);
+        //System.out.println(token);
         if(token != null){
             boolean result = JWTUtils.verify(token);
             if(result){
@@ -51,5 +54,14 @@ public class TokenInterceptor implements HandlerInterceptor {
 //            return false;
 //        }
 //        return false;
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        threadLocal.remove();
+    }
+
+    public static String getToken(){
+        return threadLocal.get();
     }
 }

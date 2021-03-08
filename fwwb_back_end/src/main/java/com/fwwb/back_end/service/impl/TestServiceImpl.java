@@ -1,13 +1,18 @@
 package com.fwwb.back_end.service.impl;
 
 import com.fwwb.back_end.dao.TestMapper;
+import com.fwwb.back_end.utils.webclientUtils.ResultTest;
 import com.fwwb.back_end.entity.TripBean;
 import com.fwwb.back_end.entity.UsersBean;
 import com.fwwb.back_end.service.TestService;
+import com.fwwb.back_end.utils.webclientUtils.WebClientTools;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * @program: back_end
@@ -50,5 +55,21 @@ public class TestServiceImpl implements TestService {
     @Override
     public List<UsersBean> selectByJoin() {
         return testMapper.selectByJoin();
+    }
+
+    @Async
+    @Override
+    public Future<String> testAsync(){
+        String s=WebClientTools.test();
+        System.out.println(s);
+        return new AsyncResult<>(s);
+    }
+
+    @Async
+    @Override
+    public Future<ResultTest> testAsyncData(){
+        ResultTest r=WebClientTools.testStationList();
+        System.out.println(r);
+        return new AsyncResult<>(r);
     }
 }

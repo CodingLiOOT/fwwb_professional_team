@@ -3,6 +3,7 @@ package com.fwwb.back_end.controller;
 import com.fwwb.back_end.entity.StationInfo;
 import com.fwwb.back_end.entity.StrokeBean;
 import com.fwwb.back_end.service.StationService;
+import com.fwwb.back_end.utils.intercepter.TokenInterceptor;
 import com.fwwb.back_end.utils.resultUtils.ResponseResultBody;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Range;
@@ -47,6 +48,7 @@ public class StationController {
         ArrayListMultimap<Integer, StrokeBean> in_age_map = ArrayListMultimap.create();
         ArrayListMultimap<String, StrokeBean> out_people_map = ArrayListMultimap.create();
         ArrayListMultimap<Integer, StrokeBean> out_age_map = ArrayListMultimap.create();
+
         String[] formatter = {
                 "yyyy-MM-dd HH:00:00",
                 "yyyy-MM-dd",
@@ -65,7 +67,7 @@ public class StationController {
             out_age_map.put(strokeBean.getAgeRange(), strokeBean);
         });
 
-        DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+        //DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
         DateTime start = new DateTime(info.getStartTime());
         DateTime end = new DateTime(info.getEndTime());
         List<HashMap<String, Object>> stationData = new ArrayList<>();
