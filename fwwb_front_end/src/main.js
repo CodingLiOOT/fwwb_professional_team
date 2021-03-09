@@ -8,6 +8,8 @@ import store from './vuex'
 import api from './request/api'
 import dataV from '@jiaminghi/data-view'
 import echarts from 'echarts'
+import 'echarts-gl'
+
 Vue.prototype.$echarts = echarts
 Vue.use(dataV)
 
