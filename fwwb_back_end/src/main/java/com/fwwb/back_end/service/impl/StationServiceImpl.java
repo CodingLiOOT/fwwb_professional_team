@@ -7,6 +7,7 @@ import com.fwwb.back_end.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,4 +42,10 @@ public class StationServiceImpl implements StationService {
     public List<StrokeBean> getOutStrokeByTime(StationInfo info) {
         return stationMapper.getOutStrokeByTime(info);
     }
+
+    @Override
+    public List<HashMap<String, Object>> getLineStationInfo(){return stationMapper.getLineStationInfo();}
+
+    @Override
+    public ArrayList<Integer> getLine(){return stationMapper.getLine();}
 }

@@ -7,6 +7,8 @@ import MainPage from "../components/MainPage";
 import data_V from "../components/data_V";
 import baiduMap from "../components/baiduMap";
 import Echarts_station from "../components/Echarts_station";
+import Time from "../components/Time";
+import Overview from "../components/Overview";
 
 Vue.use(Router)
 
@@ -27,7 +29,8 @@ const router = new Router({
       path: '/',
       name: 'Home',
       meta: {requiresAuth: false},
-      component: () => import("../components/Home")
+      component: MainPage,
+      redirect:'MainPage/data_V'
     },
     {
       path: '/home',
@@ -72,6 +75,11 @@ const router = new Router({
           path: 'echarts',
           name: 'echarts',
           component: Echarts_station
+        },
+        {
+          path: 'overview',
+          name: 'Overview',
+          component: Overview
         },
       ]
     },
