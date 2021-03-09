@@ -11,9 +11,12 @@
       </el-col>
       <el-col :span=5>
 <!--        人数-->
+        <h1 style=color:#3fdcdc;>当前总人次：</h1>
+        <dv-digital-flop :config="config" style="width:10rem;height:2.5rem;margin-left: 3rem" /><
       </el-col>
       <el-col :span=5>
 <!--        水位图-->
+        <dv-percent-pond :config="config" style="width:15rem;height:8rem;margin-top: 3rem;margin-left: 2rem" />
       </el-col>
     </el-row>
     <el-row :gutter="10">
@@ -36,9 +39,12 @@
       </el-col>
       <el-col :span="5">
         <!--        热力拓扑图-->
+        <!--        以下div仅为占位所用-->
+        <div style="width: 25rem;height: 25rem;background-color: white;margin-left: 8rem"></div>
       </el-col>
       <el-col :span="5">
         <!--        线路占比-->
+        <div id="linePie" :style="{width: '25rem', height: '25rem',marginLeft:'15rem'}"></div>
       </el-col>
       <el-col :span="5">
         <!--        前十入站轮播表-->
@@ -64,9 +70,12 @@
       </el-col>
       <el-col :span="5">
         <!--        OD热力图-->
+        <!--        以下div仅为占位所用-->
+        <div style="width: 25rem;height: 25rem;background-color: white;margin-left: 8rem"></div>
       </el-col>
       <el-col :span="5">
         <!--        年龄结构-->
+        <div id="agePie" :style="{width: '25rem', height: '25rem',marginLeft:'15rem'}"></div>
       </el-col>
       <el-col :span="5">
         <!--        前十出站轮播表-->
@@ -84,6 +93,15 @@ name: "Overview",
         date:'',
         time:'',
       },
+      //dataV
+      config: {
+        //数字翻牌器
+        number: [10000],
+        content: '{nt}',
+        textAlign:'right',
+        //进度条
+        value: 66,
+      }
     };
   },
   methods: {
@@ -222,6 +240,105 @@ name: "Overview",
         ]
       });
     },
+    linePieInit(){
+      let linePie = this.$echarts.init(document.getElementById('linePie'))
+      linePie.setOption({
+        // title: {
+        //   text: '某站点用户访问来源',
+        //   subtext: '纯属虚构',
+        //   left: 'center'
+        // },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        legend: {
+          show:true,
+          data: ['1号线', '2号线', '3号线', '4号线', '5号线', '6号线', '7号线', '8号线', '9号线', '10号线', '11号线', '12号线', '13号线'],
+          left:'left',
+          width:100
+        },
+        series: [
+          {
+            name: '线路占比',
+            type: 'pie',
+            radius: '35%',
+            center: ['40%', '40%'],
+            selectedMode: 'single',
+            label:{
+              show:false
+            },
+            data: [
+              {value: 1548, name: '1号线',},
+              {value: 735, name: '2号线'},
+              {value: 510, name: '3号线'},
+              {value: 434, name: '4号线'},
+              {value: 635, name: '5号线'},
+              {value: 135, name: '6号线'},
+              {value: 735, name: '7号线'},
+              {value: 225, name: '8号线'},
+              {value: 895, name: '9号线'},
+              {value: 675, name: '10号线'},
+              {value: 345, name: '11号线'},
+              {value: 315, name: '12号线'},
+              {value: 385, name: '13号线'}
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          },
+        ]
+      })
+    },
+    agePieInit(){
+      let agePie = this.$echarts.init(document.getElementById('agePie'))
+      agePie.setOption({
+        // title: {
+        //   text: '某站点用户访问来源',
+        //   subtext: '纯属虚构',
+        //   left: 'center'
+        // },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        legend: {
+          show:true,
+          data: ['少年', '青年', '中年', '老年'],
+          left:'left',
+          width:100
+        },
+        series: [
+          {
+            name: '年龄结构',
+            type: 'pie',
+            radius: '35%',
+            center: ['40%', '25%'],
+            selectedMode: 'single',
+            label:{
+              show:false
+            },
+            data: [
+              {value: 1548, name: '少年',},
+              {value: 735, name: '青年'},
+              {value: 510, name: '中年'},
+              {value: 434, name: '老年'},
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          },
+        ]
+      })
+    },
   },
   mounted() {
     // 获取当前时间
@@ -247,6 +364,8 @@ name: "Overview",
     // 画图
     this.dayChartInit();
     this.weekChartInit();
+    this.linePieInit();
+    this.agePieInit();
     // 设置背景
     document.querySelector('body').setAttribute('style', 'background-color:#16191D')
   },
