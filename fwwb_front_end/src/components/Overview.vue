@@ -11,7 +11,7 @@
       </el-col>
       <el-col :span=5>
 <!--        人数-->
-        <h1 style=color:#3fdcdc;>当前总人次：</h1>
+        <h1 style=color:#FFFFFF;>当前总人次：</h1>
         <dv-digital-flop :config="config" style="width:10rem;height:2.5rem;margin-left: 3rem" /><
       </el-col>
       <el-col :span=5>
@@ -40,7 +40,7 @@
       <el-col :span="5">
         <!--        热力拓扑图-->
         <!--        以下div仅为占位所用-->
-        <div style="width: 25rem;height: 25rem;background-color: white;margin-left: 8rem"></div>
+        <div style="width: 25rem;height: 25rem;background-color: #41464e;margin-left: 8rem"></div>
       </el-col>
       <el-col :span="5">
         <!--        线路占比-->
@@ -48,6 +48,7 @@
       </el-col>
       <el-col :span="5">
         <!--        前十入站轮播表-->
+        <dv-scroll-ranking-board :config="config" style="width:25rem;height:25rem;margin-left: 15rem" />
       </el-col>
     </el-row>
     <el-row :gutter="10">
@@ -71,7 +72,7 @@
       <el-col :span="5">
         <!--        OD热力图-->
         <!--        以下div仅为占位所用-->
-        <div style="width: 25rem;height: 25rem;background-color: white;margin-left: 8rem"></div>
+        <div style="width: 25rem;height: 25rem;background-color: #41464e;margin-left: 8rem"></div>
       </el-col>
       <el-col :span="5">
         <!--        年龄结构-->
@@ -79,6 +80,7 @@
       </el-col>
       <el-col :span="5">
         <!--        前十出站轮播表-->
+        <dv-scroll-ranking-board :config="config" style="width:25rem;height:25rem;margin-left: 15rem" />
       </el-col>
     </el-row>
   </div>
@@ -101,6 +103,37 @@ name: "Overview",
         textAlign:'right',
         //进度条
         value: 66,
+        //排名轮播表
+        data: [
+          {
+            name: '周口',
+            value: 55
+          },
+          {
+            name: '南阳',
+            value: 120
+          },
+          {
+            name: '西峡',
+            value: 78
+          },
+          {
+            name: '驻马店',
+            value: 66
+          },
+          {
+            name: '新乡',
+            value: 80
+          },
+          {
+            name: '信阳',
+            value: 45
+          },
+          {
+            name: '漯河',
+            value: 29
+          }
+        ]
       }
     };
   },
@@ -128,7 +161,7 @@ name: "Overview",
       let inChart = this.$echarts.init(document.getElementById('dayChart'))
       inChart.setOption({
         title:{
-          text: '当天总人次',
+          //text: '当天总人次',
           bottom:0,
           left:'center'
         },
@@ -152,6 +185,9 @@ name: "Overview",
         legend: {
           data: ['人次'],
           width:300,
+          textStyle:{
+            color: '#ffffff'//字体颜色
+          },
         },
         xAxis: [
           {
@@ -159,7 +195,13 @@ name: "Overview",
             data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             axisPointer: {
               type: 'shadow'
-            }
+            },
+            axisLabel:{
+              show: true,
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         yAxis: [
@@ -171,6 +213,11 @@ name: "Overview",
             // axisLabel: {
             //   formatter: '{value} ml'
             // }
+            axisLabel: {
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         series: [
@@ -186,7 +233,7 @@ name: "Overview",
       let inChart = this.$echarts.init(document.getElementById('weekChart'))
       inChart.setOption({
         title:{
-          text: '当天总人次',
+         // text: '当天总人次',
           bottom:0,
           left:'center'
         },
@@ -210,6 +257,9 @@ name: "Overview",
         legend: {
           data: ['人次'],
           width:300,
+          textStyle:{
+            color: '#ffffff'//字体颜色
+          },
         },
         xAxis: [
           {
@@ -217,7 +267,13 @@ name: "Overview",
             data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             axisPointer: {
               type: 'shadow'
-            }
+            },
+            axisLabel:{
+              show: true,
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         yAxis: [
@@ -229,6 +285,11 @@ name: "Overview",
             // axisLabel: {
             //   formatter: '{value} ml'
             // }
+            axisLabel: {
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         series: [
@@ -256,7 +317,10 @@ name: "Overview",
           show:true,
           data: ['1号线', '2号线', '3号线', '4号线', '5号线', '6号线', '7号线', '8号线', '9号线', '10号线', '11号线', '12号线', '13号线'],
           left:'left',
-          width:100
+          width:100,
+          textStyle:{
+            color: '#ffffff'//字体颜色
+          },
         },
         series: [
           {
@@ -310,7 +374,10 @@ name: "Overview",
           show:true,
           data: ['少年', '青年', '中年', '老年'],
           left:'left',
-          width:100
+          width:100,
+          textStyle:{
+            color: '#ffffff'//字体颜色
+          },
         },
         series: [
           {
