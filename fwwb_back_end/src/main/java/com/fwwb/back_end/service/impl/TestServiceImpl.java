@@ -59,16 +59,16 @@ public class TestServiceImpl implements TestService {
 
     @Async
     @Override
-    public Future<String> testAsync(){
-        String s=WebClientTools.test();
+    public Future<String> testAsync() {
+        String s = WebClientTools.test();
         System.out.println(s);
         return new AsyncResult<>(s);
     }
 
     @Async
     @Override
-    public Future<ResultTest> testAsyncData(){
-        ResultTest r=WebClientTools.testStationList();
+    public Future<ResultTest> testAsyncData() {
+        ResultTest r = WebClientTools.testStationList();
         System.out.println(r);
         return new AsyncResult<>(r);
     }

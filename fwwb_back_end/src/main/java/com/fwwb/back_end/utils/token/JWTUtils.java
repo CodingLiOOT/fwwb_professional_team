@@ -20,50 +20,48 @@ import java.util.Date;
  **/
 public class JWTUtils {
 
-    private static final long EXPIRE_TIME=10*60*60*1000;
-    private static final String TOKEN_SECRET="CodeingLiOOT";
+    private static final long EXPIRE_TIME = 10 * 60 * 60 * 1000;
+    private static final String TOKEN_SECRET = "CodeingLiOOT";
 
-    public static String sign(AccountBean user){
-        String token=null;
-        try{
-            Date expiresAt=new Date(System.currentTimeMillis()+EXPIRE_TIME);
-            token= JWT.create()
+    public static String sign(AccountBean user) {
+        String token = null;
+        try {
+            Date expiresAt = new Date(System.currentTimeMillis() + EXPIRE_TIME);
+            token = JWT.create()
                     .withIssuer("CodeingLiOOT")
-                    .withClaim("username",user.getUserName())
+                    .withClaim("username", user.getUserName())
                     .withExpiresAt(expiresAt)
                     .sign(Algorithm.HMAC256(TOKEN_SECRET));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return token;
     }
 
-    public static boolean verify(String token){
-        try{
-            JWTVerifier verifier=JWT.require(Algorithm.HMAC256(TOKEN_SECRET))
-                                    .withIssuer("CodeingLiOOT")
-                                    .build();
-            DecodedJWT jwt=verifier.verify(token);
+    public static boolean verify(String token) {
+        try {
+            JWTVerifier verifier = JWT.require(Algorithm.HMAC256(TOKEN_SECRET))
+                    .withIssuer("CodeingLiOOT")
+                    .build();
+            DecodedJWT jwt = verifier.verify(token);
 
             System.out.println("认证通过： ");
-            System.out.println("username: "+ jwt.getClaim("username").asString());
-            System.out.println("过期时间: "+jwt.getExpiresAt());
+            System.out.println("username: " + jwt.getClaim("username").asString());
+            System.out.println("过期时间: " + jwt.getExpiresAt());
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
 
-    public static String verifyAndGetUserName(String token,String claim){
-         try {
-             DecodedJWT jwt= JWT.require(Algorithm.HMAC256(TOKEN_SECRET))
-                     .withIssuer("CodeingLiOOT")
-                     .build().verify(token);
+    public static String verifyAndGetUserName(String token, String claim) {
+        try {
+            DecodedJWT jwt = JWT.require(Algorithm.HMAC256(TOKEN_SECRET))
+                    .withIssuer("CodeingLiOOT")
+                    .build().verify(token);
             return jwt.getClaim(claim).asString();
-         }catch (Exception e){
-             throw new DefinitionException(ErrorEnum.SIGNATURE_NOT_MATCH);
-         }
-
-
+        } catch (Exception e) {
+            throw new DefinitionException(ErrorEnum.SIGNATURE_NOT_MATCH);
+        }
     }
 }

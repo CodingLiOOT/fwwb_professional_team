@@ -20,13 +20,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = IllegalArgumentException.class)
     @ResponseBody
-    public ResponseEntity IllegalArgumentExceptionHandler(IllegalArgumentException e){
+    public ResponseEntity IllegalArgumentExceptionHandler(IllegalArgumentException e) {
         return DefinitionExceptionHandler(new DefinitionException(ErrorEnum.BODY_NOT_MATCH));
     }
 
     @ExceptionHandler(value = DefinitionException.class)
     @ResponseBody
-    public ResponseEntity DefinitionExceptionHandler(DefinitionException de){
+    public ResponseEntity DefinitionExceptionHandler(DefinitionException de) {
         return ResponseEntity
                 .status(de.getResultCode())
                 .body(Result.fail(de));
@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public ResponseEntity<Result> OtherExceptionHandler(Exception e){
+    public ResponseEntity<Result> OtherExceptionHandler(Exception e) {
         e.printStackTrace();
         return ResponseEntity
                 .status(ErrorEnum.INTERNAL_SERVER_ERROR.getResultCode())

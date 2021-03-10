@@ -30,7 +30,7 @@ public class AccountServiceImpl implements AccountService {
      * @Author: CodeingLiOOT
      * @Date: 2021/1/5 13:24
      */
-    public List<AccountBean> login(String userName){
+    public List<AccountBean> login(String userName) {
         return accountMapper.loginByUsername(userName);
     }
 
@@ -44,7 +44,7 @@ public class AccountServiceImpl implements AccountService {
      * @Author: CodeingLiOOT
      * @Date: 2021/2/1 0:05
      */
-    public void register(AccountBean userBean){
+    public void register(AccountBean userBean) {
         accountMapper.register(userBean);
     }
 

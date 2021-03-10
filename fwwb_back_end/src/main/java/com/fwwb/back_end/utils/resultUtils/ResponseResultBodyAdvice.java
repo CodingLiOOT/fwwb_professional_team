@@ -25,12 +25,12 @@ public class ResponseResultBodyAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-        return AnnotatedElementUtils.hasAnnotation(returnType.getContainingClass(),ANNOTATION_TYPE)||returnType.hasMethodAnnotation(ANNOTATION_TYPE);
+        return AnnotatedElementUtils.hasAnnotation(returnType.getContainingClass(), ANNOTATION_TYPE) || returnType.hasMethodAnnotation(ANNOTATION_TYPE);
     }
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if(o instanceof Result){
+        if (o instanceof Result) {
             return o;
         }
         return Result.success(o);

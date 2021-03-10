@@ -13,12 +13,12 @@ import reactor.core.publisher.Mono;
  * @version: 1.0
  **/
 public class WebClientTools {
-    private static WebClient webClient= WebClient.builder()
-            .defaultHeader("token","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDb2RlaW5nTGlPT1QiLCJleHAiOjE2MTUyMTEyNzEsInVzZXJuYW1lIjoiTGp6MTIzaGhoIn0.9d4o0PlXqaGuOc6-OJlLa4pArjdjpwhYptspuaLrsRA")
+    private static WebClient webClient = WebClient.builder()
+            .defaultHeader("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDb2RlaW5nTGlPT1QiLCJleHAiOjE2MTUyMTEyNzEsInVzZXJuYW1lIjoiTGp6MTIzaGhoIn0.9d4o0PlXqaGuOc6-OJlLa4pArjdjpwhYptspuaLrsRA")
             .baseUrl("http://127.0.0.1:8090")
             .build();
 
-    public static String test(){
+    public static String test() {
         return webClient
                 .get()
                 .uri(UrlEnum.TEST.getUrl())
@@ -26,7 +26,7 @@ public class WebClientTools {
                 .bodyToMono(String.class).block();
     }
 
-    public static ResultTest testStationList(){
+    public static ResultTest testStationList() {
         Mono<ResultTest> mono = webClient.get()
                 .uri(UrlEnum.TEST_STATION_LIST.getUrl())
                 .retrieve()

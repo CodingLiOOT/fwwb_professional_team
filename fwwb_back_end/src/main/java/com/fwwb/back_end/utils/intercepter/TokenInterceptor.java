@@ -24,7 +24,7 @@ public class TokenInterceptor implements HandlerInterceptor {
     public static ThreadLocal<String> threadLocal=new ThreadLocal<>();
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if(request.getMethod().equals("OPTIONS")){
             response.setStatus(HttpServletResponse.SC_OK);
             return true;

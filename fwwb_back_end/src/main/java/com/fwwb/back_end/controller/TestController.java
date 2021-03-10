@@ -31,19 +31,18 @@ public class TestController {
     @GetMapping("/getString")
     @CrossOrigin
     @ResponseBody
-    public String getTest(){
+    public String getTest() {
         return "Hello,world";
     }
 
     @GetMapping("/getAll")
     @CrossOrigin
     @ResponseBody
-    public ResponseEntity getAll()
-    {
+    public ResponseEntity getAll() {
         //List<UsersBean> users=usersService.selectAllUsersByID();
-        List<TripBean> trips=testService.selectAllStationsByInOut();
-        Map<Integer, Integer> cnt=new HashMap<>();
-        trips.forEach(tripBean -> cnt.merge(tripBean.getIn_station(),1,Integer::sum));
+        List<TripBean> trips = testService.selectAllStationsByInOut();
+        Map<Integer, Integer> cnt = new HashMap<>();
+        trips.forEach(tripBean -> cnt.merge(tripBean.getIn_station(), 1, Integer::sum));
         return ResponseEntity.ok(Result.success(cnt));
     }
 
@@ -53,7 +52,7 @@ public class TestController {
     public String getString() throws ExecutionException, InterruptedException {
         long start = System.currentTimeMillis();
         System.out.println("start");
-        Future<String>future =testService.testAsync();
+        Future<String> future = testService.testAsync();
         System.out.println();
         System.out.println("end");
         return future.get();
@@ -65,7 +64,7 @@ public class TestController {
     public ResultTest getStation() throws ExecutionException, InterruptedException {
         long start = System.currentTimeMillis();
         System.out.println("start");
-        Future<ResultTest>future =testService.testAsyncData();
+        Future<ResultTest> future = testService.testAsyncData();
         System.out.println();
         System.out.println("end");
         return future.get();

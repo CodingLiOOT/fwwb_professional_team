@@ -124,17 +124,17 @@ public class StationController {
     @CrossOrigin
     public List<HashMap<String, Object>> getLineStationInfo() {
 
-        ArrayListMultimap<Integer,Integer> info=ArrayListMultimap.create();
-        List<HashMap<String,Integer>> stations=stationService.getLineStationInfo();
+        ArrayListMultimap<Integer, Integer> info = ArrayListMultimap.create();
+        List<HashMap<String, Integer>> stations = stationService.getLineStationInfo();
         stations.forEach(station -> {
-            info.put(station.get("line"),station.get("station"));
+            info.put(station.get("line"), station.get("station"));
         });
 
-        List<HashMap<String,Object>> data=new ArrayList<>();
-        info.keySet().forEach((key)->{
-            HashMap<String,Object> temp=new HashMap<>();
-            temp.put("line",key);
-            temp.put("station",info.get(key));
+        List<HashMap<String, Object>> data = new ArrayList<>();
+        info.keySet().forEach((key) -> {
+            HashMap<String, Object> temp = new HashMap<>();
+            temp.put("line", key);
+            temp.put("station", info.get(key));
             data.add(temp);
         });
         return data;

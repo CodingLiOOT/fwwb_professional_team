@@ -22,9 +22,9 @@ public class UserLogInController {
     private AccountService accountService;
 
     /**
+     * @param user:
      * @Title: doLogin
      * @Description: 登录响应Controller
-     * @param user:
      * @return: org.springframework.http.ResponseEntity
      * @throw:
      * @Author: CodeingLiOOT
@@ -33,7 +33,7 @@ public class UserLogInController {
     @CrossOrigin
     @ResponseResultBody
     @PostMapping(value = "/login")
-    public Map<String,Object> doLogin(@RequestBody AccountBean user) {
+    public Map<String, Object> doLogin(@RequestBody AccountBean user) {
         //response.setHeader("Access-Control-Allow-Origin","http://localhost:8080");
         List<AccountBean> accountBeans = accountService.login(user.getUserName());
         if (accountBeans.size() == 0 || !accountBeans.get(0).getPassword().equals(user.getPassword())) {
