@@ -11,9 +11,12 @@
       </el-col>
       <el-col :span=5>
 <!--        人数-->
+        <h1 style=color:#FFFFFF;>当前总人次：</h1>
+        <dv-digital-flop :config="config" style="width:10rem;height:2.5rem;margin-left: 3rem" /><
       </el-col>
       <el-col :span=5>
 <!--        水位图-->
+        <dv-percent-pond :config="config" style="width:15rem;height:8rem;margin-top: 3rem;margin-left: 2rem" />
       </el-col>
     </el-row>
     <el-row :gutter="10">
@@ -36,14 +39,18 @@
       </el-col>
       <el-col :span="10">
         <!--        热力拓扑图-->
-        <div id="map" :style="{width: '25rem', height: '25rem'}"></div>
+<!--        <div id="map" :style="{width: '25rem', height: '25rem'}"></div>-->
+<!--      </el-col>-->
+      <div style="width: 25rem;height: 25rem;background-color: #41464e;margin-left: 8rem"></div>
       </el-col>
       <el-col :span="5">
         <!--        线路占比-->
         <div id="lineProportion" :style="{width: '30rem', height: '25rem'}"></div>
+
       </el-col>
       <el-col :span="5">
         <!--        前十入站轮播表-->
+        <dv-scroll-ranking-board :config="config" style="width:25rem;height:25rem;margin-left: 15rem" />
       </el-col>
     </el-row>
     <el-row :gutter="10">
@@ -66,14 +73,16 @@
       </el-col>
       <el-col :span="10">
         <!--        OD热力图-->
-        <div id="OD_Analyze" :style="{width: '65rem', height: '25rem'}"></div>
+        <div id="OD_Analyze" :style="{width: '55rem', height: '25rem'}"></div>
       </el-col>
       <el-col :span="5">
         <!--        年龄结构-->
         <div id="ageProportion" :style="{width: '30rem', height: '25rem'}"></div>
+
       </el-col>
       <el-col :span="5">
         <!--        前十出站轮播表-->
+        <dv-scroll-ranking-board :config="config" style="width:25rem;height:25rem;margin-left: 15rem" />
       </el-col>
     </el-row>
   </div>
@@ -88,6 +97,46 @@ name: "Overview",
         date:'',
         time:'',
       },
+      //dataV
+      config: {
+        //数字翻牌器
+        number: [10000],
+        content: '{nt}',
+        textAlign:'right',
+        //进度条
+        value: 66,
+        //排名轮播表
+        data: [
+          {
+            name: '周口',
+            value: 55
+          },
+          {
+            name: '南阳',
+            value: 120
+          },
+          {
+            name: '西峡',
+            value: 78
+          },
+          {
+            name: '驻马店',
+            value: 66
+          },
+          {
+            name: '新乡',
+            value: 80
+          },
+          {
+            name: '信阳',
+            value: 45
+          },
+          {
+            name: '漯河',
+            value: 29
+          }
+        ]
+      }
     };
   },
   methods: {
@@ -114,7 +163,7 @@ name: "Overview",
       let inChart = this.$echarts.init(document.getElementById('dayChart'))
       inChart.setOption({
         title:{
-          text: '当天总人次',
+          //text: '当天总人次',
           bottom:0,
           left:'center'
         },
@@ -138,6 +187,9 @@ name: "Overview",
         legend: {
           data: ['人次'],
           width:300,
+          textStyle:{
+            color: '#ffffff'//字体颜色
+          },
         },
         xAxis: [
           {
@@ -145,7 +197,13 @@ name: "Overview",
             data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             axisPointer: {
               type: 'shadow'
-            }
+            },
+            axisLabel:{
+              show: true,
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         yAxis: [
@@ -157,6 +215,11 @@ name: "Overview",
             // axisLabel: {
             //   formatter: '{value} ml'
             // }
+            axisLabel: {
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         series: [
@@ -172,7 +235,7 @@ name: "Overview",
       let inChart = this.$echarts.init(document.getElementById('weekChart'))
       inChart.setOption({
         title:{
-          text: '当天总人次',
+         // text: '当天总人次',
           bottom:0,
           left:'center'
         },
@@ -196,6 +259,9 @@ name: "Overview",
         legend: {
           data: ['人次'],
           width:300,
+          textStyle:{
+            color: '#ffffff'//字体颜色
+          },
         },
         xAxis: [
           {
@@ -203,7 +269,13 @@ name: "Overview",
             data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             axisPointer: {
               type: 'shadow'
-            }
+            },
+            axisLabel:{
+              show: true,
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         yAxis: [
@@ -215,6 +287,11 @@ name: "Overview",
             // axisLabel: {
             //   formatter: '{value} ml'
             // }
+            axisLabel: {
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         series: [

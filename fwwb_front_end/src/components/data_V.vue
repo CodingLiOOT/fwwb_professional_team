@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="datav">
     <el-row :gutter="5">
       <el-col :span="4">
         <el-select v-model="value" filterable placeholder="请选择线路">
@@ -133,6 +133,9 @@ export default {
           data: ['蒸发量', '降水量', '平均温度','节假日','周末'],
           left:'left',
           width:300,
+          textStyle:{
+            color: '#ffffff'//字体颜色
+          },
         },
         xAxis: [
           {
@@ -140,7 +143,13 @@ export default {
             data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             axisPointer: {
               type: 'shadow'
-            }
+            },
+            axisLabel:{
+              show: true,
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         yAxis: [
@@ -150,8 +159,11 @@ export default {
             max: 250,
             interval: 50,
             axisLabel: {
-              formatter: '{value} ml'
-            }
+              formatter: '{value} ml',
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         series: [
@@ -207,6 +219,9 @@ export default {
           data: ['蒸发量', '降水量', '平均温度','节假日','周末'],
           left:'left',
           width:300,
+          textStyle:{
+            color: '#ffffff'//字体颜色
+          },
         },
         xAxis: [
           {
@@ -214,7 +229,13 @@ export default {
             data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             axisPointer: {
               type: 'shadow'
-            }
+            },
+            axisLabel:{
+              show: true,
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         yAxis: [
@@ -224,8 +245,11 @@ export default {
             max: 250,
             interval: 50,
             axisLabel: {
-              formatter: '{value} ml'
-            }
+              formatter: '{value} ml',
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
           }
         ],
         series: [
@@ -280,7 +304,10 @@ export default {
           show:true,
           data: ['西凉', '益州', '兖州', '荆州', '幽州'],
           left:'left',
-          width:200
+          width:200,
+          textStyle:{
+            color: '#ffffff'//字体颜色
+          },
         },
         series: [
           {
@@ -289,7 +316,10 @@ export default {
             center: ['50%', '25%'],
             selectedMode: 'single',
             label:{
-              show:false
+              textStyle: {
+                color: '#ffffff'
+              },
+              show:false,
             },
             data: [
               {
@@ -345,7 +375,10 @@ export default {
           trigger: 'axis'
         },
         legend: {
-          data: ['邮件营销', '联盟广告', '视频广告', '直接访问']
+          data: ['邮件营销', '联盟广告', '视频广告', '直接访问'],
+          textStyle:{
+            color: '#ffffff'//字体颜色
+          },
         },
         grid: {
           left: '3%',
@@ -361,10 +394,21 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+          axisLabel:{
+            show: true,
+            textStyle: {
+              color: '#ffffff'
+            }
+          },
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          axisLabel: {
+            textStyle: {
+              color: '#ffffff'
+            }
+          },
         },
         series: [
           {
@@ -393,9 +437,8 @@ export default {
           },
         ]
       })
-    },
 
-  }
+  },
 
     searchLine(){},
 
@@ -493,5 +536,12 @@ el-col {
 }
 .configRank>>>name{
   color:black
+}
+.datav{
+  background: url("../assets/bg/2-2.png") no-repeat center;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: fixed;
 }
 </style>
