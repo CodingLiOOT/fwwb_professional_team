@@ -1,70 +1,70 @@
 <template>
-<div>
-  <el-row>
-    <el-col>
-      <h1>工作日和周末</h1>
-    </el-col>
-  </el-row>
-  <el-row class="select" gutter="20">
-    <el-col :span="6">
-<!--      选择总览还是几号线-->
-      <el-select v-model="value" placeholder="请选择查询线路" style="width: 15rem">
-        <el-option
-          v-for="item in optionsForStation"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-    </el-col>
-    <el-col span="4">
-      <el-button>查询</el-button>
-    </el-col>
-  </el-row>
-  <el-row gutter="20">
-    <el-col :span="12">
-      <div id="week" style="width: 40rem;height:25rem"></div>
-    </el-col>
-    <el-col :span="6">
-      <div id="workRing" style="width: 20rem;height:25rem"></div>
-    </el-col>
-    <el-col :span="6">
-      <div id="weekendRing"style="width: 20rem;height:25rem"></div>
-    </el-col>
-  </el-row>
-  <el-row>
-    <el-col>
-      <h1>早晚高峰</h1>
-    </el-col>
-  </el-row>
-  <el-row class="select" gutter="20">
-    <el-col :span="6">
-      <!--      选择总览还是几号线-->
-      <el-select v-model="value" placeholder="请选择查询线路" style="width: 15rem">
-        <el-option
-          v-for="item in optionsForStation"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-    </el-col>
-    <el-col span="4">
-      <el-button>查询</el-button>
-    </el-col>
-  </el-row>
-  <el-row gutter="20">
-    <el-col :span="12">
-      <div id="day" style="width: 40rem;height:25rem"></div>
-    </el-col>
-    <el-col :span="6">
-      <div id="peakRing" style="width: 20rem;height:25rem"></div>
-    </el-col>
-    <el-col :span="6">
-      <div id="normalRing"style="width: 20rem;height:25rem"></div>
-    </el-col>
-  </el-row>
-</div>
+  <div>
+    <el-row>
+      <el-col>
+        <h1>工作日和周末</h1>
+      </el-col>
+    </el-row>
+    <el-row class="select" gutter="20">
+      <el-col :span="6">
+        <!--      选择总览还是几号线-->
+        <el-select v-model="value" placeholder="请选择查询线路" style="width: 15rem">
+          <el-option
+            v-for="item in optionsForStation"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-col>
+      <el-col span="4">
+        <el-button>查询</el-button>
+      </el-col>
+    </el-row>
+    <el-row gutter="20">
+      <el-col :span="12">
+        <div id="week" style="width: 40rem;height:25rem"></div>
+      </el-col>
+      <el-col :span="6">
+        <div id="workRing" style="width: 20rem;height:25rem"></div>
+      </el-col>
+      <el-col :span="6">
+        <div id="weekendRing"style="width: 20rem;height:25rem"></div>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col>
+        <h1>早晚高峰</h1>
+      </el-col>
+    </el-row>
+    <el-row class="select" gutter="20">
+      <el-col :span="6">
+        <!--      选择总览还是几号线-->
+        <el-select v-model="value" placeholder="请选择查询线路" style="width: 15rem">
+          <el-option
+            v-for="item in optionsForStation"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </el-col>
+      <el-col span="4">
+        <el-button>查询</el-button>
+      </el-col>
+    </el-row>
+    <el-row gutter="20">
+      <el-col :span="12">
+        <div id="day" style="width: 40rem;height:25rem"></div>
+      </el-col>
+      <el-col :span="6">
+        <div id="peakRing" style="width: 20rem;height:25rem"></div>
+      </el-col>
+      <el-col :span="6">
+        <div id="normalRing"style="width: 20rem;height:25rem"></div>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>

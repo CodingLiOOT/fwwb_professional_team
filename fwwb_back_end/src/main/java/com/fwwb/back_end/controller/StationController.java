@@ -40,16 +40,24 @@ public class StationController {
     @ResponseResultBody
     @PostMapping(value = "/getPassengerByTime")
     public HashMap<String, Object> getPassengerInfoByTime(@RequestBody StationInfo info) {
+<<<<<<< HEAD
         checkArgument(Range.closed(1,4).contains(info.getGranularity()),"时间粒度不合法");
         info.setStartTime(new DateTime(info.getStartTime()).toString("yyyy-MM-dd HH:mm:ss"));
         info.setEndTime(new DateTime(info.getEndTime()).toString("yyyy-MM-dd HH:mm:ss"));
+=======
+        checkArgument(Range.closed(1, 4).contains(info.getGranularity()), "时间粒度不合法");
+>>>>>>> 0e625c1be989031543aa45e35969247434761153
         List<StrokeBean> entranceStrokes;
         List<StrokeBean> outStrokes;
         ArrayListMultimap<String, StrokeBean> in_people_map = ArrayListMultimap.create();
         ArrayListMultimap<Integer, StrokeBean> in_age_map = ArrayListMultimap.create();
         ArrayListMultimap<String, StrokeBean> out_people_map = ArrayListMultimap.create();
         ArrayListMultimap<Integer, StrokeBean> out_age_map = ArrayListMultimap.create();
+<<<<<<< HEAD
         String[] formatter={
+=======
+        String[] formatter = {
+>>>>>>> 0e625c1be989031543aa45e35969247434761153
                 "yyyy-MM-dd HH:00:00",
                 "yyyy-MM-dd",
                 "yyyy年第ww周",
@@ -57,6 +65,7 @@ public class StationController {
         };
 
         entranceStrokes = stationService.getEntranceStrokeByTime(info);
+<<<<<<< HEAD
         outStrokes=stationService.getOutStrokeByTime(info);
         entranceStrokes.forEach(strokeBean -> {
             in_people_map.put(new DateTime(strokeBean.getTime()).toString(formatter[info.getGranularity()-1]), strokeBean);
@@ -84,6 +93,43 @@ public class StationController {
                 case 2: start=start.plusDays(1);break;
                 case 3: start=start.plusWeeks(1);break;
                 case 4: start=start.plusMonths(1);break;
+=======
+        outStrokes = stationService.getOutStrokeByTime(info);
+        entranceStrokes.forEach(strokeBean -> {
+            in_people_map.put(new DateTime(strokeBean.getTime()).toString(formatter[info.getGranularity() - 1]), strokeBean);
+            in_age_map.put(strokeBean.getAgeRange(), strokeBean);
+        });
+        outStrokes.forEach(strokeBean -> {
+            out_people_map.put(new DateTime(strokeBean.getTime()).toString(formatter[info.getGranularity() - 1]), strokeBean);
+            out_age_map.put(strokeBean.getAgeRange(), strokeBean);
+        });
+
+        DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+        DateTime start = new DateTime(info.getStartTime());
+        DateTime end = new DateTime(info.getEndTime());
+        List<HashMap<String, Object>> stationData = new ArrayList<>();
+
+        while (start.isBefore(end)) {
+            String key = start.toString(formatter[info.getGranularity() - 1]);
+            HashMap<String, Object> time = new HashMap<>();
+            time.put("entranceNum", in_people_map.get(key).size());
+            time.put("outboundNum", out_people_map.get(key).size());
+            time.put("time", key);
+            stationData.add(time);
+            switch (info.getGranularity()) {
+                case 1:
+                    start = start.plusHours(1);
+                    break;
+                case 2:
+                    start = start.plusDays(1);
+                    break;
+                case 3:
+                    start = start.plusWeeks(1);
+                    break;
+                case 4:
+                    start = start.plusMonths(1);
+                    break;
+>>>>>>> 0e625c1be989031543aa45e35969247434761153
             }
         }
 //        Set<String> keySet=new HashSet<>();
@@ -100,14 +146,50 @@ public class StationController {
 //        });
 
         HashMap<String, Integer> age = new HashMap<>();
+<<<<<<< HEAD
         age.put("underage", in_age_map.get(1).size()+out_age_map.get(1).size());
         age.put("teen", in_age_map.get(2).size()+out_age_map.get(2).size());
         age.put("middle", in_age_map.get(3).size()+out_age_map.get(3).size());
         age.put("old", in_age_map.get(4).size()+out_age_map.get(4).size());
+=======
+        age.put("underage", in_age_map.get(1).size() + out_age_map.get(1).size());
+        age.put("teen", in_age_map.get(2).size() + out_age_map.get(2).size());
+        age.put("middle", in_age_map.get(3).size() + out_age_map.get(3).size());
+        age.put("old", in_age_map.get(4).size() + out_age_map.get(4).size());
+>>>>>>> 0e625c1be989031543aa45e35969247434761153
 
         HashMap<String, Object> data = new HashMap<>();
         data.put("stationData", stationData);
         data.put("age", age);
         return data;
     }
+<<<<<<< HEAD
+=======
+
+    @GetMapping("/getLineStationInfo")
+    @ResponseResultBody
+    @CrossOrigin
+    public List<HashMap<String, Object>> getLineStationInfo() {
+        ArrayList<Integer> line = stationService.getLine();
+        List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
+        HashMap<Integer, Integer> lineIndex = new HashMap<Integer, Integer>();
+
+        for (int i = 0; i < line.size(); i++) {
+            data.add(new HashMap<String, Object>());
+            data.get(i).put("line", line.get(i));
+            data.get(i).put("station", new ArrayList<Integer>());
+            lineIndex.put(line.get(i), i);
+        }
+
+        List<HashMap<String, Object>> info = stationService.getLineStationInfo();
+
+        for (Object obj : info) {
+            HashMap<String, Object> temp = (HashMap<String, Object>) obj;
+            int index = lineIndex.get(temp.get("line"));
+            ((ArrayList<Integer>) data.get(index).get("station")).add((Integer) temp.get("station"));
+        }
+
+        return data;
+    }
+>>>>>>> 0e625c1be989031543aa45e35969247434761153
 }
