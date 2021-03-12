@@ -23,24 +23,24 @@ public interface StationMapper {
             "date_format(in_time,'%Y-%m-%d %H:00:00') time," +
             "count(userID) entranceNum " +
             "from trips " +
-            "where in_station = #{stationName} "+
+            "where in_station = #{stationName} " +
             "and in_time between #{startTime} " +
             "and #{endTime} " +
             "group by time " +
             "order by in_time;")
-    List<HashMap<String,Object>> getPassengerInfoByHour(StationInfo info);
+    List<HashMap<String, Object>> getPassengerInfoByHour(StationInfo info);
 
     @Select("select " +
             //"date_format(in_time,'%Y-%m-%d %H:00:00') as time," +
-            "out_time as time, "+
+            "out_time as time, " +
             "Year(Now()) - users.birthYear as age, " +
-            "1 as tripType, "+
-            "stations.lineID as lineID, "+
-            "trips.out_station as stationName, "+
-            "users.gender as gender "+
+            "1 as tripType, " +
+            "stations.lineID as lineID, " +
+            "trips.out_station as stationName, " +
+            "users.gender as gender " +
             "from trips,users,stations " +
-            "where trips.userID = users.userID and stations.stationName=trips.out_station "+
-            "and trips.out_station = #{stationName} "+
+            "where trips.userID = users.userID and stations.stationName=trips.out_station " +
+            "and trips.out_station = #{stationName} " +
             "and trips.out_time between #{startTime} " +
             "and #{endTime} " +
             "order by out_time;")
@@ -48,15 +48,15 @@ public interface StationMapper {
 
     @Select("select " +
             //"date_format(in_time,'%Y-%m-%d %H:00:00') as time," +
-            "in_time as time, "+
+            "in_time as time, " +
             "Year(Now()) - users.birthYear as age, " +
-            "2 as tripType, "+
-            "stations.lineID as lineID, "+
-            "trips.in_station as stationName, "+
-            "users.gender as gender "+
+            "2 as tripType, " +
+            "stations.lineID as lineID, " +
+            "trips.in_station as stationName, " +
+            "users.gender as gender " +
             "from trips,users,stations " +
-            "where trips.userID = users.userID and stations.stationName=trips.in_station "+
-            "and trips.in_station = #{stationName} "+
+            "where trips.userID = users.userID and stations.stationName=trips.in_station " +
+            "and trips.in_station = #{stationName} " +
             "and trips.in_time between #{startTime} " +
             "and #{endTime} " +
             "order by in_time;")
@@ -68,7 +68,7 @@ public interface StationMapper {
             "from stations " +
             "order by line,station asc;"
     )
-    List<HashMap<String, Object>> getLineStationInfo();
+    List<HashMap<String, Integer>> getLineStationInfo();
 
     @Select("select distinct " +
             "lineID as line " +

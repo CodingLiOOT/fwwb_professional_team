@@ -13,13 +13,13 @@ import java.util.List;
  * @date: Created in 12:01 2021/2/4
  */
 public interface StationService {
-    public List<HashMap<String,Object>> getPassengerInfoByHour(StationInfo info);
+    public List<HashMap<String, Object>> getPassengerInfoByHour(StationInfo info);
 
     public List<StrokeBean> getEntranceStrokeByTime(StationInfo info);
 
     public List<StrokeBean> getOutStrokeByTime(StationInfo info);
 
-    public List<HashMap<String, Object>> getLineStationInfo();
+    public List<HashMap<String, Integer>> getLineStationInfo();
 
     public ArrayList<Integer> getLine();
 }

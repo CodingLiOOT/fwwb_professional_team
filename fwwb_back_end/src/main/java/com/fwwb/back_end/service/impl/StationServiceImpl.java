@@ -31,7 +31,9 @@ public class StationServiceImpl implements StationService {
      * @return {@link List< HashMap< String, Integer>>}
      * @throws
      **/
-    public List<HashMap<String,Object>> getPassengerInfoByHour(StationInfo info){return stationMapper.getPassengerInfoByHour(info);}
+    public List<HashMap<String, Object>> getPassengerInfoByHour(StationInfo info) {
+        return stationMapper.getPassengerInfoByHour(info);
+    }
 
     @Override
     public List<StrokeBean> getEntranceStrokeByTime(StationInfo info) {
@@ -44,8 +46,12 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public List<HashMap<String, Object>> getLineStationInfo(){return stationMapper.getLineStationInfo();}
+    public List<HashMap<String, Integer>> getLineStationInfo() {
+        return stationMapper.getLineStationInfo();
+    }
 
     @Override
-    public ArrayList<Integer> getLine(){return stationMapper.getLine();}
+    public ArrayList<Integer> getLine() {
+        return stationMapper.getLine();
+    }
 }

@@ -25,15 +25,17 @@ public class DefinitionException extends RuntimeException implements BaseErrorIn
     protected String errorMsg;
     protected Object errorData;
 
-    public DefinitionException(ErrorEnum item){
+    public DefinitionException(ErrorEnum item) {
         super();
-        this.errorCode=item.getResultCode();
-        this.errorMsg=item.getResultMsg();
+        this.errorCode = item.getResultCode();
+        this.errorMsg = item.getResultMsg();
     }
-    public DefinitionException(ErrorEnum item,Object data){
+
+    public DefinitionException(ErrorEnum item, Object data) {
         this(item);
-        this.errorData=data;
+        this.errorData = data;
     }
+
     @Override
     public Integer getResultCode() {
         return errorCode;
