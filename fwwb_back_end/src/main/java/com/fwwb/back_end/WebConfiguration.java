@@ -15,8 +15,8 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     private TokenInterceptor tokenInterceptor;
 
-    public  WebConfiguration(TokenInterceptor tokenInterceptor){
-        this.tokenInterceptor=tokenInterceptor;
+    public WebConfiguration(TokenInterceptor tokenInterceptor) {
+        this.tokenInterceptor = tokenInterceptor;
     }
 
     /*
@@ -26,7 +26,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("*")
-                .allowedMethods("GET", "HEAD", "POST","PUT", "DELETE", "OPTIONS")
+                .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .exposedHeaders("access-control-allow-headers",
                         "access-control-allow-methods",
@@ -36,14 +36,15 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .allowCredentials(false).maxAge(3600);
         //super.addCorsMappings(registry);
     }
+
     @Override
-    public void configureAsyncSupport(AsyncSupportConfigurer configurer){
+    public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
         configurer.setTaskExecutor(new ConcurrentTaskExecutor(Executors.newFixedThreadPool(3)));
         configurer.setDefaultTimeout(30000);
     }
 
     @Override
-    public void addInterceptors(InterceptorRegistry registry){
+    public void addInterceptors(InterceptorRegistry registry) {
         List<String> excludePath = new ArrayList<>();
         //排除拦截，除了注册登录(此时还没token)，其他都拦截
         excludePath.add("/api/user/register");  //注册

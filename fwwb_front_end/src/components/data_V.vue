@@ -68,6 +68,7 @@
         <div id="ageLine" :style="{width: '25rem', height: '25rem'}"></div>
       </el-col>
     </el-row>
+
     <template>
       <span class="spanTitle">OD分析</span>
       <div id="OD_Analyze" :style="{width: '155rem', height:'100rem'}"></div>
@@ -280,6 +281,7 @@ export default {
         ]
       });
     },
+
     pieInit(){
       let inPie = this.$echarts.init(document.getElementById('inPie'))
       inPie.setOption({
@@ -435,7 +437,9 @@ export default {
           },
         ]
       })
-    },
+
+  },
+
     searchLine(){},
 
     ODInit(){

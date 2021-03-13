@@ -20,32 +20,34 @@ public class Result implements Serializable {
     private String msg;
     private Object data;
 
-    public static Result success(Object data){
+    public static Result success(Object data) {
         return new Result()
                 .code(0)
                 .msg("操作成功")
                 .data(data);
     }
-    public static Result success(Object data,String msg){
+
+    public static Result success(Object data, String msg) {
         return new Result()
                 .code(0)
                 .msg(msg)
                 .data(data);
     }
-    public static Result success(String msg){
+
+    public static Result success(String msg) {
         return new Result()
                 .code(0)
                 .msg(msg);
     }
 
-    public static Result fail(BaseErrorInfoInterface error){
+    public static Result fail(BaseErrorInfoInterface error) {
         return new Result()
                 .code(1)
                 .msg(error.getResultMsg())
                 .data(error.getResultData());
     }
 
-    public static Result fail(String msg){
+    public static Result fail(String msg) {
         return new Result()
                 .code(1)
                 .msg(msg);

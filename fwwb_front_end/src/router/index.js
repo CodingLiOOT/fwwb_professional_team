@@ -30,7 +30,11 @@ const router = new Router({
       name: 'Home',
       meta: {requiresAuth: false},
       component: MainPage,
+<<<<<<< HEAD
       redirect:'MainPage/Overview'
+=======
+      redirect:'MainPage/overview'
+>>>>>>> f6e8a7439a220f04605edfa2bd76e35a50242d84
     },
     {
       path: '/home',
