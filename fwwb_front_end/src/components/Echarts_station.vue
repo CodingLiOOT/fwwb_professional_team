@@ -2,18 +2,15 @@
   <div>
     <el-row :gutter="5">
       <el-col :span="4">
-        <el-select v-model="value" filterable placeholder="请选择线路">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
+        <el-cascader
+          v-model="selectedValue"
+          :options="optionsForStation"
+          :props="{ expandTrigger: 'hover' }"
+          @change="handleChange"></el-cascader>
       </el-col>
       <el-col :span="4">
 
-        <el-select v-model="value" filterable placeholder="请选择时间粒度">
+        <el-select v-model="granularity" filterable placeholder="请选择时间粒度">
           <el-option
             v-for="item in optionsForGranularity"
             :key="item.value"
@@ -24,7 +21,7 @@
       </el-col>
       <el-col :span=10>
         <el-date-picker
-          v-model="value1"
+          v-model="timeValue"
           type="datetimerange"
           format="yyyy-MM-dd HH:mm:ss"
           value-format="yyyy-MM-dd HH:mm:ss"
@@ -36,9 +33,9 @@
       <el-col :span=5>
         <el-button @click="searchStation()">查询</el-button>
       </el-col>
-      <el-col :span="8">
-        <dv-digital-flop :config="config" style="width:200px;height:50px;" />
-      </el-col>
+<!--      <el-col :span="8">-->
+<!--        <dv-digital-flop :config="config" style="width:200px;height:50px;" />-->
+<!--      </el-col>-->
     </el-row>
 
     <el-row :gutter="10">
@@ -74,7 +71,30 @@ export default {
   name: "Echarts_station",
   data() {
     return {
-      stationValue: {},
+      selectedValue:'',
+      granularity: '',
+      timeValue: '',
+      entranceData:{
+        time: [7,8,9,10,17,18,19,20,71,81,91],
+        timePro:[31,0,32,0,41,0,42,0,31,0,32],
+        entranceNum: [12,23,12,45,23,21,45,10,22],
+        morning:[12,23,12,45,23,21],
+        evening:[19,33,22,35,20,11],
+      },
+      outboundData:{
+        time: [],
+        timePro:[],
+        outboundNum: [],
+        morning:[],
+        evening:[],
+      },
+      ageStructure:{
+        time: [],
+        teen: [],
+        middle: [],
+        old: [],
+        underage: [],
+      },
       result: {
         time: [],
         entranceNum: [],
@@ -84,21 +104,7 @@ export default {
         old: '',
         underage: '',
       },
-      value: '',
-      value1: '',
-      valueStation: '',
-      optionsForStation: [{
-        value: 'zhinan',
-        label: '指南',
-        children: [{
-          value: 'shejiyuanze',
-          label: '设计原则',
-        }, {
-          value: 'daohang',
-          label: '导航',
-        }]
-      },]
-      ,
+      optionsForStation: [],
       optionsForGranularity: [{
         value: '1',
         label: '小时'
@@ -261,6 +267,199 @@ export default {
     },
     inChartInit(){
       let inChart = this.$echarts.init(document.getElementById('inChart'))
+      let myLengend=[];
+      let seriesData=[];
+      let f0=0,f1=0,f2=0,f3=0,f4=0,f5=0,f6=0;
+      let m1=[],m2=[],e1=[],e2=[];
+      // 时间粒度为小时
+      if(this.granularity==1){
+        // 初始化图例
+        myLengend.push('总人次');
+        // 初始化早晚高峰范围
+        for(let i in this.entranceData.timePro){
+          if(this.entranceData.timePro[i]===31){
+            m1.push(this.entranceData.time[i]);
+          }
+          else if(this.entranceData.timePro[i]===32){
+            m2.push(this.entranceData.time[i]);
+          }
+          else if(this.entranceData.timePro[i]===41){
+            e1.push(this.entranceData.time[i]);
+          }
+          else if(this.entranceData.timePro[i]===42){
+            e2.push(this.entranceData.time[i]);
+          }
+        }
+        // 初始化数据
+        let scope=[];
+        for(let item in m1){
+          let tempM1={
+            name:'早高峰',
+            xAxis:'',
+          }
+          let tempM2={
+            xAxis:'',
+          }
+          tempM1.xAxis=m1[item];
+          tempM2.xAxis=m2[item];
+          let m=[];
+          m.push(tempM1);
+          m.push(tempM2);
+          scope.push(m);
+        }
+        for(let item in e1){
+          let tempE1={
+            name:'晚高峰',
+            xAxis:'',
+          }
+          let tempE2= {
+            xAxis: '',
+          }
+          tempE1.xAxis=e1[item];
+          tempE2.xAxis=e2[item];
+          let e=[];
+          e.push(tempE1);
+          e.push(tempE2);
+          scope.push(e);
+        }
+        alert("scope: "+scope);
+        seriesData= [
+          {
+            name: '总人次',
+            type: 'line',
+            smooth: true,
+            data: this.entranceData.entranceNum,
+            markArea: {
+              itemStyle: {
+                color: 'rgba(255, 173, 177, 0.4)'
+              },
+              data:scope,
+            }
+          }
+        ]
+      }
+      // 时间粒度为天
+      else if(this.granularity==2){
+        // 初始化图例
+        for(let item in this.entranceData.timePro){
+          if(this.entranceData.timePro[item]===0&&f0===0){
+            myLengend.push('工作日');
+            f0=1;
+          }
+          else if(this.entranceData.timePro[item]===1&&f1===0){
+            myLengend.push('周末');
+            f1=1;
+          }
+          else if(this.entranceData.timePro[item]===2&&f2===0){
+            myLengend.push('节假日');
+            f2=1;
+          }
+        }
+        myLengend.push('早高峰');
+        myLengend.push('晚高峰');
+        // 初始化数据
+        for(let item in myLengend){
+          let temp={
+            name:'',
+            type:'',
+            stack:'',
+            data:[],
+          };
+          if(myLengend[item]==="工作日"){
+            temp.name=myLengend[item];
+            temp.type='bar';
+            temp.stack='one';
+            for(let i in this.entranceData.entranceNum){
+              if(this.entranceData.timePro[i]===0){
+                temp.data.push(this.entranceData.entranceNum[i]);
+              }
+              else{
+                temp.data.push(0);
+              }
+            }
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='周末'){
+            temp.name=myLengend[item];
+            temp.type='bar';
+            temp.stack='one';
+            for(let i in this.entranceData.entranceNum){
+              if(this.entranceData.timePro[i]===1){
+                temp.data.push(this.entranceData.entranceNum[i]);
+              }
+              else{
+                temp.data.push(0);
+              }
+            }
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='节假日'){
+            temp.name=myLengend[item];
+            temp.type='bar';
+            temp.stack='one';
+            for(let i in this.entranceData.entranceNum){
+              if(this.entranceData.timePro[i]===2){
+                temp.data.push(this.entranceData.entranceNum[i]);
+              }
+              else{
+                temp.data.push(0);
+              }
+            }
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='早高峰'){
+            temp.name=myLengend[item];
+            temp.type='line';
+            temp.stack='';
+            temp.data=this.entranceData.morning;
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='晚高峰'){
+            temp.name=myLengend[item];
+            temp.type='line';
+            temp.stack='';
+            temp.data=this.entranceData.evening;
+            seriesData.push(temp);
+          }
+        }
+      }
+      else{
+        // 初始化图例
+        myLengend.push('总人次');
+        myLengend.push('早高峰');
+        myLengend.push('晚高峰');
+        // 初始化数据
+        for(let item in myLengend){
+          let temp={
+            name:'',
+            type:'',
+            stack:'',
+            data:[],
+          };
+          if(myLengend[item]==='总人次'){
+            temp.name=myLengend[item];
+            temp.type='bar';
+            temp.stack='one';
+            temp.data=this.entranceData.entranceNum;
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='早高峰'){
+            temp.name=myLengend[item];
+            temp.type='line';
+            temp.stack='';
+            temp.data=this.entranceData.morning;
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='晚高峰'){
+            temp.name=myLengend[item];
+            temp.type='line';
+            temp.stack='';
+            temp.data=this.entranceData.evening;
+            seriesData.push(temp);
+          }
+        }
+      }
+
       inChart.setOption({
         tooltip: {
           trigger: 'axis',
@@ -269,7 +468,16 @@ export default {
             crossStyle: {
               color: '#999'
             }
-          }
+          },
+          formatter: function (params) {
+            let res=params[0].name+'</p></div>'
+            for(let i=0;i<params.length;i++){
+              if(params[i].data!==0){
+                res+='<p>'+params[i].seriesName+': '+params[i].data+'</p>'
+              }
+            }
+            return res;
+          },
         },
         toolbox: {
           feature: {
@@ -283,14 +491,14 @@ export default {
           textStyle:{
             color: '#ffffff'//字体颜色
           },
-          data: ['蒸发量', '降水量', '平均温度','节假日','周末'],
+          data: myLengend,
           left:'left',
           width:300,
         },
         xAxis: [
           {
             type: 'category',
-            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            data: this.entranceData.time,
             axisPointer: {
               type: 'shadow'
             },
@@ -309,7 +517,9 @@ export default {
             max: 250,
             interval: 50,
             axisLabel: {
-              formatter: '{value} ml',
+
+
+              // formatter: '{value} ml',
               textStyle: {
                 color: '#ffffff'
               }
@@ -317,33 +527,7 @@ export default {
 
           }
         ],
-        series: [
-          {
-            name: '蒸发量',
-            type: 'bar',
-            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-          },
-          {
-            name: '降水量',
-            type: 'bar',
-            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
-          },
-          {
-            name: '节假日',
-            type: 'line',
-            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
-          },
-          {
-            name: '平均温度',
-            type: 'line',
-            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
-          },
-          {
-            name: '周末',
-            type: 'line',
-            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
-          }
-        ]
+        series:seriesData,
       });
     },
     outChartInit(){
@@ -504,33 +688,62 @@ export default {
     },
     // 点击查询按钮以后
     searchStation() {
+      this.inChartInit();
       this.$API.p_Station({
-        stationName: this.stationValue,
-        startTime: this.value1[0],
-        endTime: this.value1[1],
-        granularity: this.value,
+        line: this.selectedValue[0],
+        station:this.selectedValue[1],
+        startTime: this.timeValue[0],
+        endTime: this.timeValue[1],
+        granularity: this.granularity,
       })
         .then(
           res => {
-            this.result = {
-              time: [],
-              entranceNum: [],
-              outboundNum: [],
-              teen: '',
-              middle: '',
-              old: '',
-              underage: '',
+            this.entranceData={
+                time: [],
+                timePro:[],
+                entranceNum: [],
+                morning:[],
+                evening:[],
             };
-            for (let item in res.stationData) {
-              this.result.time.push(res.stationData[item].time);
-              this.result.entranceNum.push(res.stationData[item].entranceNum);
-              this.result.outboundNum.push(res.stationData[item].outboundNum);
+            this.outboundData={
+                time: [],
+                timePro:[],
+                outboundNum: [],
+                morning:[],
+                evening:[],
+            };
+            this.ageStructure={
+                time: [],
+                teen: [],
+                middle: [],
+                old: [],
+                underage: [],
+            };
+            for (let item in res.entranceData) {
+              this.entranceData.time.push(res.entranceData[item].time);
+              this.entranceData.timePro.push(res.entranceData[item].timePro);
+              this.entranceData.entranceNum.push(res.entranceData[item].entranceNum);
+              this.entranceData.morning.push(res.entranceData[item].morning);
+              this.entranceData.evening.push(res.entranceData[item].evening);
             }
-            this.result.teen = res.age.teen;
-            this.result.middle = res.age.middle;
-            this.result.old = res.age.old;
-            this.result.underage = res.age.underage;
-            this.drawChart();
+            for (let item in res.outboundData) {
+              this.outboundData.time.push(res.outboundData[item].time);
+              this.outboundData.timePro.push(res.outboundData[item].timePro);
+              this.outboundData.entranceNum.push(res.outboundData[item].entranceNum);
+              this.outboundData.morning.push(res.outboundData[item].morning);
+              this.outboundData.evening.push(res.outboundData[item].evening);
+            }
+            for (let item in res.ageStructure) {
+              this.ageStructure.time.push(res.ageStructure[item].time);
+              this.ageStructure.teen.push(res.ageStructure[item].teen);
+              this.ageStructure.middle.push(res.ageStructure[item].middle);
+              this.ageStructure.old.push(res.ageStructure[item].old);
+              this.ageStructure.underage.push(res.ageStructure[item].underage);
+            }
+            // this.drawChart();
+            this.inChartInit();
+            this.outChartInit();
+            this.ageLineInit();
           }
         )
         .catch(err => {

@@ -10,12 +10,12 @@
         <div id="weather-v2-plugin-standard"></div>
       </el-col>
       <el-col :span=5>
-<!--        人数-->
+        <!--        人数-->
         <h1 style=color:#FFFFFF;>当前总人次：</h1>
         <dv-digital-flop :config="config" style="width:10rem;height:2.5rem;margin-left: 3rem" /><
       </el-col>
       <el-col :span=5>
-<!--        水位图-->
+        <!--        水位图-->
         <dv-percent-pond :config="config" style="width:15rem;height:8rem;margin-top: 3rem;margin-left: 2rem" />
       </el-col>
     </el-row>
@@ -39,14 +39,9 @@
       </el-col>
       <el-col :span="10">
         <!--        热力拓扑图-->
-<<<<<<< HEAD
-        <!--        以下div仅为占位所用-->
+        <!--        <div id="map" :style="{width: '25rem', height: '25rem'}"></div>-->
+        <!--      </el-col>-->
         <div style="width: 25rem;height: 25rem;background-color: #41464e;margin-left: 8rem"></div>
-=======
-<!--        <div id="map" :style="{width: '25rem', height: '25rem'}"></div>-->
-<!--      </el-col>-->
-      <div style="width: 25rem;height: 25rem;background-color: #41464e;margin-left: 8rem"></div>
->>>>>>> f6e8a7439a220f04605edfa2bd76e35a50242d84
       </el-col>
       <el-col :span="5">
         <!--        线路占比-->
@@ -78,12 +73,7 @@
       </el-col>
       <el-col :span="10">
         <!--        OD热力图-->
-<<<<<<< HEAD
-        <!--        以下div仅为占位所用-->
-        <div style="width: 25rem;height: 25rem;background-color: #41464e;margin-left: 8rem"></div>
-=======
         <div id="OD_Analyze" :style="{width: '55rem', height: '25rem'}"></div>
->>>>>>> f6e8a7439a220f04605edfa2bd76e35a50242d84
       </el-col>
       <el-col :span="5">
         <!--        年龄结构-->
@@ -100,7 +90,7 @@
 
 <script>
 export default {
-name: "Overview",
+  name: "Overview",
   data() {
     return {
       nowTime:{
@@ -245,7 +235,7 @@ name: "Overview",
       let inChart = this.$echarts.init(document.getElementById('weekChart'))
       inChart.setOption({
         title:{
-         // text: '当天总人次',
+          // text: '当天总人次',
           bottom:0,
           left:'center'
         },
@@ -313,20 +303,10 @@ name: "Overview",
         ]
       });
     },
-
     lineProportionInit(){
       let linePropChart = this.$echarts.init(document.getElementById('lineProportion'))
       linePropChart.setOption({
         legend: {
-<<<<<<< HEAD
-          show:true,
-          data: ['1号线', '2号线', '3号线', '4号线', '5号线', '6号线', '7号线', '8号线', '9号线', '10号线', '11号线', '12号线', '13号线'],
-          left:'left',
-          width:100,
-          textStyle:{
-            color: '#ffffff'//字体颜色
-          },
-=======
           top: 'bottom',
           textStyle: {
             color: '#3fdcdc'
@@ -340,7 +320,6 @@ name: "Overview",
             restore: {show: true},
             saveAsImage: {show: true}
           }
->>>>>>> f6e8a7439a220f04605edfa2bd76e35a50242d84
         },
         series: [
           {
@@ -367,24 +346,14 @@ name: "Overview",
         ]
       });
     },
-
     ageProportionInit(){
       let linePropChart = this.$echarts.init(document.getElementById('ageProportion'))
       linePropChart.setOption({
         legend: {
-<<<<<<< HEAD
-          show:true,
-          data: ['少年', '青年', '中年', '老年'],
-          left:'left',
-          width:100,
-          textStyle:{
-            color: '#ffffff'//字体颜色
-          },
-=======
           top: 'bottom',
-            textStyle: {
-              color: '#3fdcdc'
-            }
+          textStyle: {
+            color: '#3fdcdc'
+          }
         },
         toolbox: {
           show: true,
@@ -394,7 +363,6 @@ name: "Overview",
             restore: {show: true},
             saveAsImage: {show: true}
           }
->>>>>>> f6e8a7439a220f04605edfa2bd76e35a50242d84
         },
         series: [
           {
@@ -416,7 +384,6 @@ name: "Overview",
         ]
       });
     },
-
     ODChartInit(){
       let ODChart = this.$echarts.init(document.getElementById('OD_Analyze'))
       ODChart.setOption({
@@ -433,7 +400,6 @@ name: "Overview",
               type : 'line',        // 默认为直线，可选为：'line' | 'shadow'
             },
             //     formatter: function(params){return Math.max(params.value,-params.value)}
-
             formatter: function (params) {
               return params[0].name +
                 "<br>进站人数：" + params[0].value +
@@ -482,7 +448,6 @@ name: "Overview",
             }
           ],
           series : [
-
             {
               name:'进站人数',
               type:'bar',
@@ -546,13 +511,12 @@ name: "Overview",
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
   }
-
 }
 </script>
 
 <style scoped>
-  .nowTime{
-    color: white;
-    font-size: 25px;
-  }
+.nowTime{
+  color: white;
+  font-size: 25px;
+}
 </style>
