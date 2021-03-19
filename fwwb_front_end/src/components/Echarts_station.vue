@@ -40,6 +40,7 @@
         <dv-digital-flop :config="config" style="width:200px;height:50px;" />
       </el-col>
     </el-row>
+
     <el-row :gutter="10">
       <el-col :offset="0" :span="8">
         <h1 style=color:#3fdcdc;>时间段内入站人数：</h1>
@@ -64,6 +65,7 @@
       </el-col>
     </el-row>
   </div>
+
 
 </template>
 
@@ -562,6 +564,8 @@ export default {
         console.log("Error");
       })
     },
+
+
     handleChange(value) {
       this.stationValue = value[1];
       console.log(value[1]);
