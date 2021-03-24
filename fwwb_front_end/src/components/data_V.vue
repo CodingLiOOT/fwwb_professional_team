@@ -40,9 +40,9 @@
       </el-col>
     </el-row>
 
-<!--    <el-row :gutter="6">-->
-<!--      <div id="subLine" :style="{width: '100rem', height: '25rem'}"></div>-->
-<!--    </el-row>-->
+    <el-row :gutter="6">
+      <div id="subLine" :style="{width: '100rem', height: '25rem'}"></div>
+    </el-row>
 
     <el-row :gutter="10">
       <el-col :offset="0" :span="6">
@@ -142,16 +142,17 @@ export default {
   },
   mounted() {
     document.querySelector('body').setAttribute('style', 'background-color:#16191D')
-    // 获取线路信息
-    this.getLineStation();
-    // 获取线路拓扑图
-    this.subwayLineInit();
     // 以下方法供开发使用，之后删掉
     this.inChartInit();
     this.outChartInit();
     this.pieInit();
     this.ageLineInit();
     // this.ODInit();
+    // 获取线路信息
+    this.getLineStation();
+    // 获取线路拓扑图
+    this.subwayLineInit();
+
 
   },
   beforeDestroy() {
