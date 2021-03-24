@@ -58,7 +58,7 @@
         <div id="outChart" :style="{width: '25rem', height: '25rem'}"></div>
       </el-col>
       <el-col :offset="0" :span="8">
-        <div id="ageLine" :style="{width: '25rem', height: '25rem'}"></div>
+        <div id="ageLine" :style="{width: '50rem', height: '50rem'}"></div>
       </el-col>
     </el-row>
   </div>
@@ -75,34 +75,25 @@ export default {
       granularity: '',
       timeValue: '',
       entranceData:{
-        time: [7,8,9,10,17,18,19,20,71,81,91],
-        timePro:[31,0,32,0,41,0,42,0,31,0,32],
-        entranceNum: [12,23,12,45,23,21,45,10,22],
-        morning:[12,23,12,45,23,21],
-        evening:[19,33,22,35,20,11],
+        time: [1,2,3,4,5,6,7],
+        timePro:[0,0,0,0,0,1,1],
+        entranceNum: [12,23,12,45,23,21,45],
+        morning:[12,23,12,45,23,21,11],
+        evening:[19,33,22,35,20,11,19],
       },
       outboundData:{
-        time: [],
-        timePro:[],
-        outboundNum: [],
-        morning:[],
-        evening:[],
+        time: [1,2,3,4,5,6,7],
+        timePro:[0,0,0,0,0,1,1],
+        outboundNum: [21,34,25,13,23,16,21],
+        morning:[12,32,12,22,14,25,12],
+        evening:[23,21,13,14,15,16,21],
       },
       ageStructure:{
-        time: [],
-        teen: [],
-        middle: [],
-        old: [],
-        underage: [],
-      },
-      result: {
-        time: [],
-        entranceNum: [],
-        outboundNum: [],
-        teen: '',
-        middle: '',
-        old: '',
-        underage: '',
+        time: ['1','2','3','4','5','6','7'],
+        teen: [120, 132, 101, 134, 90, 230, 210],
+        middle:  [220, 182, 191, 234, 290, 330, 310],
+        old: [150, 232, 201, 154, 190, 330, 410],
+        underage:  [320, 332, 301, 334, 390, 330, 320],
       },
       optionsForStation: [],
       optionsForGranularity: [{
@@ -121,150 +112,6 @@ export default {
     }
   },
   methods: {
-    // 虽然这个函数没用了，但可以参考里面的接口写法
-    drawChart() {
-      // 基于准备好的dom，初始化echarts实例
-      let inChart = this.$echarts.init(document.getElementById("inChart"));
-      let outChart = this.$echarts.init(document.getElementById("outChart"));
-      let ageChart = this.$echarts.init(document.getElementById("ageChart"));
-      let dateList = this.result.time;
-      let inValueList = this.result.entranceNum;
-      let outValueList = this.result.outboundNum;
-      // 指定图表的配置项和数据
-      let optionIn = {
-        visualMap: [{
-          show: false,
-          type: 'continuous',
-          seriesIndex: 0,
-          min: 100,
-          max: 300
-        }],
-        tooltip: {
-          trigger: 'axis'
-        },
-        xAxis: {
-          type: 'category',
-          data: dateList,
-          axisLine: {
-            lineStyle: {
-              type: 'solid',
-              color: '#fff',//左边线的颜色
-              width: '2'//坐标线的宽度
-            }
-          },
-          axisLabel: {
-            textStyle: {
-              color: '#fff',//坐标值得具体的颜色
-            }
-          }
-        },
-        yAxis: {
-          type: 'value',
-          axisLine: {
-            lineStyle: {
-              type: 'solid',
-              color: '#fff',//左边线的颜色
-              width: '2'//坐标线的宽度
-            }
-          },
-          axisLabel: {
-            textStyle: {
-              color: '#fff',//坐标值得具体的颜色
-            }
-          }
-        },
-        series: [{
-          data: inValueList,
-          type: 'line'
-        }]
-      };
-      let optionOut = {
-        visualMap: [{
-          show: false,
-          type: 'continuous',
-          seriesIndex: 0,
-          min: 100,
-          max: 300
-        }],
-        tooltip: {
-          trigger: 'axis'
-        },
-        xAxis: {
-          type: 'category',
-          data: dateList,
-          axisLine: {
-            lineStyle: {
-              type: 'solid',
-              color: '#fff',//左边线的颜色
-              width: '2'//坐标线的宽度
-            }
-          },
-          axisLabel: {
-            textStyle: {
-              color: '#fff',//坐标值得具体的颜色
-            }
-          }
-        },
-        yAxis: {
-          type: 'value',
-          axisLine: {
-            lineStyle: {
-              type: 'solid',
-              color: '#fff',//左边线的颜色
-              width: '2'//坐标线的宽度
-            }
-          },
-          axisLabel: {
-            textStyle: {
-              color: '#fff',//坐标值得具体的颜色
-            }
-          }
-        },
-        series: [{
-          data: outValueList,
-          type: 'line'
-        }]
-      };
-      let optionAge = {
-        tooltip: {
-          trigger: 'item',
-          formatter: '{b} : {c} ({d}%)'
-        },
-        legend: {
-          bottom: 10,
-          left: 'center',
-          data: ['0-17岁', '18-45岁', '46-69岁', '70岁以上']
-        },
-        series: [
-          {
-            type: 'pie',
-            radius: '65%',
-            center: ['50%', '50%'],
-            selectedMode: 'single',
-            data: [
-              {
-                value: this.result.teen,
-                name: '18-45岁',
-              },
-              {value: this.result.middle, name: '46-69岁'},
-              {value: this.result.old, name: '70岁以上'},
-              {value: this.result.underage, name: '0-17岁'},
-            ],
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
-          }
-        ]
-      };
-      // 使用刚指定的配置项和数据显示图表。
-      inChart.setOption(optionIn);
-      outChart.setOption(optionOut);
-      ageChart.setOption(optionAge);
-    },
     inChartInit(){
       let inChart = this.$echarts.init(document.getElementById('inChart'))
       let myLengend=[];
@@ -322,7 +169,36 @@ export default {
           e.push(tempE2);
           scope.push(e);
         }
-        alert("scope: "+scope);
+
+        // scope= [ [{
+        //   name: '早高峰',
+        //   xAxis: '7'
+        // }, {
+        //   name:'早高峰',
+        //   xAxis: '9'
+        // }], [{
+        //   name: '晚高峰',
+        //   xAxis: '17'
+        // }, {
+        //   xAxis: '19'
+        // }], [{
+        //   name: '早高峰',
+        //   xAxis: '71'
+        // }, {
+        //   name:'早高峰',
+        //   xAxis: '91'
+        // }], ]
+        // scope= [ [{
+        //   name: '晚高峰',
+        //   xAxis: '17'
+        // }, {
+        //   xAxis: '19'
+        // }]]
+        // alert("scope.size "+scope.length);
+        // alert("scope[0] "+scope[0]);
+        // alert("scope[0][0] "+scope[0][0]);
+        // alert("scope[0][0].xAxis "+scope[0][0].xAxis);
+        // alert("scope[0][1].xAxis "+scope[0][1].xAxis);
         seriesData= [
           {
             name: '总人次',
@@ -336,7 +212,8 @@ export default {
               data:scope,
             }
           }
-        ]
+        ];
+
       }
       // 时间粒度为天
       else if(this.granularity==2){
@@ -459,7 +336,6 @@ export default {
           }
         }
       }
-
       inChart.setOption({
         tooltip: {
           trigger: 'axis',
@@ -517,9 +393,6 @@ export default {
             max: 250,
             interval: 50,
             axisLabel: {
-
-
-              // formatter: '{value} ml',
               textStyle: {
                 color: '#ffffff'
               }
@@ -528,10 +401,202 @@ export default {
           }
         ],
         series:seriesData,
-      });
+      },true);
     },
     outChartInit(){
       let outChart = this.$echarts.init(document.getElementById('outChart'))
+      let myLengend=[];
+      let seriesData=[];
+      let f0=0,f1=0,f2=0,f3=0,f4=0,f5=0,f6=0;
+      let m1=[],m2=[],e1=[],e2=[];
+      // 时间粒度为小时
+      if(this.granularity==1){
+        // 初始化图例
+        myLengend.push('总人次');
+        // 初始化早晚高峰范围
+        for(let i in this.entranceData.timePro){
+          if(this.entranceData.timePro[i]===31){
+            m1.push(this.entranceData.time[i]);
+          }
+          else if(this.entranceData.timePro[i]===32){
+            m2.push(this.entranceData.time[i]);
+          }
+          else if(this.entranceData.timePro[i]===41){
+            e1.push(this.entranceData.time[i]);
+          }
+          else if(this.entranceData.timePro[i]===42){
+            e2.push(this.entranceData.time[i]);
+          }
+        }
+        // 初始化数据
+        let scope=[];
+        for(let item in m1){
+          let tempM1={
+            name:'早高峰',
+            xAxis:'',
+          }
+          let tempM2={
+            xAxis:'',
+          }
+          tempM1.xAxis=m1[item];
+          tempM2.xAxis=m2[item];
+          let m=[];
+          m.push(tempM1);
+          m.push(tempM2);
+          scope.push(m);
+        }
+        for(let item in e1){
+          let tempE1={
+            name:'晚高峰',
+            xAxis:'',
+          }
+          let tempE2= {
+            xAxis: '',
+          }
+          tempE1.xAxis=e1[item];
+          tempE2.xAxis=e2[item];
+          let e=[];
+          e.push(tempE1);
+          e.push(tempE2);
+          scope.push(e);
+        }
+        seriesData= [
+          {
+            name: '总人次',
+            type: 'line',
+            smooth: true,
+            data: this.entranceData.entranceNum,
+            markArea: {
+              itemStyle: {
+                color: 'rgba(255, 173, 177, 0.4)'
+              },
+              data:scope,
+            }
+          }
+        ];
+
+      }
+      // 时间粒度为天
+      else if(this.granularity==2){
+        // 初始化图例
+        for(let item in this.outboundData.timePro){
+          if(this.outboundData.timePro[item]===0&&f0===0){
+            myLengend.push('工作日');
+            f0=1;
+          }
+          else if(this.outboundData.timePro[item]===1&&f1===0){
+            myLengend.push('周末');
+            f1=1;
+          }
+          else if(this.outboundData.timePro[item]===2&&f2===0){
+            myLengend.push('节假日');
+            f2=1;
+          }
+        }
+        myLengend.push('早高峰');
+        myLengend.push('晚高峰');
+        // 初始化数据
+        for(let item in myLengend){
+          let temp={
+            name:'',
+            type:'',
+            stack:'',
+            data:[],
+          };
+          if(myLengend[item]==="工作日"){
+            temp.name=myLengend[item];
+            temp.type='bar';
+            temp.stack='one';
+            for(let i in this.outboundData.outboundNum){
+              if(this.outboundData.timePro[i]===0){
+                temp.data.push(this.outboundData.outboundNum[i]);
+              }
+              else{
+                temp.data.push(0);
+              }
+            }
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='周末'){
+            temp.name=myLengend[item];
+            temp.type='bar';
+            temp.stack='one';
+            for(let i in this.outboundData.outboundNum){
+              if(this.outboundData.timePro[i]===1){
+                temp.data.push(this.outboundData.outboundNum[i]);
+              }
+              else{
+                temp.data.push(0);
+              }
+            }
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='节假日'){
+            temp.name=myLengend[item];
+            temp.type='bar';
+            temp.stack='one';
+            for(let i in this.outboundData.outboundNum){
+              if(this.outboundData.timePro[i]===2){
+                temp.data.push(this.outboundData.outboundNum[i]);
+              }
+              else{
+                temp.data.push(0);
+              }
+            }
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='早高峰'){
+            temp.name=myLengend[item];
+            temp.type='line';
+            temp.stack='';
+            temp.data=this.outboundData.morning;
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='晚高峰'){
+            temp.name=myLengend[item];
+            temp.type='line';
+            temp.stack='';
+            temp.data=this.outboundData.evening;
+            seriesData.push(temp);
+          }
+        }
+      }
+      else{
+        // 初始化图例
+        myLengend.push('总人次');
+        myLengend.push('早高峰');
+        myLengend.push('晚高峰');
+        // 初始化数据
+        for(let item in myLengend){
+          let temp={
+            name:'',
+            type:'',
+            stack:'',
+            data:[],
+          };
+          if(myLengend[item]==='总人次'){
+            temp.name=myLengend[item];
+            temp.type='bar';
+            temp.stack='one';
+            temp.data=this.outboundData.outboundNum;
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='早高峰'){
+            temp.name=myLengend[item];
+            temp.type='line';
+            temp.stack='';
+            temp.data=this.outboundData.morning;
+            seriesData.push(temp);
+          }
+          else if(myLengend[item]==='晚高峰'){
+            temp.name=myLengend[item];
+            temp.type='line';
+            temp.stack='';
+            temp.data=this.outboundData.evening;
+            seriesData.push(temp);
+          }
+        }
+      }
       outChart.setOption({
         tooltip: {
           trigger: 'axis',
@@ -554,14 +619,14 @@ export default {
           textStyle:{
             color: '#ffffff'//字体颜色
           },
-          data: ['蒸发量', '降水量', '平均温度','节假日','周末'],
+          data: myLengend,
           left:'left',
           width:300,
         },
         xAxis: [
           {
             type: 'category',
-            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            data: this.outboundData.time,
             axisPointer: {
               type: 'shadow'
             },
@@ -580,115 +645,123 @@ export default {
             max: 250,
             interval: 50,
             axisLabel: {
-              formatter: '{value} ml',
+              // formatter: '{value} ml',
               textStyle: {
                 color: '#ffffff'
               }
             }
           }
         ],
-        series: [
-          {
-            name: '蒸发量',
-            type: 'bar',
-            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-          },
-          {
-            name: '降水量',
-            type: 'bar',
-            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
-          },
-          {
-            name: '节假日',
-            type: 'line',
-            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
-          },
-          {
-            name: '平均温度',
-            type: 'line',
-            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
-          },
-          {
-            name: '周末',
-            type: 'line',
-            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
-          }
-        ]
+        series: seriesData
       });
     },
     ageLineInit(){
-      let inPie = this.$echarts.init(document.getElementById('ageLine'))
-      inPie.setOption({
-        tooltip: {
-          trigger: 'axis'
-        },
+      let ageLine = this.$echarts.init(document.getElementById('ageLine'))
+      let t=['time'];
+      for(let item in this.ageStructure.time){
+        t.push(this.ageStructure.time[item]);
+      }
+      let under=['0-17岁'];
+      for(let item in this.ageStructure.underage){
+        under.push(this.ageStructure.underage[item]);
+      }
+      let y=['18-45岁'];
+      for(let item in this.ageStructure.teen){
+        y.push(this.ageStructure.teen[item]);
+      }
+      let mid=['46-69岁'];
+      for(let item in this.ageStructure.middle){
+        mid.push(this.ageStructure.middle[item]);
+      }
+      let o=['70岁以上'];
+      for(let item in this.ageStructure.old){
+        o.push(this.ageStructure.old[item]);
+      }
+
+      let option = {
         legend: {
           textStyle:{
             color: '#ffffff'//字体颜色
           },
-          data: ['邮件营销', '联盟广告', '视频广告', '直接访问']
+          // data:['0-17岁','18-45岁','46-69岁','70岁以上']
         },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
+        dataset: {
+          source: [
+            t,under,y,mid,o
+          ]
         },
-        toolbox: {
-          feature: {
-            saveAsImage: {}
+        tooltip: {
+          trigger: 'axis',
+          showContent: false,
+          crossStyle: {
+            color: '#999'
           }
         },
         xAxis: {
           type: 'category',
-          boundaryGap: false,
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
           axisLabel:{
             show: true,
             textStyle: {
               color: '#ffffff'
             }
-          },
-        },
+          },},
         yAxis: {
-          type: 'value',
-          axisLabel: {
+          gridIndex: 0,
+          axisLabel:{
+            show: true,
             textStyle: {
               color: '#ffffff'
             }
-          }
-        },
+          },},
+        grid: {top: '55%'},
         series: [
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
           {
-            name: '邮件营销',
-            type: 'line',
-            stack: '总量',
-            data: [120, 132, 101, 134, 90, 230, 210]
-          },
-          {
-            name: '联盟广告',
-            type: 'line',
-            stack: '总量',
-            data: [220, 182, 191, 234, 290, 330, 310]
-          },
-          {
-            name: '视频广告',
-            type: 'line',
-            stack: '总量',
-            data: [150, 232, 201, 154, 190, 330, 410]
-          },
-          {
-            name: '直接访问',
-            type: 'line',
-            stack: '总量',
-            data: [320, 332, 301, 334, 390, 330, 320]
-          },
+            type: 'pie',
+            id: 'pie',
+            radius: '30%',
+            center: ['50%', '25%'],
+            emphasis: {focus: 'data'},
+            label: {
+              formatter: '{b}: {@2012} ({d}%)'
+            },
+            encode: {
+              itemName: 'time',
+            }
+          }
         ]
-      })
+      };
+
+      ageLine.on('updateAxisPointer', function (event) {
+        let xAxisInfo = event.axesInfo[0];
+        if (xAxisInfo) {
+          let dimension = xAxisInfo.value + 1;
+          ageLine.setOption({
+            series: {
+              id: 'pie',
+              label: {
+                formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+              },
+              encode: {
+                value: dimension,
+                tooltip: dimension
+              }
+            }
+          });
+        }
+      });
+
+      ageLine.setOption(option);
     },
     // 点击查询按钮以后
     searchStation() {
+      // 之后删掉！！
       this.inChartInit();
+      this.outChartInit();
+      // 前后端交互
       this.$API.p_Station({
         line: this.selectedValue[0],
         station:this.selectedValue[1],
@@ -740,7 +813,7 @@ export default {
               this.ageStructure.old.push(res.ageStructure[item].old);
               this.ageStructure.underage.push(res.ageStructure[item].underage);
             }
-            // this.drawChart();
+            // 更新图
             this.inChartInit();
             this.outChartInit();
             this.ageLineInit();
@@ -787,11 +860,12 @@ export default {
   mounted() {
     window.vue = this;
     document.querySelector('body').setAttribute('style', 'background-color:#16191D')
-    //this.drawChart();
+    this.getAllStationInfo();
+    // 以下3个方法供开发使用，之后删掉！
     this.inChartInit();
     this.outChartInit();
     this.ageLineInit();
-    this.getAllStationInfo();
+
   },
   beforeDestroy() {
     document.querySelector('body').removeAttribute('style')
