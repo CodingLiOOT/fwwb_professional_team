@@ -42,7 +42,11 @@ export default {
   data () {
     return {}
   },
-  methods: {}
+  methods: {},
+  mounted() {
+    document.querySelector('body').setAttribute('style', 'background-color:#16191D')
+
+  }
 }
 </script>
 
@@ -54,7 +58,7 @@ export default {
   color: #fff;
 
   #dv-full-screen-container {
-    background-image: url('img/2-2.png');
+    //background-image: url('img/2-2.png');
     background-size: 100% 100%;
     box-shadow: 0 0 3px blue;
     display: flex;

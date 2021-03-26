@@ -70,21 +70,12 @@ export default {
         //     color: '#3fdcdc'
         //   },
         // },
-        toolbox: {
-          show: true,
-          feature: {
-            mark: {show: true},
-            dataView: {show: true, readOnly: false},
-            restore: {show: true},
-            saveAsImage: {show: true}
-          }
-        },
         series: [
           {
             name: '面积模式',
             type: 'pie',
             radius: [7, 50],
-            center: ['25%', '25%'],
+            center: ['50%', '25%'],
             roseType: 'area',
             itemStyle: {
               borderRadius: 8
@@ -105,7 +96,7 @@ export default {
             name: '面积模式',
             type: 'pie',
             radius: [7, 50],
-            center: ['25%', '75%'],
+            center: ['50%', '75%'],
             roseType: 'area',
             itemStyle: {
               borderRadius: 8
@@ -172,7 +163,7 @@ export default {
   height: 45%;
 
   .card-item {
-    background-color: rgba(7, 31, 95, 0.5);
+    background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
     border-right: 2px solid rgba(1, 153, 209, .5);
     margin-left: 5%;
