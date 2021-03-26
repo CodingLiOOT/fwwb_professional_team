@@ -7,16 +7,19 @@
         <div class="nowTime">{{nowTime.time}}</div>
       </el-col>
       <el-col :span="7">
-        <div id="weather-v2-plugin-standard"></div>
+<!--                <div id="weather-v2-plugin-standard"></div>-->
+        <!--        占位用-->
+                <div style="background-color: #3fdcdc;width: 10rem;height: 2rem"></div>
       </el-col>
       <el-col :span=5>
         <!--        人数-->
         <h1 style=color:#FFFFFF;>当前总人次：</h1>
-        <dv-digital-flop :config="config" style="width:10rem;height:2.5rem;margin-left: 3rem" /><
+        <dv-digital-flop :config="config" style="width:10rem;height:2.5rem;" /><
       </el-col>
       <el-col :span=5>
         <!--        水位图-->
-        <dv-percent-pond :config="config" style="width:15rem;height:8rem;margin-top: 3rem;margin-left: 2rem" />
+        <dv-water-level-pond :config="congig_wop" style="width:50%;height:100%" />
+        <!--        <dv-percent-pond :config="config" style="width:15rem;height:8rem;margin-top: 3rem;margin-left: 2rem" />-->
       </el-col>
     </el-row>
     <el-row :gutter="10">
@@ -98,13 +101,15 @@ export default {
         time:'',
       },
       //dataV
+      congig_wop:{
+        //水位图
+        data: [66],
+      },
       config: {
         //数字翻牌器
         number: [10000],
         content: '{nt}',
         textAlign:'right',
-        //进度条
-        value: 66,
         //排名轮播表
         data: [
           {
