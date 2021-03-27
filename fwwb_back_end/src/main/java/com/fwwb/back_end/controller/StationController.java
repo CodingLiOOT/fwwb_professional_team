@@ -3,6 +3,7 @@ package com.fwwb.back_end.controller;
 import com.fwwb.back_end.entity.StationInfo;
 import com.fwwb.back_end.entity.StrokeBean;
 import com.fwwb.back_end.service.StationService;
+import com.fwwb.back_end.utils.intercepter.TokenInterceptor;
 import com.fwwb.back_end.utils.resultUtils.ResponseResultBody;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Range;
@@ -47,6 +48,7 @@ public class StationController {
         ArrayListMultimap<Integer, StrokeBean> in_age_map = ArrayListMultimap.create();
         ArrayListMultimap<String, StrokeBean> out_people_map = ArrayListMultimap.create();
         ArrayListMultimap<Integer, StrokeBean> out_age_map = ArrayListMultimap.create();
+
         String[] formatter = {
                 "yyyy-MM-dd HH:00:00",
                 "yyyy-MM-dd",
@@ -65,7 +67,7 @@ public class StationController {
             out_age_map.put(strokeBean.getAgeRange(), strokeBean);
         });
 
-        DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+        //DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
         DateTime start = new DateTime(info.getStartTime());
         DateTime end = new DateTime(info.getEndTime());
         List<HashMap<String, Object>> stationData = new ArrayList<>();
@@ -121,25 +123,40 @@ public class StationController {
     @ResponseResultBody
     @CrossOrigin
     public List<HashMap<String, Object>> getLineStationInfo() {
-        ArrayList<Integer> line = stationService.getLine();
-        List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
-        HashMap<Integer, Integer> lineIndex = new HashMap<Integer, Integer>();
 
-        for (int i = 0; i < line.size(); i++) {
-            data.add(new HashMap<String, Object>());
-            data.get(i).put("line", line.get(i));
-            data.get(i).put("station", new ArrayList<Integer>());
-            lineIndex.put(line.get(i), i);
-        }
+        ArrayListMultimap<Integer, Integer> info = ArrayListMultimap.create();
+        List<HashMap<String, Integer>> stations = stationService.getLineStationInfo();
+        stations.forEach(station -> {
+            info.put(station.get("line"), station.get("station"));
+        });
 
-        List<HashMap<String, Object>> info = stationService.getLineStationInfo();
-
-        for (Object obj : info) {
-            HashMap<String, Object> temp = (HashMap<String, Object>) obj;
-            int index = lineIndex.get(temp.get("line"));
-            ((ArrayList<Integer>) data.get(index).get("station")).add((Integer) temp.get("station"));
-        }
-
+        List<HashMap<String, Object>> data = new ArrayList<>();
+        info.keySet().forEach((key) -> {
+            HashMap<String, Object> temp = new HashMap<>();
+            temp.put("line", key);
+            temp.put("station", info.get(key));
+            data.add(temp);
+        });
         return data;
+//        ArrayList<Integer> line = stationService.getLine();
+//        List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
+//        HashMap<Integer, Integer> lineIndex = new HashMap<Integer, Integer>();
+//
+//        for (int i = 0; i < line.size(); i++) {
+//            data.add(new HashMap<String, Object>());
+//            data.get(i).put("line", line.get(i));
+//            data.get(i).put("station", new ArrayList<Integer>());
+//            lineIndex.put(line.get(i), i);
+//        }
+//
+//        List<HashMap<String, Integer>> info = stationService.getLineStationInfo();
+//
+//        for (Object obj : info) {
+//            HashMap<String, Object> temp = (HashMap<String, Object>) obj;
+//            int index = lineIndex.get(temp.get("line"));
+//            ((ArrayList<Integer>) data.get(index).get("station")).add((Integer) temp.get("station"));
+//        }
+//
+//        return data;
     }
 }

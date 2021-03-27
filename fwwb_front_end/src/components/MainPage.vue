@@ -2,15 +2,6 @@
   <div class="mainPage">
     <el-container style="width: 100%;height: 100%; top: 0; bottom: 0;" direction="vertical">
       <el-header class="myHeader" style="padding: 0">
-        <!--      <el-row>-->
-        <!--        <el-col :span="8"><img class="myImg" src="../assets/logo.png"></el-col>-->
-        <!--        <el-col :span="8" align="middle">-->
-        <!--          <div class="myTitle">-->
-        <!--            <strong style = "color:#ffffff">专业团队</strong>-->
-        <!--          </div>-->
-        <!--        </el-col>-->
-        <!--        <el-col :span="8" class="username"></el-col>-->
-        <!--      </el-row>-->
         <el-row>
           <el-col>
             <el-menu
@@ -23,7 +14,7 @@
               router
               @open="handleOpen"
               @close="handleClose">
-              <el-menu-item index="/mainPage/overview">
+              <el-menu-item index="/mainPage/overviewIndex">
                 <i class="el-icon-menu"></i>
                 <template slot="title">总览</template>
               </el-menu-item>
@@ -34,6 +25,7 @@
               <el-menu-item index="/mainPage/echarts">
                 <i class="el-icon-document"></i>
                 <span slot="title">站点</span>
+
               </el-menu-item>
             </el-menu>
           </el-col>
