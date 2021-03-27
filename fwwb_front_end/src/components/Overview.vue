@@ -7,7 +7,7 @@
         <div class="nowTime">{{nowTime.time}}</div>
       </el-col>
       <el-col :span="7">
-<!--                <div id="weather-v2-plugin-standard"></div>-->
+        <!--        <div id="weather-v2-plugin-standard"></div>-->
         <!--        占位用-->
                 <div style="background-color: #3fdcdc;width: 10rem;height: 2rem"></div>
       </el-col>
@@ -522,6 +522,6 @@ export default {
 <style scoped>
 .nowTime{
   color: white;
-  font-size: 25px;
+  font-size: 50px;
 }
 </style>

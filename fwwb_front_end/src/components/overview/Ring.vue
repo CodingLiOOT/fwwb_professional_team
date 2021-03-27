@@ -27,49 +27,20 @@ export default {
       linePropChart.setOption({
         title:[{
           text:'线路占比',
-          right:'15%',
-          top:'12%',
+          left:'center',
+          top:'47%',
           textStyle:{
             color:'white',
           }
         },
           {
             text:'年龄结构',
-            left:'15%',
-            bottom:'28%',
+            left:'center',
+            bottom:'2%',
             textStyle:{
               color:'white',
             }
           }],
-        // legend:[
-        //   {
-        //     right:'0',
-        //     top:'25%',
-        //     width:'50%',
-        //     textStyle : {
-        //       color : "#B8B6B8"
-        //     },
-        //     data:['Line 1','Line 2','Line 3','Line 4','Line 5','Line 6','Line 7','Line 8','Line 9'],
-        //   },
-        //   {
-        //     left:'0',
-        //     bottom:'12%',
-        //     width:'50%',
-        //     textStyle : {
-        //       color : "#B8B6B8"
-        //     },
-        //     data : [ '青年', '未成年','中年','老年' ],
-        //     x : 'right'
-        //   }
-        // ],
-        // legend: {
-        //   right:'0',
-        //   top:'25%',
-        //   width:'50%',
-        //   textStyle: {
-        //     color: '#3fdcdc'
-        //   },
-        // },
         series: [
           {
             name: '面积模式',

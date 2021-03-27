@@ -7,6 +7,13 @@
         <div class="main-content">
           <div class="block-left-right-content">
             <Ring />
+            <BasicInfo />
+          </div>
+          <day-chart/>
+<!--          <div class="block-top-content ">-->
+<!--            <BasicInfo />-->
+<!--          </div>-->
+
 
 
           <!--          <ranking-board />-->
@@ -22,7 +29,7 @@
 
           <!--            <cards />-->
           <!--          </div>-->
-          </div>
+
         </div>
 
       </dv-border-box-11>
@@ -33,11 +40,15 @@
 <script>
 
 import Ring from "./Ring"
+import BasicInfo from "./BasicInfo";
+import dayChart from "./dayChart";
 
 export default {
   name: 'DataView',
   components: {
     Ring,
+    BasicInfo,
+    dayChart,
   },
   data () {
     return {}
@@ -71,10 +82,17 @@ export default {
     flex-direction: column;
   }
 
+  .block-top-center-content{
+    flex:1;
+    display:flex;
+    marigin-top:20rem;
+    marigin-left:30rem;
+  }
+
   .block-left-right-content {
     flex: 1;
     display: flex;
-    margin-top: 20px;
+    margin-top: 30px;
   }
 
   .block-top-bottom-content {
@@ -90,7 +108,7 @@ export default {
     display: flex;
     flex-grow: 0;
     box-sizing: border-box;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
   }
 }
 </style>
