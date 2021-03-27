@@ -9,6 +9,7 @@ import baiduMap from "../components/baiduMap";
 import Echarts_station from "../components/Echarts_station";
 import Time from "../components/Time";
 import Overview from "../components/Overview";
+import OverviewIndex from "../components/overview/OverviewIndex";
 
 Vue.use(Router)
 
@@ -26,11 +27,18 @@ const router = new Router({
   mode: 'history',
   routes: [
     {
+      path: '/OverviewIndex',
+      name: 'Home',
+      meta: {requiresAuth: false},
+      component: OverviewIndex,
+      // redirect:'MainPage/overview/OverviewIndex'
+    },
+    {
       path: '/',
       name: 'Home',
       meta: {requiresAuth: false},
       component: MainPage,
-      redirect:'MainPage/overview'
+      redirect:'MainPage/overviewIndex'
     },
     {
       path: '/home',
@@ -67,9 +75,9 @@ const router = new Router({
           component: data_V
         },
         {
-          path: 'baiduMap',
-          name: 'baiduMap',
-          component: baiduMap
+          path: 'overviewIndex',
+          name: 'OverviewIndex',
+          component: OverviewIndex
         },
         {
           path: 'echarts',

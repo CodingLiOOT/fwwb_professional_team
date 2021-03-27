@@ -1255,7 +1255,7 @@ el-col {
   color:black
 }
 .datav{
-  background: url("../assets/bg/2-2.png") no-repeat center;
+  background: url("overview/img/2-2.png") no-repeat center;
   height: 100%;
   width: 100%;
   background-size: cover;
