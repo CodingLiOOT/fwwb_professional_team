@@ -15,7 +15,8 @@
         今日预计人流量<span>{{this.number}}</span>人次
       </div>
       <div class="chart-container">
-        <dv-water-level-pond :config="config" />
+<!--        <dv-water-level-pond :config="config" />-->
+        <dv-percent-pond :config="config" style="width:200px;height:100px;" />
       </div>
     </div>
 
@@ -31,11 +32,15 @@ export default {
         date:'',
         time:'',
       },
-      config: {
-        data: [45],
-        shape: 'round',
-        waveHeight: 25,
-        waveNum: 2
+      // config: {
+      //   data: [45],
+      //   shape: 'round',
+      //   waveHeight: 25,
+      //   waveNum: 2
+      // },
+      config :{
+        value: 66,
+        lineDash: [15, 2]
       },
       // congig_wop:{
       //   //水位图
@@ -101,8 +106,8 @@ export default {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
     border-right: 2px solid rgba(1, 153, 209, .5);
-    margin-left: 5%;
-    margin-top:4%;
+    margin-left: 8%;
+    margin-top:8%;
     width: 100%;
     height:100%;
     display: flex;
@@ -114,7 +119,7 @@ export default {
     justify-content: center;
     font-size: 17px;
     align-items: flex-end;
-    margin-top: 4%;
+    margin-top: 9%;
 
     span {
       font-size: 35px;
@@ -130,7 +135,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 4%;
+    margin-top: 11%;
+    margin-bottom: 14%;
   }
 
   .card-header {
@@ -189,7 +195,7 @@ export default {
   }
   .nowTime{
     color: white;
-    font-size: 25px;
+    font-size: 23px;
   }
   .row{
     margin-top: 3rem;

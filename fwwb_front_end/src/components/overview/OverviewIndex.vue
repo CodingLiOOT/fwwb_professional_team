@@ -1,15 +1,20 @@
 <template>
 
   <div id="data-view">
-    <dv-full-screen-container>
+<!--    <dv-full-screen-container style="margin-top: 5rem;">-->
 <!--      <Top-header />-->
       <dv-border-box-11 title="客流预测分析">
         <div class="main-content">
           <div class="block-left-right-content">
             <Ring />
             <BasicInfo />
+            <Ranking_board/>
           </div>
-          <day-chart/>
+          <div class="block-bottom-content">
+            <day-chart/>
+            <ODAnalyze/>
+          </div>
+
 <!--          <div class="block-top-content ">-->
 <!--            <BasicInfo />-->
 <!--          </div>-->
@@ -33,7 +38,7 @@
         </div>
 
       </dv-border-box-11>
-    </dv-full-screen-container>
+<!--    </dv-full-screen-container>-->
   </div>
 </template>
 
@@ -42,6 +47,8 @@
 import Ring from "./Ring"
 import BasicInfo from "./BasicInfo";
 import dayChart from "./dayChart";
+import ODAnalyze from "./ODAnalyze";
+import Ranking_board from "./Ranking_board"
 
 export default {
   name: 'DataView',
@@ -49,6 +56,8 @@ export default {
     Ring,
     BasicInfo,
     dayChart,
+    ODAnalyze,
+    Ranking_board,
   },
   data () {
     return {}
@@ -83,6 +92,13 @@ export default {
   }
 
   .block-top-center-content{
+    flex:1;
+    display:flex;
+    marigin-top:20rem;
+    marigin-left:30rem;
+  }
+
+  .block-bottom-content{
     flex:1;
     display:flex;
     marigin-top:20rem;

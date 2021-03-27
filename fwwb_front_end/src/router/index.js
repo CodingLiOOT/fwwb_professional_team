@@ -38,7 +38,7 @@ const router = new Router({
       name: 'Home',
       meta: {requiresAuth: false},
       component: MainPage,
-      redirect:'MainPage/overview'
+      redirect:'MainPage/overviewIndex'
     },
     {
       path: '/home',
@@ -75,9 +75,9 @@ const router = new Router({
           component: data_V
         },
         {
-          path: 'baiduMap',
-          name: 'baiduMap',
-          component: baiduMap
+          path: 'overviewIndex',
+          name: 'OverviewIndex',
+          component: OverviewIndex
         },
         {
           path: 'echarts',

@@ -2,15 +2,7 @@
   <div id="cards">
     <div class="card-item">
       <div id="lineProportion" :style="{width: '15rem', height: '25rem'}"></div>
-<!--      <div id="ageProportion" :style="{width: '30rem', height: '25rem'}"></div>-->
     </div>
-
-
-
-
-
-
-
   </div>
 
 </template>
@@ -137,8 +129,8 @@ export default {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
     border-right: 2px solid rgba(1, 153, 209, .5);
-    margin-left: 5%;
-    margin-top:5%;
+    margin-left: 8%;
+    margin-top:14%;
     width: 100%;
     display: flex;
     flex-direction: column;
