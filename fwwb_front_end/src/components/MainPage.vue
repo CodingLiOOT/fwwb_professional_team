@@ -61,6 +61,9 @@ export default {
       console.log(key, keyPath);
     }
 
+  },
+  mounted() {
+    window.Vue=this;
   }
 }
 </script>

@@ -1,7 +1,9 @@
 <template>
   <div id="cards">
     <div class="card-item">
-      <div id="lineProportion" :style="{width: '15rem', height: '25rem'}"></div>
+      <div id="lineProportion" :style="{width: '15rem', height: '25rem'}">
+
+      </div>
     </div>
   </div>
 
@@ -10,9 +12,6 @@
 <script>
 export default {
   name: "Ring",
-  data(){
-
-  },
   methods:{
     lineProportionInit(){
       let linePropChart = this.$echarts.init(document.getElementById('lineProportion'))
