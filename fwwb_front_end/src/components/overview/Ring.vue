@@ -11,9 +11,52 @@
 export default {
   name: "Ring",
   data(){
-
+    return{
+      ageStructure:{
+        teen:'',
+        middle:'',
+        old:'',
+        underage:'',
+      },
+      LineRatio:{
+        line:[],
+        total:[],
+      },
+    }
   },
   methods:{
+    getInfo(){
+      let date=new Date();
+      let datetime=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+      this.$API.p_getAgeLine({
+        date:datetime,
+      })
+      .then(
+        res=>{
+          this.ageStructure={
+            teen:'',
+            middle:'',
+            old:'',
+            underage:'',
+          };
+          this.LineRatio={
+            line:[],
+            total:[],
+          };
+          this.ageStructure.underage=res.ageStructure.underage;
+          this.ageStructure.teen=res.ageStructure.teen;
+          this.ageStructure.old=res.ageStructure.old;
+          this.ageStructure.middle=res.ageStructure.middle;
+          for(let item in res.LineRatio){
+            this.LineRatio.line.push(res.LineRatio[item].line);
+            this.LineRatio.total.push(res.LineRatio[item].total);
+          }
+        }
+      )
+      .catch(err=>{
+
+      })
+    },
     lineProportionInit(){
       let linePropChart = this.$echarts.init(document.getElementById('lineProportion'))
       linePropChart.setOption({
@@ -114,6 +157,7 @@ export default {
     },
   },
   mounted() {
+    // this.getInfo();
     this.lineProportionInit();
     this.ageProportionInit();
   }

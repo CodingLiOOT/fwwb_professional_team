@@ -32,20 +32,10 @@ export default {
         date:'',
         time:'',
       },
-      // config: {
-      //   data: [45],
-      //   shape: 'round',
-      //   waveHeight: 25,
-      //   waveNum: 2
-      // },
       config :{
         value: 66,
         lineDash: [15, 2]
       },
-      // congig_wop:{
-      //   //水位图
-      //   data: [66],
-      // },
       number:'300',
     }
   },
