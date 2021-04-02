@@ -39,7 +39,7 @@
           <el-button @click="searchLine()">查询</el-button>
         </el-col>
         <el-col :span="8">
-          <dv-digital-flop :config="config" style="width:200px;height:50px;" />
+          <dv-digital-flop style="width:200px;height:50px;" />
         </el-col>
       </el-row>
 

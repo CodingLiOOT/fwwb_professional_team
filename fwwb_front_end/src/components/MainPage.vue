@@ -1,36 +1,36 @@
 <template>
   <div class="mainPage">
     <el-container style="width: 100%;height: 100%; top: 0; bottom: 0;" direction="vertical">
-      <el-header class="myHeader" style="padding: 0">
+<!--      <el-header class="myHeader" style="padding: 0">-->
         <el-row>
           <el-col>
-            <el-menu
-              default-active="2"
-              class="el-menu-vertical-demo"
-              mode="horizontal"
-              background-color="#545c64"
-              text-color="#fff"
-              active-text-color="#ffd04b"
-              router
-              @open="handleOpen"
-              @close="handleClose">
-              <el-menu-item index="/mainPage/overviewIndex">
-                <i class="el-icon-menu"></i>
-                <template slot="title">总览</template>
-              </el-menu-item>
-              <el-menu-item index="/mainPage/data_V">
-                <i class="el-icon-menu"></i>
-                <template slot="title">线</template>
-              </el-menu-item>
-              <el-menu-item index="/mainPage/echarts">
-                <i class="el-icon-document"></i>
-                <span slot="title">站点</span>
+<!--            <el-menu-->
+<!--              default-active="2"-->
+<!--              class="el-menu-vertical-demo"-->
+<!--              mode="horizontal"-->
+<!--              background-color="#545c64"-->
+<!--              text-color="#fff"-->
+<!--              active-text-color="#ffd04b"-->
+<!--              router-->
+<!--              @open="handleOpen"-->
+<!--              @close="handleClose">-->
+<!--              <el-menu-item index="/mainPage/overviewIndex">-->
+<!--                <i class="el-icon-menu"></i>-->
+<!--                <template slot="title">总览</template>-->
+<!--              </el-menu-item>-->
+<!--              <el-menu-item index="/mainPage/data_V">-->
+<!--                <i class="el-icon-menu"></i>-->
+<!--                <template slot="title">线</template>-->
+<!--              </el-menu-item>-->
+<!--              <el-menu-item index="/mainPage/echarts">-->
+<!--                <i class="el-icon-document"></i>-->
+<!--                <span slot="title">站点</span>-->
 
-              </el-menu-item>
-            </el-menu>
+<!--              </el-menu-item>-->
+<!--            </el-menu>-->
           </el-col>
         </el-row>
-      </el-header>
+<!--      </el-header>-->
       <el-main>
         <router-view></router-view>
       </el-main>
@@ -61,6 +61,9 @@ export default {
       console.log(key, keyPath);
     }
 
+  },
+  mounted() {
+    window.Vue=this;
   }
 }
 </script>

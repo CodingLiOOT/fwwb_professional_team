@@ -1,22 +1,24 @@
 <template>
-  <div id="ranking-board">
-    <el-row>
-      <el-col>
-        <div class="ranking-board-title">入站站点排行表：</div>
-      </el-col>
-      <el-col>
-        <dv-scroll-ranking-board :config="config_in" style="width:20rem;height:20rem;" />
-      </el-col>
-    </el-row>
-    <el-row style="margin-left: 1rem">
-      <el-col>
-        <div class="ranking-board-title">出站站点排行表：</div>
+  <div id="basic">
+    <div id="ranking-board">
+      <el-row>
+        <el-col>
+          <div class="ranking-board-title">入站站点排行表：</div>
+        </el-col>
+        <el-col>
+          <dv-scroll-ranking-board :config="config_in" style="width:20rem;height:20rem;" />
+        </el-col>
+      </el-row>
+      <el-row style="margin-left: 1rem">
+        <el-col>
+          <div class="ranking-board-title">出站站点排行表：</div>
 
-      </el-col>
-      <el-col>
-        <dv-scroll-ranking-board :config="config_out" style="width:20rem;height:20rem;" />
-      </el-col>
-    </el-row>
+        </el-col>
+        <el-col>
+          <dv-scroll-ranking-board :config="config_out" style="width:20rem;height:20rem;" />
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
@@ -97,24 +99,33 @@
 </script>
 
 <style lang="less">
-  #ranking-board {
-    margin-top: 2.2rem;
-    margin-left: 2rem;
-    width: 50%;
-    box-shadow: 0 0 3px blue;
+  #basic {
     display: flex;
-    //flex-direction: column;
-    background-color: rgba(6, 30, 93, 0.5);
-    border-top: 2px solid rgba(1, 153, 209, .5);
-    box-sizing: border-box;
-    padding: 0px 30px;
+    justify-content: space-between;
+    height: 90%;
+    width: 25%;
 
-    .ranking-board-title {
-      font-weight: bold;
-      height: 50px;
+    #ranking-board {
+      //margin-top: 2.2rem;
+      margin-left: 2rem;
+      margin-bottom: 2rem;
+      //width: 23.1%;
+      width: 100%;
+      box-shadow: 0 0 3px blue;
       display: flex;
-      align-items: center;
-      font-size: 20px;
+      flex-direction: column;
+      background-color: rgba(6, 30, 93, 0.5);
+      border-top: 2px solid rgba(1, 153, 209, .5);
+      box-sizing: border-box;
+      padding: 0px 30px;
+
+      .ranking-board-title {
+        font-weight: bold;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+      }
     }
   }
 </style>
