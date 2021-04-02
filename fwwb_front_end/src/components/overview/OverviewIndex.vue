@@ -4,37 +4,20 @@
 <!--    <dv-full-screen-container style="margin-top: 5rem;">-->
 <!--      <Top-header />-->
       <dv-border-box-11 title="客流预测分析">
-        <div class="main-content">
-          <div class="block-left-right-content">
-            <Ring />
-            <BasicInfo />
-            <Ranking_board/>
+
+        <div class="main-content-col">
+          <div class="main-content-row">
+            <div class="main-content-col">
+              <BasicInfo />
+              <Ring />
+            </div>
+            <div style="background-color: white;width: 50rem;height: 50rem"></div>
           </div>
-          <div class="block-bottom-content">
+          <div class="main-content-row">
+            <Ranking_board/>
             <day-chart/>
             <ODAnalyze/>
           </div>
-
-<!--          <div class="block-top-content ">-->
-<!--            <BasicInfo />-->
-<!--          </div>-->
-
-
-
-          <!--          <ranking-board />-->
-
-          <!--          <div class="block-top-bottom-content">-->
-          <!--            <div class="block-top-content">-->
-          <!--              <rose-chart />-->
-
-          <!--              <water-level-chart />-->
-
-          <!--              <scroll-board />-->
-          <!--            </div>-->
-
-          <!--            <cards />-->
-          <!--          </div>-->
-
         </div>
 
       </dv-border-box-11>
@@ -85,10 +68,16 @@ export default {
     flex-direction: column;
   }
 
-  .main-content {
+  .main-content-col {
     flex: 1;
     display: flex;
     flex-direction: column;
+  }
+
+  .main-content-row {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
   }
 
   .block-top-center-content{
@@ -108,7 +97,7 @@ export default {
   .block-left-right-content {
     flex: 1;
     display: flex;
-    margin-top: 30px;
+    flex-direction: column;
   }
 
   .block-top-bottom-content {

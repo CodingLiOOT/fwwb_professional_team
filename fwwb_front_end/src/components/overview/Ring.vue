@@ -1,7 +1,7 @@
 <template>
   <div id="cards">
     <div class="card-item">
-      <div id="lineProportion" :style="{width: '15rem', height: '25rem'}">
+      <div id="lineProportion" :style="{width: '15rem', height: '30rem',}">
 
       </div>
     </div>
@@ -36,7 +36,7 @@ export default {
           {
             name: '面积模式',
             type: 'pie',
-            radius: [7, 50],
+            radius: [10,80],
             center: ['50%', '25%'],
             roseType: 'area',
             itemStyle: {
@@ -57,46 +57,8 @@ export default {
           {
             name: '面积模式',
             type: 'pie',
-            radius: [7, 50],
+            radius: [10, 80],
             center: ['50%', '75%'],
-            roseType: 'area',
-            itemStyle: {
-              borderRadius: 8
-            },
-            data: [
-              {value: 40, name: '青年'},
-              {value: 30, name: '未成年'},
-              {value: 20, name: '中年'},
-              {value: 10, name: '老年'},
-            ]
-          }
-        ]
-      });
-    },
-    ageProportionInit(){
-      let linePropChart = this.$echarts.init(document.getElementById('ageProportion'))
-      linePropChart.setOption({
-        legend: {
-          top: 'bottom',
-          textStyle: {
-            color: '#3fdcdc'
-          }
-        },
-        toolbox: {
-          show: true,
-          feature: {
-            mark: {show: true},
-            dataView: {show: true, readOnly: false},
-            restore: {show: true},
-            saveAsImage: {show: true}
-          }
-        },
-        series: [
-          {
-            name: '面积模式',
-            type: 'pie',
-            radius: [7, 50],
-            center: ['75%', '75%'],
             roseType: 'area',
             itemStyle: {
               borderRadius: 8
@@ -123,13 +85,16 @@ export default {
   display: flex;
   justify-content: space-between;
   height: 45%;
+  width:25%;
 
   .card-item {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
-    border-right: 2px solid rgba(1, 153, 209, .5);
+    //border-right: 2px solid rgba(1, 153, 209, .5);
     margin-left: 8%;
-    margin-top:14%;
+    //margin-top:14%;
+    align-items: center;
+    //width: 23%;
     width: 100%;
     display: flex;
     flex-direction: column;
