@@ -69,7 +69,7 @@
     display: flex;
     justify-content: space-between;
     height:90%;
-    width:25%;
+    width:100%;
 
     .card-item {
       background-color: rgba(6, 28, 87, 0.5);
@@ -109,60 +109,7 @@
       margin-bottom: 5%;
     }
 
-    .card-header {
-      display: flex;
-      height: 20%;
-      align-items: center;
-      justify-content: space-between;
 
-      .card-header-left {
-        font-size: 18px;
-        font-weight: bold;
-        padding-left: 20px;
-      }
-
-      .card-header-right {
-        padding-right: 20px;
-        font-size: 40px;
-        color: #03d3ec;
-      }
-    }
-
-    .ring-charts {
-      height: 55%;
-    }
-
-    .card-footer {
-      height: 25%;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-    }
-
-    .card-footer-item {
-      padding: 5px 10px 0px 10px;
-      box-sizing: border-box;
-      width: 40%;
-      background-color: rgba(6, 30, 93, 0.7);
-      border-radius: 3px;
-
-      .footer-title {
-        font-size: 15px;
-        margin-bottom: 5px;
-      }
-
-      .footer-detail {
-        font-size: 20px;
-        color: #1294fb;
-        display: flex;
-        font-size: 18px;
-        align-items: center;
-
-        .dv-digital-flop {
-          margin-right: 5px;
-        }
-      }
-    }
     .nowTime{
       color: white;
       font-size: 20px;

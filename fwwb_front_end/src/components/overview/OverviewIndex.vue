@@ -71,7 +71,7 @@ export default {
   }
 
   .main-content-col {
-    flex: 1;
+    flex: auto;
     display: flex;
     flex-direction: column;
   }
@@ -79,11 +79,13 @@ export default {
     background-color: white;
     width: 50rem;
     height: 50rem;
-    top: 2000px;
+    flex: auto;
+    display: flex;
+    flex-direction: column;
   }
 
   .main-content-row {
-    flex: 1;
+    //flex: 1;
     display: flex;
     flex-direction: row;
   }
