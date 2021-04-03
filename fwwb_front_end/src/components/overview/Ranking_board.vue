@@ -102,13 +102,13 @@
   #basic {
     display: flex;
     justify-content: space-between;
-    height: 90%;
-    width: 25%;
+    height: 45%;
+    width: 100%;
 
     #ranking-board {
       //margin-top: 2.2rem;
-      margin-left: 2rem;
-      margin-bottom: 2rem;
+      //margin-left: 2rem;
+      //margin-bottom: 2rem;
       //width: 23.1%;
       width: 100%;
       box-shadow: 0 0 3px blue;

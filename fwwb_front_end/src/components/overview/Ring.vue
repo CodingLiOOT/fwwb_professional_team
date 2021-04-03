@@ -130,14 +130,14 @@ export default {
 #cards {
   display: flex;
   justify-content: space-between;
-  height: 45%;
+  height: 30%;
   width:100%;
 
   .card-item {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
     //border-right: 2px solid rgba(1, 153, 209, .5);
-    margin-left: 8%;
+    //margin-left: 8%;
     //margin-top:14%;
     align-items: center;
     //width: 23%;

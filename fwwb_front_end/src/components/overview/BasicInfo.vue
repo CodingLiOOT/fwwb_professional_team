@@ -68,14 +68,14 @@
   #basic {
     display: flex;
     justify-content: space-between;
-    height:90%;
+    height:45%;
     width:100%;
 
     .card-item {
       background-color: rgba(6, 28, 87, 0.5);
       border-top: 2px solid rgba(1, 153, 209, .5);
       //border-right: 2px solid rgba(1, 153, 209, .5);
-      margin-left: 8%;
+      //margin-left: 8%;
       margin-top:17%;
       width: 100%;
       height:100%;

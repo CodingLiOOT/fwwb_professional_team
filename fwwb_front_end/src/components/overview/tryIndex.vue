@@ -1,15 +1,17 @@
 <template>
+  <dv-border-box-11 title="客流预测分析">
   <el-container>
-    <el-aside width="20rem">
+    <el-aside width="25rem">
 <!--      <div style="width: 15rem;height: 100rem;background-color: white"></div>-->
       <BasicInfo />
       <Ring />
-<!--      <Ranking_board/>-->
+      <Ranking_board/>
     </el-aside>
     <el-main>
       <div class="bigImage"></div>
     </el-main>
   </el-container>
+  </dv-border-box-11>
 </template>
 
 <script>

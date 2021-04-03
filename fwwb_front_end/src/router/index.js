@@ -11,6 +11,7 @@ import Time from "../components/Time";
 import Overview from "../components/Overview";
 
 import OverviewIndex from "../components/overview/OverviewIndex";
+import tryIndex from "../components/overview/tryIndex"
 
 Vue.use(Router)
 
@@ -32,6 +33,13 @@ const router = new Router({
       name: 'Home',
       meta: {requiresAuth: false},
       component: OverviewIndex,
+      // redirect:'MainPage/overview/OverviewIndex'
+    },
+    {
+      path: '/try',
+      name: 'Home',
+      meta: {requiresAuth: false},
+      component: tryIndex,
       // redirect:'MainPage/overview/OverviewIndex'
     },
     {
