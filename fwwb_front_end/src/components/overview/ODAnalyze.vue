@@ -127,8 +127,8 @@
 <style lang="less">
   #OD-board {
     margin-top: 1rem;
-    margin-left: 1rem;
-    width: 45%;
+    margin-left: 3rem;
+    width: 70%;
     height: 100%;
     box-shadow: 0 0 3px blue;
     display: flex;

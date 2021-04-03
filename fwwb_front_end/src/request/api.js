@@ -46,6 +46,13 @@ export default class api {
   static g_getAllStationInfo=()=>get('/station/getLineStationInfo',null);
 
   /**
+   * 获取总览的年龄结构和线路占比
+   * @param {Object} p [发送的参数：时间]
+   * @returns {Promise<unknown>} [返回当天各年龄段人数]
+   */
+  static p_getAgeLine=()=>post('/overview/getAgeLineRatio',p);
+
+  /**
    * 获取工作日和周末，某条线路或者总览的客流量
    * @param {Object} p [发送的参数：线路号（或者0，为总览）]
    * @returns {Promise<unknown>} [返回工作日、周末和节假日，站号或者线号，进站人数，出战人数]
