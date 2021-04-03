@@ -10,7 +10,7 @@
         </el-col>
       </el-row>
       <div class="water-level-chart-details">
-        <div>今日预计人流量</div>
+        <div class="text">今日预计人流量</div>
         <div class="num">{{this.number}}</div>人次
       </div>
       <div class="chart-container">
@@ -75,8 +75,8 @@
       background-color: rgba(6, 28, 87, 0.5);
       border-top: 2px solid rgba(1, 153, 209, .5);
       //border-right: 2px solid rgba(1, 153, 209, .5);
-      //margin-left: 8%;
-      margin-top:17%;
+      margin-left: 7%;
+      margin-top:14%;
       width: 100%;
       height:100%;
       display: flex;
@@ -89,6 +89,7 @@
       font-size: 17px;
       align-items: flex-end;
       margin-top: 9%;
+      color: white;
 
       .num {
         font-size: 35px;
@@ -116,6 +117,9 @@
     }
     .row{
       margin-top: 0.5rem;
+    }
+    .text{
+      color:white;
     }
 
   }

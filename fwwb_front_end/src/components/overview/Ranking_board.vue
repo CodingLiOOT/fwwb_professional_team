@@ -9,7 +9,7 @@
           <dv-scroll-ranking-board :config="config_in" style="width:20rem;height:20rem;" />
         </el-col>
       </el-row>
-      <el-row style="margin-left: 1rem">
+      <el-row>
         <el-col>
           <div class="ranking-board-title">出站站点排行表：</div>
 
@@ -107,7 +107,7 @@
 
     #ranking-board {
       //margin-top: 2.2rem;
-      //margin-left: 2rem;
+      margin-left: 7%;
       //margin-bottom: 2rem;
       //width: 23.1%;
       width: 100%;
@@ -125,6 +125,7 @@
         display: flex;
         align-items: center;
         font-size: 20px;
+        color: white;
       }
     }
   }

@@ -1,7 +1,8 @@
 <template>
   <div id="cards">
     <div class="card-item">
-      <div id="lineProportion" :style="{width: '15rem', height: '30rem',}">
+       <router-link  class="link" :to="{ path: '/Mainpage/data_v' }">查看线路详情</router-link>
+     <div id="lineProportion" :style="{width: '15rem', height: '30rem',}">
       </div>
     </div>
   </div>
@@ -9,6 +10,8 @@
 </template>
 
 <script>
+import data_V from "../data_V";
+
 export default {
   name: "Ring",
   data(){
@@ -25,6 +28,7 @@ export default {
       },
     }
   },
+
   methods:{
     getInfo(){
       let date=new Date();
@@ -102,7 +106,7 @@ export default {
           {
             name: '面积模式',
             type: 'pie',
-            radius: [10, 80],
+            radius: [7, 50],
             center: ['50%', '75%'],
             roseType: 'area',
             itemStyle: {
@@ -137,7 +141,7 @@ export default {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
     //border-right: 2px solid rgba(1, 153, 209, .5);
-    //margin-left: 8%;
+    margin-left: 7%;
     //margin-top:14%;
     align-items: center;
     //width: 23%;
@@ -145,7 +149,9 @@ export default {
     display: flex;
     flex-direction: column;
   }
-
+  .link{
+    color:white;
+  }
 
 
 

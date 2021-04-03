@@ -1,7 +1,7 @@
 <template>
-  <div id="day">
+  <div id="today">
     <div class="card-item">
-      <div id="dayChart" :style="{width: '25rem', height: '25rem'}"></div>
+      <div id="todayChart" :style="{width: '25rem', height: '25rem'}"></div>
     </div>
   </div>
 </template>
@@ -11,10 +11,10 @@ export default {
   name: "dayChart",
   methods:{
     dayChartInit(){
-      let inChart = this.$echarts.init(document.getElementById('dayChart'))
+      let inChart = this.$echarts.init(document.getElementById('todayChart'))
       inChart.setOption({
         title:{
-          text: '未来7天总人次',
+          text: '当天总人次',
           bottom:0,
           left:'center',
           textStyle:{
@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="less">
-#day {
+#today {
   display: flex;
   justify-content: space-between;
   height:90%;
@@ -104,15 +104,12 @@ export default {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
     border-right: 2px solid rgba(1, 153, 209, .5);
-    margin-left: 13%;
+    margin-left: 18%;
     margin-top:4%;
     width: 100%;
     height:100%;
     display: flex;
     flex-direction: column;
-  }
-  .row{
-    //margin-top: 3rem;
   }
 
 }
