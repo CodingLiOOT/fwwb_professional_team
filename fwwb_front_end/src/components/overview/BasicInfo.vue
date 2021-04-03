@@ -10,7 +10,8 @@
         </el-col>
       </el-row>
       <div class="water-level-chart-details">
-        今日预计人流量<span>{{this.number}}</span>人次
+        <div>今日预计人流量</div>
+        <div class="num">{{this.number}}</div>人次
       </div>
       <div class="chart-container">
         <dv-percent-pond :config="config" style="width:200px;height:100px;" />
@@ -75,7 +76,7 @@
       border-top: 2px solid rgba(1, 153, 209, .5);
       //border-right: 2px solid rgba(1, 153, 209, .5);
       margin-left: 8%;
-      margin-top:12%;
+      margin-top:17%;
       width: 100%;
       height:100%;
       display: flex;
@@ -83,18 +84,19 @@
     }
     .water-level-chart-details {
       height: 15%;
-      display: flex;
+      //display: flex;
       justify-content: center;
       font-size: 17px;
       align-items: flex-end;
       margin-top: 9%;
 
-      span {
+      .num {
         font-size: 35px;
         font-weight: bold;
         color: #58a1ff;
         margin: 0 5px;
-        margin-bottom: -5px;
+        //margin-bottom: -5px;
+        display: inline;
       }
     }
 
@@ -103,8 +105,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 11%;
-      margin-bottom: 14%;
+      margin-top: 1%;
+      margin-bottom: 5%;
     }
 
     .card-header {
@@ -163,7 +165,7 @@
     }
     .nowTime{
       color: white;
-      font-size: 23px;
+      font-size: 20px;
     }
     .row{
       margin-top: 0.5rem;

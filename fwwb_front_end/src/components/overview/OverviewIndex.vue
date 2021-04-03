@@ -11,7 +11,9 @@
               <BasicInfo />
               <Ring />
             </div>
-            <div style="background-color: white;width: 50rem;height: 50rem"></div>
+<!--            <div >-->
+              <div class="bigImage"></div>
+<!--            </div>-->
           </div>
           <div class="main-content-row">
             <Ranking_board/>
@@ -65,13 +67,19 @@ export default {
     background-size: 100% 100%;
     box-shadow: 0 0 3px blue;
     display: flex;
-    flex-direction: column;
+    //flex-direction: column;
   }
 
   .main-content-col {
     flex: 1;
     display: flex;
     flex-direction: column;
+  }
+  .bigImage{
+    background-color: white;
+    width: 50rem;
+    height: 50rem;
+    top: 2000px;
   }
 
   .main-content-row {
@@ -115,5 +123,6 @@ export default {
     box-sizing: border-box;
     padding-bottom: 30px;
   }
+
 }
 </style>

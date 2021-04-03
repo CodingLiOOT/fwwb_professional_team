@@ -82,7 +82,7 @@ export default {
           {
             name: '面积模式',
             type: 'pie',
-            radius: [10,80],
+            radius: [7,50],
             center: ['50%', '25%'],
             roseType: 'area',
             itemStyle: {
