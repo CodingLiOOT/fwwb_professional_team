@@ -121,10 +121,10 @@
 
       .ranking-board-title {
         font-weight: bold;
-        height: 50px;
-        display: flex;
+        //height: 50px;
+        //display: flex;
         align-items: center;
-        font-size: 20px;
+        //font-size: 20px;
         color: white;
       }
     }

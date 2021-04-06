@@ -2,25 +2,44 @@
   <div id="overviewIndex">
     <dv-border-box-11 title="客流预测分析">
       <el-container>
-        <el-aside width="26rem">
-          <el-scrollbar >
-            <BasicInfo />
-            <Ring />
-            <Ranking_board/>
-          </el-scrollbar>
-          <!--      <div style="width: 15rem;height: 100rem;background-color: white"></div>-->
-        </el-aside>
         <el-main>
-          <div class="bigImage"></div>
           <el-row>
-            <div class="main-content-row">
-              <day-chart/>
-              <today-chart/>
-            </div>
+            <el-col span="6">
+              <div>
+                <basic-info/>
+              </div>
+              <div>
+                <ring/>
+              </div>
+            </el-col>
+            <el-col span="18">
+              <div class="bigImage"/>
+            </el-col>
           </el-row>
           <el-row>
-            <el-col>
-              <ODAnalyze/>
+            <el-col span="6">
+              <div>
+                <Ranking_board/>
+              </div>
+            </el-col>
+            <el-col span="18">
+              <el-row>
+                <el-col span="9">
+                  <div>
+                    <day-chart/>
+                  </div>
+                </el-col>
+                <el-col span="9">
+                  <div>
+                    <today-chart/>
+                  </div>
+                </el-col>
+              </el-row>
+              <el-row>
+                <div>
+                  <ODAnalyze/>
+                </div>
+              </el-row>
             </el-col>
           </el-row>
         </el-main>

@@ -94,7 +94,7 @@ export default {
 
 <style lang="less">
 #today {
-  display: flex;
+  //display: flex;
   justify-content: space-between;
   height:90%;
   width:40%;
@@ -104,12 +104,13 @@ export default {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
     border-right: 2px solid rgba(1, 153, 209, .5);
-    margin-left: 18%;
-    margin-top:4%;
+    //margin-left: 18%;
+    //margin-top:4%;
+    margin:auto;
     width: 100%;
     height:100%;
-    display: flex;
-    flex-direction: column;
+    //display: flex;
+    //flex-direction: column;
   }
 
 }
