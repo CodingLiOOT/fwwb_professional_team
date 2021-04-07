@@ -46,22 +46,6 @@
       <el-row :gutter="6">
         <div id="subLine" :style="{width: '100rem', height: '10rem'}"></div>
       </el-row>
-
-<!--      <el-row :gutter="10">-->
-<!--        <el-col :offset="0" :span="6">-->
-<!--          <h1 style=color:#3fdcdc;>时间段内入站人数：</h1>-->
-<!--        </el-col>-->
-<!--        <el-col :offset="0" :span="6">-->
-<!--          <h1 style=color:#3fdcdc;>时间段内出站人数：</h1>-->
-<!--        </el-col>-->
-<!--        <el-col :offset="0" :span="6">-->
-<!--          <h1 style=color:#3fdcdc;>人数占比：</h1>-->
-<!--        </el-col>-->
-<!--        <el-col :offset="0" :span="6">-->
-<!--          <h1 style=color:#3fdcdc;>年龄占比：</h1>-->
-<!--        </el-col>-->
-<!--      </el-row>-->
-
       <el-row :gutter="6">
         <el-col :offset="0" :span="7">
           <div class="lineChartBoard">
@@ -112,11 +96,6 @@
             </div>
         </el-col>
       </el-row>
-
-  <!--    <template>-->
-  <!--      <span class="spanTitle">OD分析</span>-->
-  <!--      <div id="OD_Analyze" :style="{width: '155rem', height:'100rem'}"></div>-->
-  <!--    </template>-->
         </div>
       </div>
     </dv-border-box-11>
@@ -958,7 +937,10 @@ export default {
       let subwayLineInit = this.$echarts.init(document.getElementById('subLine'))
       subwayLineInit.setOption({
         title: {
-          text: '线路人流热力图'
+          text: '线路人流热力图',
+          textStyle:{
+            color:'white',
+          }
         },
         tooltip: {},
         animationDurationUpdate: 1500,

@@ -2,7 +2,7 @@
   <div id="cards">
     <div class="card-item">
        <router-link  class="link" :to="{ path: '/Mainpage/data_v' }">查看线路详情</router-link>
-     <div id="lineProportion" :style="{width: '15rem', height: '30rem',}">
+     <div id="lineProportion" :style="{width: '15rem', height: '22.5rem',}">
       </div>
     </div>
   </div>
@@ -68,7 +68,7 @@ export default {
         title:[{
           text:'线路占比',
           left:'center',
-          top:'47%',
+          top:'46%',
           textStyle:{
             color:'white',
           }
@@ -76,7 +76,7 @@ export default {
           {
             text:'年龄结构',
             left:'center',
-            bottom:'2%',
+            bottom:'5%',
             textStyle:{
               color:'white',
             }
@@ -86,7 +86,7 @@ export default {
             name: '面积模式',
             type: 'pie',
             radius: [7,50],
-            center: ['50%', '25%'],
+            center: ['50%', '24%'],
             roseType: 'area',
             itemStyle: {
               borderRadius: 8
@@ -107,7 +107,7 @@ export default {
             name: '面积模式',
             type: 'pie',
             radius: [7, 50],
-            center: ['50%', '75%'],
+            center: ['50%', '73%'],
             roseType: 'area',
             itemStyle: {
               borderRadius: 8
@@ -134,18 +134,14 @@ export default {
 #cards {
   display: flex;
   justify-content: space-between;
-  height: 30%;
-  width:100%;
 
   .card-item {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
-    //border-right: 2px solid rgba(1, 153, 209, .5);
-    margin-left: 7%;
-    //margin-top:14%;
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
     align-items: center;
-    //width: 23%;
-    width: 100%;
+    width:25rem;
     display: flex;
     flex-direction: column;
   }

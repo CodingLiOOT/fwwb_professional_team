@@ -6,7 +6,7 @@
           <div class="ranking-board-title">入站站点排行表：</div>
         </el-col>
         <el-col>
-          <dv-scroll-ranking-board :config="config_in" style="width:20rem;height:20rem;" />
+          <dv-scroll-ranking-board :config="config_in" style="width:15rem;height:22rem;" />
         </el-col>
       </el-row>
       <el-row>
@@ -15,7 +15,7 @@
 
         </el-col>
         <el-col>
-          <dv-scroll-ranking-board :config="config_out" style="width:20rem;height:20rem;" />
+          <dv-scroll-ranking-board :config="config_out" style="width:15rem;height:22rem;" />
         </el-col>
       </el-row>
     </div>
@@ -58,9 +58,11 @@
               name: '入站7',
               value: 29
             }
-          ]
+          ],
+          rowNum:5,
         },
         config_out: {
+          rowNum:5,
           //排名轮播表
           data: [
             {
@@ -102,15 +104,11 @@
   #basic {
     display: flex;
     justify-content: space-between;
-    height: 45%;
-    width: 100%;
 
     #ranking-board {
-      //margin-top: 2.2rem;
-      margin-left: 7%;
-      //margin-bottom: 2rem;
-      //width: 23.1%;
-      width: 100%;
+      margin-left: 2rem;
+      margin-top: 1rem;
+      width: 20rem;
       box-shadow: 0 0 3px blue;
       display: flex;
       flex-direction: column;
@@ -121,10 +119,9 @@
 
       .ranking-board-title {
         font-weight: bold;
-        //height: 50px;
-        //display: flex;
         align-items: center;
-        //font-size: 20px;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
         color: white;
       }
     }

@@ -10,7 +10,7 @@
         </el-switch>
       </el-col>
       <el-col>
-        <div id="OD_Analyze" :style="{width: '40rem', height: '20rem'}" v-if="value"></div>
+        <div id="OD_Analyze" :style="{width: '55rem', height: '23rem'}" v-if="value"></div>
         <div style="width: 40rem;height: 20rem;background-color: white" v-else></div>
       </el-col>
     </el-row>
@@ -55,12 +55,20 @@
                   color: '#3fdcdc'
                 }
               },
-              grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-              },
+            grid:{
+              x:60,
+              y:60,
+              width:1000,
+              height:250,
+              x2:60,
+              y2:60,
+            },
+              // grid: {
+              //   left: '7rem',
+              //   height:400,
+              //   // bottom: '7rem',
+              //   containLabel: true
+              // },
               yAxis : [
                 {
                   type : 'value',
@@ -127,12 +135,10 @@
 <style lang="less">
   #OD-board {
     margin-top: 1rem;
-    margin-left: 3rem;
-    width: 70%;
-    height: 100%;
+    margin-left: 2rem;
+    width:60rem;
     box-shadow: 0 0 3px blue;
     display: flex;
-    //flex-direction: column;
     background-color: rgba(6, 30, 93, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
     box-sizing: border-box;

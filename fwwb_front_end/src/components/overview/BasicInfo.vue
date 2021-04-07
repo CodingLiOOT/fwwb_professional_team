@@ -68,27 +68,26 @@
   #basic {
     display: flex;
     justify-content: space-between;
-    height:45%;
-    width:100%;
 
     .card-item {
       background-color: rgba(6, 28, 87, 0.5);
       border-top: 2px solid rgba(1, 153, 209, .5);
       //border-right: 2px solid rgba(1, 153, 209, .5);
-      margin-left: 7%;
-      margin-top:14%;
-      width: 100%;
-      height:100%;
+      margin-left: 2rem;
+      margin-top:2.5rem;
+      margin-bottom: 1.5rem;
+      width: 25rem;
+      height:25rem;
       display: flex;
       flex-direction: column;
     }
     .water-level-chart-details {
-      height: 15%;
+      height: 1rem;
       //display: flex;
       justify-content: center;
       font-size: 17px;
       align-items: flex-end;
-      margin-top: 9%;
+      margin-top: 2rem;
       color: white;
 
       .num {
@@ -106,8 +105,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 1%;
-      margin-bottom: 5%;
+      margin-top: 1rem;
     }
 
 
@@ -116,7 +114,7 @@
       font-size: 20px;
     }
     .row{
-      margin-top: 0.5rem;
+      margin-top: 0.3rem;
     }
     .text{
       color:white;

@@ -1,7 +1,7 @@
 <template>
   <div id="today">
     <div class="card-item">
-      <div id="todayChart" :style="{width: '25rem', height: '25rem'}"></div>
+      <div id="todayChart" :style="{width: '27rem', height: '27rem'}"></div>
     </div>
   </div>
 </template>
@@ -20,6 +20,14 @@ export default {
           textStyle:{
             color:'white',
           }
+        },
+        grid:{
+          x:60,
+          y:60,
+          width:300,
+          height:300,
+          x2:60,
+          y2:60,
         },
         tooltip: {
           trigger: 'axis',
@@ -94,23 +102,21 @@ export default {
 
 <style lang="less">
 #today {
-  //display: flex;
+  display: flex;
   justify-content: space-between;
-  height:90%;
-  width:40%;
 
 
   .card-item {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
-    border-right: 2px solid rgba(1, 153, 209, .5);
-    //margin-left: 18%;
-    //margin-top:4%;
-    margin:auto;
-    width: 100%;
-    height:100%;
-    //display: flex;
-    //flex-direction: column;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .row{
+    //margin-top: 3rem;
   }
 
 }

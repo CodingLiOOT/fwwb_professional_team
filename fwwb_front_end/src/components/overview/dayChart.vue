@@ -1,7 +1,7 @@
 <template>
   <div id="day">
     <div class="card-item">
-      <div id="dayChart" :style="{width: '25rem', height: '25rem'}"></div>
+      <div id="dayChart" :style="{width: '27rem', height: '27rem'}"></div>
     </div>
   </div>
 </template>
@@ -20,6 +20,14 @@ export default {
           textStyle:{
             color:'white',
           }
+        },
+        grid:{
+          x:60,
+          y:60,
+          width:300,
+          height:300,
+          x2:60,
+          y2:60,
         },
         tooltip: {
           trigger: 'axis',
@@ -96,18 +104,13 @@ export default {
 #day {
   display: flex;
   justify-content: space-between;
-  height:90%;
-  width:40%;
 
 
   .card-item {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
-    border-right: 2px solid rgba(1, 153, 209, .5);
-    margin-left: 13%;
-    margin-top:4%;
-    width: 100%;
-    height:100%;
+    margin-left: 2rem;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
   }
