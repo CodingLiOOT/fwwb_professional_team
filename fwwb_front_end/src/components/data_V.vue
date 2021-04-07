@@ -44,41 +44,41 @@
       </el-row>
 
       <el-row :gutter="6">
-        <div id="subLine" :style="{width: '100rem', height: '10rem'}"></div>
+        <div id="subLine" :style="{width: '100rem', height: '10rem',align:'center'}"></div>
       </el-row>
       <el-row :gutter="6">
         <el-col :offset="0" :span="7">
           <div class="lineChartBoard">
             <el-row>
               <el-col>
-                <div class="board-title">时间段内入站人数：</div>
+                <div class="board-title">时间段内进站人数：</div>
               </el-col>
               <el-col>
-                <div id="inChart" :style="{width: '25rem', height: '25rem'}"></div>
+                <div id="inChart" :style="{width: '20rem', height: '25rem'}"></div>
               </el-col>
             </el-row>
           </div>
         </el-col>
         <el-col :offset="0" :span="7">
-          <div class="lineChartBoard">
+          <div class="lineChartBoard1">
             <el-row>
               <el-col>
                 <div class="board-title">时间段内出站人数：</div>
               </el-col>
               <el-col>
-                <div id="outChart" :style="{width: '25rem', height: '25rem'}"></div>
+                <div id="outChart" :style="{width: '20rem', height: '25rem'}"></div>
               </el-col>
             </el-row>
           </div>
         </el-col>
         <el-col :offset="0" :span="4">
-          <div class="lineChartBoard">
+          <div class="ratio">
             <el-row>
               <el-col>
                 <div class="board-title">人数占比：</div>
               </el-col>
               <el-col>
-                <div id="inPie" :style="{width: '20rem', height: '25rem'}"></div>
+                <div id="inPie" :style="{width: '15rem', height: '25rem'}"></div>
               </el-col>
             </el-row>
           </div>
@@ -90,7 +90,7 @@
                 <div class="board-title">年龄占比：</div>
               </el-col>
               <el-col>
-                <div id="ageLine" :style="{width: '25rem', height: '25rem'}"></div>
+                <div id="ageLine" :style="{width: '20rem', height: '25rem'}"></div>
               </el-col>
             </el-row>
             </div>
@@ -729,12 +729,12 @@ export default {
         o.push(this.ageStructure.old[item]);
       }
 
-      let option = {
+       let option = {
         legend: {
           textStyle:{
-            color: '#ffffff'//字体颜色
+            color: '#ffffff',//字体颜色
+
           },
-          // data:['0-17岁','18-45岁','46-69岁','70岁以上']
         },
         dataset: {
           source: [
@@ -774,13 +774,15 @@ export default {
             type: 'pie',
             id: 'pie',
             radius: '30%',
-            center: ['50%', '25%'],
+            center: ['50%', '30%'],
             emphasis: {focus: 'data'},
             label: {
-              formatter: '{b}: {@2012} ({d}%)'
+              formatter: '{b}:\n {@2012} ({d}%)'
             },
             encode: {
               itemName: 'time',
+              value: '2012',
+              tooltip: '2012'
             }
           }
         ]
@@ -794,7 +796,7 @@ export default {
             series: {
               id: 'pie',
               label: {
-                formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                formatter: '{b}:\n {@[' + dimension + ']} ({d}%)'
               },
               encode: {
                 value: dimension,
@@ -837,13 +839,19 @@ export default {
       inPie.setOption({
         title: [{
           subtext: '入站',
-          left: 'center',
-          bottom:200
+          left: '25%',
+          bottom:200,
+          textStyle:{
+            color:'white',
+          }
         },
           {
             subtext: '出站',
-            left: 'center',
-            bottom:0
+            left: '25%',
+            bottom:0,
+            textStyle:{
+              color:'white',
+            }
           },
         ],
         tooltip: {
@@ -938,6 +946,7 @@ export default {
       subwayLineInit.setOption({
         title: {
           text: '线路人流热力图',
+          left: 15,
           textStyle:{
             color:'white',
           }
@@ -1249,21 +1258,7 @@ export default {
 </script>
 
 <style lang="less">
-/*el-row {*/
-/*  margin-bottom: 20px;*/
-/*  !*&:last-child {*!*/
-/*  !*   margin-bottom: 0;*!*/
-/*  !* }*!*/
-/*}*/
-/*el-col {*/
-/*  border-radius: 4px;*/
-/*}*/
-/*.configRank>>>name{*/
-/*  color:black*/
-/*}*/
 #datav{
-  width: 100%;
-  height: 100%;
   background-color: #030409;
   color: #fff;
   background-image: url('overview/img/2-2.png');
@@ -1277,10 +1272,53 @@ export default {
   margin-top: 2rem;
   margin-left: 1rem;
   margin-bottom: 1rem;
-  width: 100%;
+  width: 24rem;
   box-shadow: 0 0 3px blue;
   display: flex;
-  //flex-direction: column;
+  background-color: rgba(6, 30, 93, 0.5);
+  border-top: 2px solid rgba(1, 153, 209, .5);
+  border-right: 2px solid rgba(1, 153, 209, .5);
+  box-sizing: border-box;
+  padding: 0 2rem;
+
+  .board-title {
+    font-weight: bold;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+  }
+}
+
+.lineChartBoard1 {
+  margin-top: 2rem;
+  margin-left: 0.3rem;
+  margin-bottom: 1rem;
+  width: 24rem;
+  box-shadow: 0 0 3px blue;
+  display: flex;
+  background-color: rgba(6, 30, 93, 0.5);
+  border-top: 2px solid rgba(1, 153, 209, .5);
+  border-right: 2px solid rgba(1, 153, 209, .5);
+  box-sizing: border-box;
+  padding: 0 2rem;
+
+  .board-title {
+    font-weight: bold;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+  }
+}
+
+.ratio{
+  margin-top: 2rem;
+  margin-left: 0.1rem;
+  margin-bottom: 1rem;
+  width: 15rem;
+  box-shadow: 0 0 3px blue;
+  display: flex;
   background-color: rgba(6, 30, 93, 0.5);
   border-top: 2px solid rgba(1, 153, 209, .5);
   border-right: 2px solid rgba(1, 153, 209, .5);
@@ -1300,7 +1338,8 @@ export default {
   margin-top: 2rem;
   margin-left: 1rem;
   margin-bottom: 1rem;
-  width: 115%;
+  //width: 115%;
+  width: 20rem;
   box-shadow: 0 0 3px blue;
   display: flex;
   //flex-direction: column;

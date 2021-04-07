@@ -71,12 +71,6 @@ export default {
         yAxis: [
           {
             type: 'value',
-            // min: 0,
-            // max: 250,
-            // interval: 50,
-            // axisLabel: {
-            //   formatter: '{value} ml'
-            // }
             axisLabel: {
               textStyle: {
                 color: '#ffffff'

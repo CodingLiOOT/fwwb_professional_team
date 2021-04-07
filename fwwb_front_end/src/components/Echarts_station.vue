@@ -3,7 +3,7 @@
       <dv-border-box-11 title="客流预测分析">
         <div class="main-content">
           <div class="block-left-right-content">
-            <el-row :gutter="5" style="margin-top: 5rem">
+            <el-row :gutter="5" style="margin-top: 5rem; margin-left: 2rem">
               <el-col :span="4">
                 <el-cascader
                   v-model="selectedValue"
@@ -36,56 +36,38 @@
               <el-col :span=5>
                 <el-button @click="searchStation()">查询</el-button>
               </el-col>
-        <!--      <el-col :span="8">-->
-        <!--        <dv-digital-flop :config="config" style="width:200px;height:50px;" />-->
-        <!--      </el-col>-->
             </el-row>
-
-  <!--          <el-row :gutter="10">-->
-  <!--            <el-col :offset="0" :span="8">-->
-  <!--              <h1 style=color:#3fdcdc;>时间段内入站人数：</h1>-->
-  <!--            </el-col>-->
-  <!--            <el-col :offset="0" :span="8">-->
-  <!--              <h1 style=color:#3fdcdc;>时间段内出站人数：</h1>-->
-  <!--            </el-col>-->
-  <!--            <el-col :offset="0" :span="8">-->
-  <!--              <h1 style=color:#3fdcdc;>年龄占比</h1>-->
-  <!--            </el-col>-->
-  <!--          </el-row>-->
-
             <el-row :gutter="6">
-              <el-col :offset="0" :span="8">
+              <el-col :span="12">
+                <div class="pieChartBoard">
+                  <el-row>
+                    <el-col>
+                      <div class="board-title">年龄占比：</div>
+                    </el-col>
+                    <el-col>
+                      <div id="ageLine" :style="{width: '40rem', height: '40rem'}"></div>
+                    </el-col>
+                  </el-row>
+                </div>
+              </el-col>
+              <el-col :span="12">
                 <div class="lineChartBoard">
                   <el-row>
                     <el-col>
                       <div class="board-title">时间段内入站人数：</div>
                     </el-col>
                     <el-col >
-                      <div id="inChart" :style="{width: '25rem', height: '25rem'}"></div>
+                      <div id="inChart" :style="{width: '25rem', height: '17.5rem'}"></div>
                     </el-col>
                   </el-row>
                 </div>
-              </el-col>
-              <el-col :offset="0" :span="8">
                 <div class="lineChartBoard">
                   <el-row>
                     <el-col>
                       <div class="board-title">时间段内出站人数：</div>
                     </el-col>
                     <el-col>
-                      <div id="outChart" :style="{width: '25rem', height: '25rem'}"></div>
-                    </el-col>
-                  </el-row>
-                </div>
-              </el-col>
-              <el-col :offset="0" :span="8">
-                <div class="lineChartBoard">
-                  <el-row>
-                    <el-col>
-                      <div class="board-title">年龄占比：</div>
-                    </el-col>
-                    <el-col>
-                      <div id="ageLine" :style="{width: '25rem', height: '25rem'}"></div>
+                      <div id="outChart" :style="{width: '25rem', height: '17.5rem'}"></div>
                     </el-col>
                   </el-row>
                 </div>
@@ -743,7 +725,7 @@ export default {
             center: ['50%', '25%'],
             emphasis: {focus: 'data'},
             label: {
-              formatter: '{b}: {@2012} ({d}%)'
+              formatter: '{b}:\n {@2012} ({d}%)'
             },
             encode: {
               itemName: 'time',
@@ -760,7 +742,7 @@ export default {
             series: {
               id: 'pie',
               label: {
-                formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                formatter: '{b}:\n {@[' + dimension + ']} ({d}%)'
               },
               encode: {
                 value: dimension,
@@ -891,21 +873,7 @@ export default {
 </script>
 
 <style lang="less">
-  /*el-row {*/
-  /*  margin-bottom: 20px;*/
-  /*  !*&:last-child {*!*/
-  /*  !*   margin-bottom: 0;*!*/
-  /*  !* }*!*/
-  /*}*/
-  /*el-col {*/
-  /*  border-radius: 4px;*/
-  /*}*/
-  /*.configRank>>>name{*/
-  /*  color:black*/
-  /*}*/
   #echarts{
-    width: 100%;
-    height: 100%;
     background-color: #030409;
     color: #fff;
     background-image: url('overview/img/2-2.png');
@@ -917,17 +885,16 @@ export default {
   }
   .lineChartBoard {
     margin-top: 2rem;
-    margin-left: 1rem;
+    margin-left: 10rem;
     margin-bottom: 1rem;
-    width: 90%;
+    width:25rem;
     box-shadow: 0 0 3px blue;
     display: flex;
-    //flex-direction: column;
     background-color: rgba(6, 30, 93, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
     border-right: 2px solid rgba(1, 153, 209, .5);
     box-sizing: border-box;
-    padding: 0px 30px;
+    padding: 0 1rem;
 
     .board-title {
       font-weight: bold;
@@ -940,9 +907,9 @@ export default {
 
   .pieChartBoard {
     margin-top: 2rem;
-    margin-left: 1rem;
+    margin-left: 5rem;
     margin-bottom: 1rem;
-    width: 115%;
+    width: 40rem;
     box-shadow: 0 0 3px blue;
     display: flex;
     //flex-direction: column;
@@ -950,7 +917,7 @@ export default {
     border-top: 2px solid rgba(1, 153, 209, .5);
     border-right: 2px solid rgba(1, 153, 209, .5);
     box-sizing: border-box;
-    padding: 0px 8px;
+    //padding: 0px 8px;
 
     .board-title {
       font-weight: bold;
