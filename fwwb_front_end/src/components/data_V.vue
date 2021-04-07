@@ -154,19 +154,23 @@ export default {
         underage:  [320, 332, 301, 334, 390, 330, 320],
       },
       lineRatio:{
-        line:[1,2,3],
-        entranceNum:[12,23,34],
-        outboundNum:[24,54,12],
+        line:[1,2,3,4,5,6,7],
+        entranceNum:[12,23,34,12,22,21,43],
+        outboundNum:[24,54,12,35,23,31,32],
       }
     }
   },
   mounted() {
     document.querySelector('body').setAttribute('style', 'background-color:#16191D')
     // 以下方法供开发使用，之后删掉
+
     this.inChartInit();
     this.outChartInit();
     this.pieInit();
     this.ageLineInit();
+    this.initPie();
+
+
     // this.ODInit();
     // 获取线路信息
     this.getLineStation();
@@ -816,6 +820,7 @@ export default {
         let temp=this.lineRatio.line[item];
         myLegend.push(temp);
       }
+      // alert(myLegend);
       let inData=[];
       for(let item in this.lineRatio.line){
         let temp={
@@ -840,7 +845,7 @@ export default {
         title: [{
           subtext: '入站',
           left: '25%',
-          bottom:200,
+          bottom:190,
           textStyle:{
             color:'white',
           }
@@ -848,7 +853,7 @@ export default {
           {
             subtext: '出站',
             left: '25%',
-            bottom:0,
+            bottom:20,
             textStyle:{
               color:'white',
             }
@@ -860,7 +865,7 @@ export default {
         },
         legend: {
           show:true,
-          data: myLegend,
+          // data: ["1号线'","2号线","3号线","4号线","5号线","6号线","7号线"],
           left:'left',
           width:200,
           textStyle:{
@@ -870,8 +875,8 @@ export default {
         series: [
           {
             type: 'pie',
-            radius: '32.5%',
-            center: ['25%', '25%'],
+            radius: '40%',
+            center: ['35%', '30%'],
             selectedMode: 'single',
             label:{
               textStyle: {
@@ -890,8 +895,8 @@ export default {
           },
           {
             type: 'pie',
-            radius: '32.5%',
-            center: ['25%', '75%'],
+            radius: '40%',
+            center: ['35%', '75%'],
             selectedMode: 'single',
             label:{
               show:false
@@ -908,7 +913,46 @@ export default {
         ]
       })
     },
-
+    initPie(){
+      let ageLine = this.$echarts.init(document.getElementById('ageLine'));
+      let t=['time'];
+      for(let item in this.ageStructure.time){
+        t.push(this.ageStructure.time[item]);
+      }
+      let under=['0-17岁'];
+      for(let item in this.ageStructure.underage){
+        under.push(this.ageStructure.underage[item]);
+      }
+      let y=['18-45岁'];
+      for(let item in this.ageStructure.teen){
+        y.push(this.ageStructure.teen[item]);
+      }
+      let mid=['46-69岁'];
+      for(let item in this.ageStructure.middle){
+        mid.push(this.ageStructure.middle[item]);
+      }
+      let o=['70岁以上'];
+      for(let item in this.ageStructure.old){
+        o.push(this.ageStructure.old[item]);
+      }
+      ageLine.setOption({
+        dataset: {
+          source: [
+            t,under,y,mid,o
+          ]
+        },
+        series: {
+          id: 'pie',
+          label: {
+            formatter: '{b}:\n {@[' + 1 + ']} ({d}%)'
+          },
+          encode: {
+            value: 1,
+            tooltip:1,
+          }
+        }
+      });
+    },
     getLineStation(){
       this.$API.g_getAllStationInfo().then(res => {
           this.optionsForLine = [];

@@ -57,7 +57,7 @@
                       <div class="board-title">时间段内入站人数：</div>
                     </el-col>
                     <el-col >
-                      <div id="inChart" :style="{width: '25rem', height: '17.5rem'}"></div>
+                      <div id="inChart" :style="{width: '40rem', height: '17.5rem'}"></div>
                     </el-col>
                   </el-row>
                 </div>
@@ -67,7 +67,7 @@
                       <div class="board-title">时间段内出站人数：</div>
                     </el-col>
                     <el-col>
-                      <div id="outChart" :style="{width: '25rem', height: '17.5rem'}"></div>
+                      <div id="outChart" :style="{width: '40rem', height: '17.5rem'}"></div>
                     </el-col>
                   </el-row>
                 </div>
@@ -127,6 +127,46 @@ export default {
     }
   },
   methods: {
+    initPie(){
+      let ageLine = this.$echarts.init(document.getElementById('ageLine'));
+      let t=['time'];
+      for(let item in this.ageStructure.time){
+        t.push(this.ageStructure.time[item]);
+      }
+      let under=['0-17岁'];
+      for(let item in this.ageStructure.underage){
+        under.push(this.ageStructure.underage[item]);
+      }
+      let y=['18-45岁'];
+      for(let item in this.ageStructure.teen){
+        y.push(this.ageStructure.teen[item]);
+      }
+      let mid=['46-69岁'];
+      for(let item in this.ageStructure.middle){
+        mid.push(this.ageStructure.middle[item]);
+      }
+      let o=['70岁以上'];
+      for(let item in this.ageStructure.old){
+        o.push(this.ageStructure.old[item]);
+      }
+      ageLine.setOption({
+        dataset: {
+          source: [
+            t,under,y,mid,o
+          ]
+        },
+        series: {
+          id: 'pie',
+          label: {
+            formatter: '{b}:\n {@[' + 1 + ']} ({d}%)'
+          },
+          encode: {
+            value: 1,
+            tooltip:1,
+          }
+        }
+      });
+    },
     inChartInit(){
       let inChart = this.$echarts.init(document.getElementById('inChart'))
       let myLengend=[];
@@ -864,7 +904,7 @@ export default {
     this.inChartInit();
     this.outChartInit();
     this.ageLineInit();
-
+    this.initPie();
   },
   beforeDestroy() {
     document.querySelector('body').removeAttribute('style')
@@ -885,9 +925,9 @@ export default {
   }
   .lineChartBoard {
     margin-top: 2rem;
-    margin-left: 10rem;
+    margin-left: 1rem;
     margin-bottom: 1rem;
-    width:25rem;
+    width:40rem;
     box-shadow: 0 0 3px blue;
     display: flex;
     background-color: rgba(6, 30, 93, 0.5);
@@ -907,7 +947,7 @@ export default {
 
   .pieChartBoard {
     margin-top: 2rem;
-    margin-left: 5rem;
+    margin-left: 3rem;
     margin-bottom: 1rem;
     width: 40rem;
     box-shadow: 0 0 3px blue;
@@ -917,7 +957,7 @@ export default {
     border-top: 2px solid rgba(1, 153, 209, .5);
     border-right: 2px solid rgba(1, 153, 209, .5);
     box-sizing: border-box;
-    //padding: 0px 8px;
+    padding: 0px 8px;
 
     .board-title {
       font-weight: bold;
