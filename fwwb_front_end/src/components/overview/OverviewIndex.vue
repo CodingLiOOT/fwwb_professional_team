@@ -59,8 +59,7 @@ import dayChart from "./dayChart";
 import ODAnalyze from "./ODAnalyze";
 import Ranking_board from "./Ranking_board";
 import todayChart from "./todayChart";
-import tuoputu from "./big"
-import Tuoputu from "./big";
+import Tuoputu from "./tuoputu";
 
 export default {
   name: "tryIndex",

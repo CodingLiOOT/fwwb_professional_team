@@ -9,7 +9,7 @@ import baiduMap from "../components/baiduMap";
 import Echarts_station from "../components/Echarts_station";
 import Time from "../components/Time";
 import Overview from "../components/Overview";
-import big from "../components/overview/big"
+import tuoputu from "../components/overview/tuoputu"
 import OverviewIndex from "../components/overview/OverviewIndex";
 import tryIndex from "../components/overview/tryIndex"
 
