@@ -138,7 +138,7 @@ export default {
   .card-item {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
-    margin-left: 2rem;
+    margin-left: 1rem;
     margin-bottom: 1.5rem;
     align-items: center;
     width:25rem;

@@ -106,9 +106,9 @@
     justify-content: space-between;
 
     #ranking-board {
-      margin-left: 2rem;
+      margin-left: 1rem;
       margin-top: 1rem;
-      width: 20rem;
+      width: 25rem;
       box-shadow: 0 0 3px blue;
       display: flex;
       flex-direction: column;

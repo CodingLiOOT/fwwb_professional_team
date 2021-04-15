@@ -13,8 +13,8 @@
                   <ring/>
                 </div>
               </el-col>
-              <el-col span="18">
-                <div class="bigImage"/>
+              <el-col span="18" >
+                <div class="tuo"><tuoputu></tuoputu></div>
               </el-col>
             </el-row>
 <!--          </div>-->
@@ -59,10 +59,13 @@ import dayChart from "./dayChart";
 import ODAnalyze from "./ODAnalyze";
 import Ranking_board from "./Ranking_board";
 import todayChart from "./todayChart";
+import tuoputu from "./big"
+import Tuoputu from "./big";
 
 export default {
   name: "tryIndex",
   components: {
+    Tuoputu,
     Ring,
     BasicInfo,
     dayChart,
@@ -80,6 +83,8 @@ export default {
 <style scoped>
 #overviewIndex{
   background-image: url('img/2-2.png');
+  background-size:cover;
+  background-attachment: fixed;
 }
 .bigImage{
   background-color: white;
@@ -94,9 +99,11 @@ export default {
 .elRow{
   margin-bottom: 2rem;
 }
-.bg{
-  background-color: rgba(5, 27, 85, 0.5);
-  border: 2px solid rgba(1, 153, 209, .5);
-  margin-top: 2rem;
+.tuo{
+  background-color: rgba(8, 16, 57, 0.8);
+  margin-left: 2rem;
+  margin-top: 2.5rem;
+  height: 50.5rem;
+  width: 60rem;
 }
 </style>
