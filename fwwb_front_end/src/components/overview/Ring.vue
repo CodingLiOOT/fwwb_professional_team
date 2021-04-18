@@ -97,10 +97,9 @@ export default {
               {value: 30, name: 'Line 3'},
               {value: 28, name: 'Line 4'},
               {value: 26, name: 'Line 5'},
-              {value: 22, name: 'Line 5'},
-              {value: 16, name: 'Line 7'},
-              {value: 16, name: 'Line 8'},
-              {value: 16, name: 'Line 9'}
+              {value: 16, name: 'Line 10'},
+              {value: 16, name: 'Line 11'},
+              {value: 16, name: 'Line 12'}
             ]
           },
           {

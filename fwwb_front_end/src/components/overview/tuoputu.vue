@@ -53,7 +53,7 @@ export default {
       c.fillStyle = "#EAF1F9";
       c.arc(this.siteInfo[1][i].x, this.siteInfo[1][i].y, 5, 0, 2 * Math.PI);
       c.fill();
-      c.fillStyle = "#333";
+      c.fillStyle = "#e7e7e7";
       c.fontSize = "20";
       c.fillText(
         this.siteInfo[1][i].station_name,
@@ -85,7 +85,7 @@ export default {
       c.fillStyle = "#EAF1F9";
       c.arc(this.siteInfo[2][i].x, this.siteInfo[2][i].y, 5, 0, 2 * Math.PI);
       c.fill();
-      c.fillStyle = "#333";
+      c.fillStyle = "#e7e7e7";
       // console.log(i)
       let strWidth = c.measureText(this.siteInfo[2][i].station_name).width;
       c.fillText(
@@ -118,7 +118,7 @@ export default {
       c.fillStyle = "#EAF1F9";
       c.arc(this.siteInfo[3][i].x, this.siteInfo[3][i].y, 5, 0, 2 * Math.PI);
       c.fill();
-      c.fillStyle = "#333";
+      c.fillStyle = "#e7e7e7";
       // console.log(i)
       let strWidth = c.measureText(this.siteInfo[3][i].station_name).width;
       c.fillText(
@@ -184,7 +184,7 @@ export default {
       c.fillStyle = "#EAF1F9";
       c.arc(this.siteInfo[5][i].x, this.siteInfo[5][i].y, 5, 0, 2 * Math.PI);
       c.fill();
-      c.fillStyle = "#333";
+      c.fillStyle = "#e7e7e7";
       // console.log(i)
       let strWidth = c.measureText(this.siteInfo[5][i].station_name).width;
       c.fillText(
@@ -198,7 +198,7 @@ export default {
     c.beginPath();
     for (let i in this.siteInfo[10]) {
       c.lineWidth = 5;
-      c.strokeStyle = "#00205F";
+      c.strokeStyle = "#5580d5";
       if (i == 0) {
         c.moveTo(this.siteInfo[10][i].x, this.siteInfo[10][i].y);
       } else {
@@ -217,7 +217,7 @@ export default {
       c.fillStyle = "#EAF1F9";
       c.arc(this.siteInfo[10][i].x, this.siteInfo[10][i].y, 5, 0, 2 * Math.PI);
       c.fill();
-      c.fillStyle = "#333";
+      c.fillStyle = "#e7e7e7";
       // console.log(i)
       let strWidth = c.measureText(this.siteInfo[10][i].station_name).width;
       c.fillText(
@@ -250,7 +250,7 @@ export default {
       c.fillStyle = "#EAF1F9";
       c.arc(this.siteInfo[11][i].x, this.siteInfo[11][i].y, 5, 0, 2 * Math.PI);
       c.fill();
-      c.fillStyle = "#333";
+      c.fillStyle = "#e7e7e7";
       // console.log(i)
       let strWidth = c.measureText(this.siteInfo[11][i].station_name).width;
       c.fillText(
@@ -283,7 +283,7 @@ export default {
       c.fillStyle = "#EAF1F9";
       c.arc(this.siteInfo[12][i].x, this.siteInfo[12][i].y, 5, 0, 2 * Math.PI);
       c.fill();
-      c.fillStyle = "#333";
+      c.fillStyle = "#e7e7e7";
       // console.log(i)
       let strWidth = c.measureText(this.siteInfo[12][i].station_name).width;
       c.fillText(
