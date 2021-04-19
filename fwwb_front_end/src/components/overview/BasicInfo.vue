@@ -1,7 +1,6 @@
 <template>
   <div id="basic">
     <div class="card-item">
-
       <el-row class="row">
         <el-col >
           <h2 class="nowTime">当前时间:</h2>
@@ -14,10 +13,10 @@
         <div class="num">{{this.number}}</div>人次
       </div>
       <div class="chart-container">
-        <dv-percent-pond :config="config" style="width:200px;height:100px;" />
+        <div class="text">当前客流量拥挤程度</div>
+        <dv-percent-pond :config="config" style="width:200px;height:100px;margin: 1rem auto;"  />
       </div>
     </div>
-
   </div>
 
 </template>
@@ -101,11 +100,17 @@
     }
 
     .chart-container {
-      flex: 1;
-      display: flex;
+      //flex: 1;
+      //display: flex;
+      //justify-content: center;
+      //align-items: center;
+      //margin-top: 1rem;
+      height: 1rem;
       justify-content: center;
+      font-size: 17px;
       align-items: center;
-      margin-top: 1rem;
+      margin-top: 5rem;
+      color: white;
     }
 
 

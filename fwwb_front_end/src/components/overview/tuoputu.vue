@@ -338,6 +338,7 @@ export default {
     this.c = this.canvas.getContext("2d");
 
     this.canvas.addEventListener("mousemove", this.showInfo);
+    this.canvas.addEventListener("click",this.switch);
   },
   data() {
     return {
@@ -692,6 +693,61 @@ export default {
       c.closePath();
 
 
+    },
+    switch(event){
+      let x = event.clientX - this.canvas.getBoundingClientRect().left,
+        y = event.clientY - this.canvas.getBoundingClientRect().top,
+        c = this.c
+
+
+      c.clearRect(0,0, this.canvas.width,this.canvas.width);
+
+      for (let i in this.siteInfo[1]) {
+        c.beginPath();
+        c.arc(this.siteInfo[1][i].x, this.siteInfo[1][i].y, 6, 0, 2 * Math.PI);
+        if (c.isPointInPath(x, y)) {
+          // console.log(c.isPointInPath(x, y)+'----'+i)
+          c.clearRect(0,0, this.canvas.width,this.canvas.width);
+          c.fillStyle = "yellow"
+          c.fillRect(x, y, 240, 82)
+          c.fillStyle = "#333";
+          c.font = 'bold 24px Arial'
+          this.$router.push({
+            path: 'echarts',
+            query: {
+              id: this.siteInfo[1][i].id,
+            }
+          });
+          c.fillText('id:'+ this.siteInfo[1][i].id, x, y+20);
+          c.fillText('station_name:'+ this.siteInfo[1][i].station_name, x, y+40);
+          c.fillText('line_name:'+ this.siteInfo[1][i].line_name, x, y+60);
+          c.fillText('district'+ this.siteInfo[1][i].district, x, y+80);
+          return;
+        }
+        c.closePath();
+      }
+
+      c.beginPath();
+      for (let i in this.siteInfo[1]) {
+        c.lineWidth = 5;
+        // c.strokeStyle = "#fff";
+        if (i == 0) {
+          c.moveTo(this.siteInfo[1][i].x, this.siteInfo[1][i].y);
+        } else {
+          c.lineTo(this.siteInfo[1][i].x, this.siteInfo[1][i].y);
+        }
+      }
+
+      if (c.isPointInStroke(x, y)) {
+        c.clearRect(0,0, this.canvas.width, this.canvas.width);
+        c.fillStyle = "yellow"
+        c.fillRect(x, y, 80, 22)
+        c.fillStyle = "#333";
+        c.font = 'bold 24px Arial'
+        c.fillText("1号线", x, y+20);
+        return;
+      }
+      c.closePath();
     },
   },
   components: {},

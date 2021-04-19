@@ -12,7 +12,6 @@
                   @change="handleChange"></el-cascader>
               </el-col>
               <el-col :span="4">
-
                 <el-select v-model="granularity" filterable placeholder="请选择时间粒度">
                   <el-option
                     v-for="item in optionsForGranularity"
@@ -37,37 +36,43 @@
                 <el-button @click="searchStation()">查询</el-button>
               </el-col>
             </el-row>
-            <el-row :gutter="6">
-              <el-col :span="12">
+
+            <el-row>
+              <div id="od" :style="{width:'95rem',height:'20rem',marginLeft:'1rem'}"></div>
+            </el-row>
+            <el-row>
+              <el-col :span="7">
                 <div class="pieChartBoard">
                   <el-row>
                     <el-col>
                       <div class="board-title">年龄占比：</div>
                     </el-col>
                     <el-col>
-                      <div id="ageLine" :style="{width: '40rem', height: '40rem'}"></div>
+                      <div id="ageLine" :style="{width: '27rem', height: '20rem'}"></div>
                     </el-col>
                   </el-row>
                 </div>
               </el-col>
-              <el-col :span="12">
+              <el-col :span="8">
                 <div class="lineChartBoard">
                   <el-row>
                     <el-col>
                       <div class="board-title">时间段内入站人数：</div>
                     </el-col>
                     <el-col >
-                      <div id="inChart" :style="{width: '40rem', height: '17.5rem'}"></div>
+                      <div id="inChart" :style="{width: '27rem', height: '20rem'}"></div>
                     </el-col>
                   </el-row>
                 </div>
+              </el-col>
+              <el-col :span="8">
                 <div class="lineChartBoard">
                   <el-row>
                     <el-col>
                       <div class="board-title">时间段内出站人数：</div>
                     </el-col>
                     <el-col>
-                      <div id="outChart" :style="{width: '40rem', height: '17.5rem'}"></div>
+                      <div id="outChart" :style="{width: '27rem', height: '20rem'}"></div>
                     </el-col>
                   </el-row>
                 </div>
@@ -86,6 +91,7 @@ export default {
   name: "Echarts_station",
   data() {
     return {
+      val:'',
       selectedValue:'',
       granularity: '',
       timeValue: '',
@@ -290,7 +296,7 @@ export default {
 
       }
       // 时间粒度为天
-      else if(this.granularity==2){
+      else if(this.granularity==2||this.granularity=="天"){
         // 初始化图例
         for(let item in this.entranceData.timePro){
           if(this.entranceData.timePro[item]===0&&f0===0){
@@ -814,6 +820,103 @@ export default {
 
       ageLine.setOption(option);
     },
+    odInit(){
+      let chartDom = document.getElementById('od');
+      let myChart = this.$echarts.init(chartDom);
+      let option;
+
+      let dataAxis = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40];
+      let data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220,
+        220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
+      let yMax = 500;
+      let dataShadow = [];
+      for (let i = 0; i < data.length; i++) {
+        dataShadow.push(yMax);
+      }
+      myChart.setOption( {
+        title: {
+          text: 'OD分析图',
+          textStyle:{
+            color:'white',
+          }
+        },
+        xAxis: {
+          data: dataAxis,
+          axisLabel: {
+            inside: true,
+            textStyle: {
+              color: '#fff'
+            }
+          },
+          axisTick: {
+            show: false
+          },
+          axisLine: {
+            show: false
+          },
+          z: 10
+        },
+        yAxis: {
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
+            textStyle: {
+              color: '#999'
+            }
+          }
+        },
+        dataZoom: [
+          {
+            type: 'inside'
+          }
+        ],
+        series: [
+          {
+            type: 'bar',
+            showBackground: true,
+            itemStyle: {
+              color: new this.$echarts.graphic.LinearGradient(
+                0, 0, 0, 1,
+                [
+                  {offset: 0, color: '#83bff6'},
+                  {offset: 0.5, color: '#188df0'},
+                  {offset: 1, color: '#188df0'}
+                ]
+              )
+            },
+            emphasis: {
+              itemStyle: {
+                color: new this.$echarts.graphic.LinearGradient(
+                  0, 0, 0, 1,
+                  [
+                    {offset: 0, color: '#2378f7'},
+                    {offset: 0.7, color: '#2378f7'},
+                    {offset: 1, color: '#83bff6'}
+                  ]
+                )
+              }
+            },
+            data: data
+          }
+        ]
+      })
+//    Enable data zoom when user click bar.
+      let zoomSize = 6;
+      myChart.on('click', function (params) {
+        console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+        myChart.dispatchAction({
+          type: 'dataZoom',
+          startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+          endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+        });
+      });
+      // option && myChart.setOption(option);
+
+    },
     // 点击查询按钮以后
     searchStation() {
       // 之后删掉！！
@@ -908,8 +1011,6 @@ export default {
         console.log("Error");
       })
     },
-
-
     handleChange(value) {
       this.stationValue = value[1];
       console.log(value[1]);
@@ -919,11 +1020,51 @@ export default {
     window.vue = this;
     document.querySelector('body').setAttribute('style', 'background-color:#16191D')
     this.getAllStationInfo();
-    // 以下3个方法供开发使用，之后删掉！
+    // 以下5个方法供开发使用，之后删掉！
     this.inChartInit();
     this.outChartInit();
     this.ageLineInit();
     this.initPie();
+    this.odInit();
+  },
+  created() {
+    this.selectedValue= [];
+    this.selectedValue.push("1号线");
+    this.selectedValue.push("3号站");
+    this.granularity="天";
+    this.timeValue=[];
+
+    let now=new Date();
+    now.setDate(now.getDate()-1);
+    let y = now.getFullYear();
+    let m = now.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    let d = now.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    let h = now.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    let minute = now.getMinutes();
+    let second = now.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    let n= y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
+
+    let date2 = new Date(now);
+    date2.setDate(now.getDate()+6);
+    let y2 = date2.getFullYear();
+    let m2 = date2.getMonth() + 1;
+    m2 = m2 < 10 ? ('0' + m2) : m2;
+    let d2 = date2.getDate();
+    d2 = d2 < 10 ? ('0' + d2) : d2;
+    let h2 = date2.getHours();
+    h2 = h2 < 10 ? ('0' + h2) : h2;
+    let minute2 = date2.getMinutes();
+    let second2 = date2.getSeconds();
+    minute2 = minute2 < 10 ? ('0' + minute2) : minute2;
+    second2 = second2 < 10 ? ('0' + second2) : second2;
+    let n2= y2 + '-' + m2 + '-' + d2+' '+h2+':'+minute2+':'+second2;
+    this.timeValue.push(n);
+    this.timeValue.push(n2);
   },
   beforeDestroy() {
     document.querySelector('body').removeAttribute('style')
@@ -944,9 +1085,9 @@ export default {
   }
   .lineChartBoard {
     margin-top: 2rem;
-    margin-left: 1rem;
+    margin-left: 3rem;
     margin-bottom: 1rem;
-    width:40rem;
+    width:27rem;
     box-shadow: 0 0 3px blue;
     display: flex;
     background-color: rgba(6, 30, 93, 0.5);
@@ -965,10 +1106,8 @@ export default {
   }
 
   .pieChartBoard {
-    margin-top: 2rem;
-    margin-left: 3rem;
-    margin-bottom: 1rem;
-    width: 40rem;
+    margin: 2rem 2rem 1rem 1rem;
+    width: 27rem;
     box-shadow: 0 0 3px blue;
     display: flex;
     //flex-direction: column;
@@ -976,7 +1115,7 @@ export default {
     border-top: 2px solid rgba(1, 153, 209, .5);
     border-right: 2px solid rgba(1, 153, 209, .5);
     box-sizing: border-box;
-    padding: 0px 8px;
+    padding: 0px 1rem;
 
     .board-title {
       font-weight: bold;

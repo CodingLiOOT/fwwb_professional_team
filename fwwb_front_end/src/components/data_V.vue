@@ -1098,7 +1098,18 @@ export default {
                   borderColor: "#FF0000"
                 }
               }
-            }],
+            },
+              {
+                name: '8',
+                x: 350,
+                y: 0,
+                itemStyle: {
+                  normal: {
+                    color: "#FFFFFF",
+                    borderColor: "#FF0000"
+                  }
+                }
+              }],
             links: [{//连线的source和target可以选择index，也可选择name，这里方便查看理解我用了name
               source: '1',
               target: '2',
@@ -1123,6 +1134,15 @@ export default {
                 }
               }
             },
+              {
+                source: '7',
+                target: '8',
+                lineStyle: {//特色的连线设置特殊的样式
+                  normal: {
+                    color: "#FF0000"
+                  }
+                }
+              },
             ],
           }
         ]

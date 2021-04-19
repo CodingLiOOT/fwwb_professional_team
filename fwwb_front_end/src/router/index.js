@@ -12,6 +12,7 @@ import Overview from "../components/Overview";
 import tuoputu from "../components/overview/tuoputu"
 import OverviewIndex from "../components/overview/OverviewIndex";
 import tryIndex from "../components/overview/tryIndex"
+import Welcome from "../components/Welcome";
 
 Vue.use(Router)
 
@@ -36,11 +37,10 @@ const router = new Router({
       // redirect:'MainPage/overview/OverviewIndex'
     },
     {
-      path: '/try',
-      name: 'Home',
+      path: '/welcome',
+      name: 'Welcome',
       meta: {requiresAuth: false},
-      component: tryIndex,
-      // redirect:'MainPage/overview/OverviewIndex'
+      component: Welcome,
     },
     {
       path: '/',
