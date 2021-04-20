@@ -193,30 +193,38 @@ export default {
       });
     },
     inChartInit(){
+      // this.subwayLineInit();
       let inChart = this.$echarts.init(document.getElementById('inChart'))
       let myLengend=[];
       let seriesData=[];
       let f0=0,f1=0,f2=0,f3=0,f4=0,f5=0,f6=0;
       let m1=[],m2=[],e1=[],e2=[];
+      let visual;
       // 时间粒度为小时
       if(this.granularity==1){
+        this.entranceData.time=['6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+          '18:00', '19:00', '20:00', '21:00', '22:00'];
+        // this.entranceData.timePro=[0,0,0,0,1,0,0];
+        this.entranceData.entranceNum=[12,23,12,45,23,21,45];
+        this.entranceData.morning=[12,23,12,45,23,21,11];
+        this.entranceData.evening=[19,33,22,35,20,11,19];
         // 初始化图例
         myLengend.push('总人次');
         // 初始化早晚高峰范围
-        for(let i in this.entranceData.timePro){
-          if(this.entranceData.timePro[i]===31){
-            m1.push(this.entranceData.time[i]);
-          }
-          else if(this.entranceData.timePro[i]===32){
-            m2.push(this.entranceData.time[i]);
-          }
-          else if(this.entranceData.timePro[i]===41){
-            e1.push(this.entranceData.time[i]);
-          }
-          else if(this.entranceData.timePro[i]===42){
-            e2.push(this.entranceData.time[i]);
-          }
-        }
+        // for(let i in this.entranceData.timePro){
+        //   if(this.entranceData.timePro[i]===31){
+        //     m1.push(this.entranceData.time[i]);
+        //   }
+        //   else if(this.entranceData.timePro[i]===32){
+        //     m2.push(this.entranceData.time[i]);
+        //   }
+        //   else if(this.entranceData.timePro[i]===41){
+        //     e1.push(this.entranceData.time[i]);
+        //   }
+        //   else if(this.entranceData.timePro[i]===42){
+        //     e2.push(this.entranceData.time[i]);
+        //   }
+        // }
         // 初始化数据
         let scope=[];
         for(let item in m1){
@@ -249,54 +257,99 @@ export default {
           e.push(tempE2);
           scope.push(e);
         }
-
-        // scope= [ [{
-        //   name: '早高峰',
-        //   xAxis: '7'
-        // }, {
-        //   name:'早高峰',
-        //   xAxis: '9'
-        // }], [{
-        //   name: '晚高峰',
-        //   xAxis: '17'
-        // }, {
-        //   xAxis: '19'
-        // }], [{
-        //   name: '早高峰',
-        //   xAxis: '71'
-        // }, {
-        //   name:'早高峰',
-        //   xAxis: '91'
-        // }], ]
-        // scope= [ [{
-        //   name: '晚高峰',
-        //   xAxis: '17'
-        // }, {
-        //   xAxis: '19'
-        // }]]
-        // alert("scope.size "+scope.length);
-        // alert("scope[0] "+scope[0]);
-        // alert("scope[0][0] "+scope[0][0]);
-        // alert("scope[0][0].xAxis "+scope[0][0].xAxis);
-        // alert("scope[0][1].xAxis "+scope[0][1].xAxis);
-        seriesData= [
-          {
-            name: '总人次',
-            type: 'line',
-            smooth: true,
-            data: this.entranceData.entranceNum,
-            markArea: {
-              itemStyle: {
-                color: 'rgba(255, 173, 177, 0.4)'
-              },
-              data:scope,
+        visual= {
+          show: false,
+          dimension: 0,
+          pieces: [{
+            lte: 1,
+            color: 'green'
+          }, {
+            gt: 1,
+            lte: 2,
+            color: 'red'
+          }, {
+            gt: 2,
+            lte: 12,
+            color: 'green'
+          }, {
+            gt: 12,
+            lte: 13,
+            color: 'red'
+          }, {
+            gt: 13,
+            let:21,
+            color: 'green'
+          }]
+        },
+          // scope= [ [{
+          //   name: '早高峰',
+          //   xAxis: '7'
+          // }, {
+          //   name:'早高峰',
+          //   xAxis: '9'
+          // }], [{
+          //   name: '晚高峰',
+          //   xAxis: '17'
+          // }, {
+          //   xAxis: '19'
+          // }], [{
+          //   name: '早高峰',
+          //   xAxis: '71'
+          // }, {
+          //   name:'早高峰',
+          //   xAxis: '91'
+          // }], ]
+          // scope= [ [{
+          //   name: '晚高峰',
+          //   xAxis: '17'
+          // }, {
+          //   xAxis: '19'
+          // }]]
+          // alert("scope.size "+scope.length);
+          // alert("scope[0] "+scope[0]);
+          // alert("scope[0][0] "+scope[0][0]);
+          // alert("scope[0][0].xAxis "+scope[0][0].xAxis);
+          // alert("scope[0][1].xAxis "+scope[0][1].xAxis);
+          seriesData= [
+            {
+              name: '总人次',
+              type: 'line',
+              smooth: true,
+              data: this.entranceData.entranceNum,
+              markArea: {
+                itemStyle: {
+                  color: 'rgba(255, 173, 177, 0.4)'
+                },
+                data: [ [{
+                  name: '早高峰',
+                  xAxis: '7:00'
+                }, {
+                  xAxis: '8:00'
+                }], [{
+                  name: '晚高峰',
+                  xAxis: '18:00'
+                }, {
+                  xAxis: '19:00'
+                }] ]
+              }
+              // markArea: {
+              //   itemStyle: {
+              //     color: 'rgba(255, 173, 177, 0.4)'
+              //   },
+              //   data:scope,
+              // }
             }
-          }
-        ];
+          ];
 
       }
       // 时间粒度为天
-      else if(this.granularity==2||this.granularity=="天"){
+      else if(this.granularity==2||this.granularity=='天'){
+        this.entranceData.time=['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'];
+        this.entranceData.timePro=[0,0,0,0,1,0,0];
+        this.entranceData.entranceNum=[12,23,12,45,23,21,45];
+        this.entranceData.morning=[12,23,12,45,23,21,11];
+        this.entranceData.evening=[19,33,22,35,20,11,19];
+
         // 初始化图例
         for(let item in this.entranceData.timePro){
           if(this.entranceData.timePro[item]===0&&f0===0){
@@ -443,6 +496,7 @@ export default {
           left:'left',
           width:300,
         },
+        visualMap:visual,
         xAxis: [
           {
             type: 'category',
@@ -476,30 +530,38 @@ export default {
       },true);
     },
     outChartInit(){
+      // this.subwayLineInit();
       let outChart = this.$echarts.init(document.getElementById('outChart'))
       let myLengend=[];
       let seriesData=[];
       let f0=0,f1=0,f2=0,f3=0,f4=0,f5=0,f6=0;
       let m1=[],m2=[],e1=[],e2=[];
+      let visual;
       // 时间粒度为小时
       if(this.granularity==1){
+        this.outboundData.time=['6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+          '18:00', '19:00', '20:00', '21:00', '22:00'];
+        // this.entranceData.timePro=[0,0,0,0,1,0,0];
+        this.outboundData.outboundNum=[12,23,12,45,23,21,45];
+        this.outboundData.morning=[12,23,12,45,23,21,11];
+        this.outboundData.evening=[19,33,22,35,20,11,19];
         // 初始化图例
         myLengend.push('总人次');
         // 初始化早晚高峰范围
-        for(let i in this.entranceData.timePro){
-          if(this.entranceData.timePro[i]===31){
-            m1.push(this.entranceData.time[i]);
-          }
-          else if(this.entranceData.timePro[i]===32){
-            m2.push(this.entranceData.time[i]);
-          }
-          else if(this.entranceData.timePro[i]===41){
-            e1.push(this.entranceData.time[i]);
-          }
-          else if(this.entranceData.timePro[i]===42){
-            e2.push(this.entranceData.time[i]);
-          }
-        }
+        // for(let i in this.entranceData.timePro){
+        //   if(this.entranceData.timePro[i]===31){
+        //     m1.push(this.entranceData.time[i]);
+        //   }
+        //   else if(this.entranceData.timePro[i]===32){
+        //     m2.push(this.entranceData.time[i]);
+        //   }
+        //   else if(this.entranceData.timePro[i]===41){
+        //     e1.push(this.entranceData.time[i]);
+        //   }
+        //   else if(this.entranceData.timePro[i]===42){
+        //     e2.push(this.entranceData.time[i]);
+        //   }
+        // }
         // 初始化数据
         let scope=[];
         for(let item in m1){
@@ -532,24 +594,99 @@ export default {
           e.push(tempE2);
           scope.push(e);
         }
-        seriesData= [
-          {
-            name: '总人次',
-            type: 'line',
-            smooth: true,
-            data: this.entranceData.entranceNum,
-            markArea: {
-              itemStyle: {
-                color: 'rgba(255, 173, 177, 0.4)'
-              },
-              data:scope,
+        visual= {
+          show: false,
+          dimension: 0,
+          pieces: [{
+            lte: 1,
+            color: 'green'
+          }, {
+            gt: 1,
+            lte: 2,
+            color: 'red'
+          }, {
+            gt: 2,
+            lte: 12,
+            color: 'green'
+          }, {
+            gt: 12,
+            lte: 13,
+            color: 'red'
+          }, {
+            gt: 13,
+            let:21,
+            color: 'green'
+          }]
+        },
+          // scope= [ [{
+          //   name: '早高峰',
+          //   xAxis: '7'
+          // }, {
+          //   name:'早高峰',
+          //   xAxis: '9'
+          // }], [{
+          //   name: '晚高峰',
+          //   xAxis: '17'
+          // }, {
+          //   xAxis: '19'
+          // }], [{
+          //   name: '早高峰',
+          //   xAxis: '71'
+          // }, {
+          //   name:'早高峰',
+          //   xAxis: '91'
+          // }], ]
+          // scope= [ [{
+          //   name: '晚高峰',
+          //   xAxis: '17'
+          // }, {
+          //   xAxis: '19'
+          // }]]
+          // alert("scope.size "+scope.length);
+          // alert("scope[0] "+scope[0]);
+          // alert("scope[0][0] "+scope[0][0]);
+          // alert("scope[0][0].xAxis "+scope[0][0].xAxis);
+          // alert("scope[0][1].xAxis "+scope[0][1].xAxis);
+          seriesData= [
+            {
+              name: '总人次',
+              type: 'line',
+              smooth: true,
+              data: this.outboundData.outboundNum,
+              markArea: {
+                itemStyle: {
+                  color: 'rgba(255, 173, 177, 0.4)'
+                },
+                data: [ [{
+                  name: '早高峰',
+                  xAxis: '7:00'
+                }, {
+                  xAxis: '8:00'
+                }], [{
+                  name: '晚高峰',
+                  xAxis: '18:00'
+                }, {
+                  xAxis: '19:00'
+                }] ]
+              }
+              // markArea: {
+              //   itemStyle: {
+              //     color: 'rgba(255, 173, 177, 0.4)'
+              //   },
+              //   data:scope,
+              // }
             }
-          }
-        ];
+          ];
 
       }
       // 时间粒度为天
-      else if(this.granularity==2){
+      else if(this.granularity==2||this.granularity=='天'){
+        this.outboundData.time=['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'];
+        this.outboundData.timePro=[0,0,0,0,1,0,0];
+        this.outboundData.outboundNum=[12,23,12,45,23,21,45];
+        this.outboundData.morning=[12,23,12,45,23,21,11];
+        this.outboundData.evening=[19,33,22,35,20,11,19];
+
         // 初始化图例
         for(let item in this.outboundData.timePro){
           if(this.outboundData.timePro[item]===0&&f0===0){
@@ -677,7 +814,16 @@ export default {
             crossStyle: {
               color: '#999'
             }
-          }
+          },
+          formatter: function (params) {
+            let res=params[0].name+'</p></div>'
+            for(let i=0;i<params.length;i++){
+              if(params[i].data!==0){
+                res+='<p>'+params[i].seriesName+': '+params[i].data+'</p>'
+              }
+            }
+            return res;
+          },
         },
         legend: {
           textStyle:{
@@ -687,6 +833,7 @@ export default {
           left:'left',
           width:300,
         },
+        visualMap:visual,
         xAxis: [
           {
             type: 'category',
@@ -709,15 +856,15 @@ export default {
             max: 250,
             interval: 50,
             axisLabel: {
-              // formatter: '{value} ml',
               textStyle: {
                 color: '#ffffff'
               }
-            }
+            },
+
           }
         ],
-        series: seriesData
-      });
+        series:seriesData,
+      },true);
     },
     ageLineInit(){
       let ageLine = this.$echarts.init(document.getElementById('ageLine'))

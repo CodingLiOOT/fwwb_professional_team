@@ -178,22 +178,56 @@ export default {
         underage:  [320, 332, 301, 334, 390, 330, 320],
       },
       lineRatio:{
-        line:[1,2,3,4,5,6,7,8],
-        entranceNum:[12,23,34,12,22,21,43,11],
-        outboundNum:[24,54,12,35,23,31,32,14],
+        line:["1号线","2号线","3号线","4号线","5号线","10号线","11号线","12号线"],
+        entranceNum:[12,23,34,12,22,21,43,11,12],
+        outboundNum:[24,54,12,35,23,31,32,14,12],
       }
     }
   },
   mounted() {
     document.querySelector('body').setAttribute('style', 'background-color:#16191D')
-    // 以下方法供开发使用，之后删掉
+    // 以下方法供开发使用，
+    this.selectedValue=[];
+    this.selectedValue.push("5号线");
+    this.granularity="天";
+    this.timeValue=[];
 
+    let now=new Date();
+    now.setDate(now.getDate()-1);
+    let y = now.getFullYear();
+    let m = now.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    let d = now.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    let h = now.getHours();
+    h = h < 10 ? ('0' + h) : h;
+    let minute = now.getMinutes();
+    let second = now.getSeconds();
+    minute = minute < 10 ? ('0' + minute) : minute;
+    second = second < 10 ? ('0' + second) : second;
+    let n= y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
+
+    let date2 = new Date(now);
+    date2.setDate(now.getDate()+6);
+    let y2 = date2.getFullYear();
+    let m2 = date2.getMonth() + 1;
+    m2 = m2 < 10 ? ('0' + m2) : m2;
+    let d2 = date2.getDate();
+    d2 = d2 < 10 ? ('0' + d2) : d2;
+    let h2 = date2.getHours();
+    h2 = h2 < 10 ? ('0' + h2) : h2;
+    let minute2 = date2.getMinutes();
+    let second2 = date2.getSeconds();
+    minute2 = minute2 < 10 ? ('0' + minute2) : minute2;
+    second2 = second2 < 10 ? ('0' + second2) : second2;
+    let n2= y2 + '-' + m2 + '-' + d2+' '+h2+':'+minute2+':'+second2;
+    this.timeValue.push(n);
+    this.timeValue.push(n2);
     this.inChartInit();
     this.outChartInit();
     this.pieInit();
     this.ageLineInit();
     this.initPie();
-
 
     // this.ODInit();
     // 获取线路信息
@@ -358,7 +392,7 @@ export default {
 
       }
       // 时间粒度为天
-      else if(this.granularity==2){
+      else if(this.granularity==2||this.granularity=='天'){
         this.entranceData.time=['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'];
         this.entranceData.timePro=[0,0,0,0,1,0,0];
         this.entranceData.entranceNum=[12,23,12,45,23,21,45];
@@ -545,6 +579,7 @@ export default {
       },true);
     },
     outChartInit(){
+      // this.subwayLineInit();
       let outChart = this.$echarts.init(document.getElementById('outChart'))
       let myLengend=[];
       let seriesData=[];
@@ -694,12 +729,13 @@ export default {
 
       }
       // 时间粒度为天
-      else if(this.granularity==2){
+      else if(this.granularity==2||this.granularity=='天'){
         this.outboundData.time=['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'];
         this.outboundData.timePro=[0,0,0,0,1,0,0];
         this.outboundData.outboundNum=[12,23,12,45,23,21,45];
         this.outboundData.morning=[12,23,12,45,23,21,11];
         this.outboundData.evening=[19,33,22,35,20,11,19];
+
         // 初始化图例
         for(let item in this.outboundData.timePro){
           if(this.outboundData.timePro[item]===0&&f0===0){
@@ -827,9 +863,17 @@ export default {
             crossStyle: {
               color: '#999'
             }
-          }
+          },
+          formatter: function (params) {
+            let res=params[0].name+'</p></div>'
+            for(let i=0;i<params.length;i++){
+              if(params[i].data!==0){
+                res+='<p>'+params[i].seriesName+': '+params[i].data+'</p>'
+              }
+            }
+            return res;
+          },
         },
-        visualMap:visual,
         legend: {
           textStyle:{
             color: '#ffffff'//字体颜色
@@ -838,6 +882,7 @@ export default {
           left:'left',
           width:300,
         },
+        visualMap:visual,
         xAxis: [
           {
             type: 'category',
@@ -860,15 +905,15 @@ export default {
             max: 250,
             interval: 50,
             axisLabel: {
-              // formatter: '{value} ml',
               textStyle: {
                 color: '#ffffff'
               }
-            }
+            },
+
           }
         ],
-        series: seriesData
-      });
+        series:seriesData,
+      },true);
     },
     ageLineInit(){
       let ageLine = this.$echarts.init(document.getElementById('ageLine'))
@@ -980,7 +1025,6 @@ export default {
         let temp=this.lineRatio.line[item];
         myLegend.push(temp);
       }
-      // alert(myLegend);
       let inData=[];
       for(let item in this.lineRatio.line){
         let temp={
@@ -1025,11 +1069,11 @@ export default {
         },
         legend: {
           show:true,
-          // data: ["1号线'","2号线","3号线","4号线","5号线","6号线","7号线"],
+          data: ["1号线","2号线","3号线","4号线","5号线","10号线","11号线","12号线"],
           left:'left',
-          width:200,
+          width:250,
           textStyle:{
-            color: '#ffffff'//字体颜色
+            color: '#ffffff',//字体颜色
           },
         },
         series: [
@@ -1315,6 +1359,7 @@ export default {
       this.outChartInit();
       this.ageLineInit();
       this.pieInit();
+      this.initPie();
       this.subwayLineInit();
 
       // 获取进，出和年龄结构
@@ -1544,14 +1589,14 @@ export default {
   margin-top: 2rem;
   margin-left: 0.1rem;
   margin-bottom: 1rem;
-  width: 15rem;
+  width: 16rem;
   box-shadow: 0 0 3px blue;
   display: flex;
   background-color: rgba(6, 30, 93, 0.5);
   border-top: 2px solid rgba(1, 153, 209, .5);
   border-right: 2px solid rgba(1, 153, 209, .5);
   box-sizing: border-box;
-  padding: 0px 30px;
+  padding: 0px 23px;
 
   .board-title {
     font-weight: bold;
