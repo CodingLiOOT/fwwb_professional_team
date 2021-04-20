@@ -30,10 +30,10 @@
           time:'',
         },
         config :{
-          value: 66,
+          value: 37,
           lineDash: [15, 2]
         },
-        number:'300',
+        number:'7458',
       }
     },
     methods:{

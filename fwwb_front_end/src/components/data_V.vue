@@ -115,8 +115,32 @@ export default {
           label:'1号线'
         },
         {
+          value:2,
+          label:'2号线'
+        },
+        {
+          value:3,
+          label:'3号线'
+        },
+        {
+          value:4,
+          label:'4号线'
+        },
+        {
           value:5,
           label:'5号线'
+        },
+        {
+          value:10,
+          label:'10号线'
+        },
+        {
+          value:11,
+          label:'11号线'
+        },
+        {
+          value:12,
+          label:'12号线'
         },
       ],
       optionsForGranularity: [{
@@ -192,6 +216,7 @@ export default {
       // 时间粒度为小时
       if(this.granularity==1){
         // 初始化图例
+
         myLengend.push('总人次');
         // 初始化早晚高峰范围
         for(let i in this.entranceData.timePro){

@@ -56,7 +56,7 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: ['4月18日','4月19日','4月20日','4月21日','4月22日','4月23日','4月24日'],
+            data: ['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'],
             axisPointer: {
               type: 'shadow'
             },
@@ -71,6 +71,7 @@ export default {
         yAxis: [
           {
             type: 'value',
+            min:5000,
             axisLabel: {
               textStyle: {
                 color: '#ffffff'
@@ -82,7 +83,7 @@ export default {
           {
             name: '人次',
             type: 'line',
-            data: [12.0,10.2, 20.3, 23.4, 23.0, 16.5, 12.0]
+            data: [7458,7412,7504, 7711, 6375, 6172, 7612, 7471]
           }
         ]
       });

@@ -81,9 +81,13 @@ export default {
               color:'white',
             }
           }],
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
         series: [
           {
-            name: '面积模式',
+            name: '线路占比',
             type: 'pie',
             radius: [7,50],
             center: ['50%', '24%'],
@@ -92,14 +96,14 @@ export default {
               borderRadius: 8
             },
             data: [
-              {value: 20, name: 'Line 1'},
-              {value: 36, name: 'Line 2'},
-              {value: 30, name: 'Line 3'},
-              {value: 28, name: 'Line 4'},
-              {value: 26, name: 'Line 5'},
-              {value: 16, name: 'Line 10'},
-              {value: 16, name: 'Line 11'},
-              {value: 16, name: 'Line 12'}
+              {value: 2417, name: 'Line 1'},
+              {value: 2036, name: 'Line 2'},
+              {value: 3585	, name: 'Line 3'},
+              {value: 158, name: 'Line 4'},
+              {value: 489, name: 'Line 5'},
+              {value: 1351, name: 'Line 10'},
+              {value: 3424, name: 'Line 11'},
+              {value: 1066, name: 'Line 12'}
             ]
           },
           {
