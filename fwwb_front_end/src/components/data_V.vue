@@ -1631,6 +1631,11 @@ export default {
 .el-time-panel__btn{
   color: #ffffff;
 }
+.el-time-spinner__item:hover:not(.disabled):not(.active) {
+  //background: #F5F7FA;
+  cursor: pointer;
+  background-color: #B5BCC9;
+}
 
 .lineChartBoard {
   margin-top: 2rem;
