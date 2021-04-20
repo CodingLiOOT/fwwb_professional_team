@@ -12,7 +12,20 @@
       ref="sc2"
       style="
         position: absolute;
-        z-index: 999;
+        z-index: 900;
+        left: 0;
+        top: 0;
+        left: 0;
+      "
+    >
+    </canvas>
+    <canvas
+      width="1200"
+      height="1200"
+      ref="sc1"
+      style="
+        position: absolute;
+        z-index: 500;
         left: 0;
         top: 0;
         left: 0;
@@ -339,6 +352,7 @@ export default {
 
     this.canvas.addEventListener("mousemove", this.showInfo);
     this.canvas.addEventListener("click",this.switch);
+    this.flying();
   },
   data() {
     return {
@@ -352,6 +366,55 @@ export default {
     };
   },
   methods: {
+    flying(){
+      let can=this.$refs.sc1,
+        ctx=can.getContext("2d");
+
+      // 渐变
+      function createGradient(ctx,p0,p1){
+        let grd = ctx.createLinearGradient(p0.x,p0.y,p1.x,p1.y);
+        grd.addColorStop(0,'rgba(0,210,40,0)');
+        grd.addColorStop(1,'rgb(250,204,136,1)');
+        return grd;
+      }
+      let p0={'x':100,'y':100};
+      let p1={'x':300,'y':100};
+      let p2={'x':300,'y':300};
+
+      // 按百分比算点
+      function interpolation(P0,P1,t) {
+        let Q = {
+          x: P0.x * (1 - t) + P1.x * (t),
+          y: P0.y * (1 - t) + P1.y * (t),
+        };
+        return Q;
+      }
+
+      let percent = 0.0;
+      function auto() {
+        let Q01 = interpolation(p0,p1,percent),
+          Q11 = interpolation(p1,p2,percent),
+          B1 = interpolation(Q01,Q11,percent);
+        ctx.beginPath();
+        ctx.moveTo(p0.x, p0.y);
+        ctx.quadraticCurveTo(Q01.x,Q01.y,B1.x,B1.y);
+        ctx.lineCap = 'round';
+        ctx.lineWidth =2;
+        ctx.strokeStyle = createGradient(ctx,Q01,Q11);
+        ctx.stroke();
+        ctx.closePath();
+        percent += 0.005
+        if(percent > 1){
+          ctx.beginPath();
+          percent = 0.;
+        }
+        setTimeout(function() {
+          auto();
+        }, 10);
+      }
+      auto();
+
+    },
     showInfo(event) {
       // console.log(this.canvas.getBoundingClientRect().left);
       let x = event.clientX - this.canvas.getBoundingClientRect().left,
