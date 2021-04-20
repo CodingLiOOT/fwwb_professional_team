@@ -366,10 +366,9 @@ export default {
     };
   },
   methods: {
-    flying(){
-      let can=this.$refs.sc1,
-        ctx=can.getContext("2d");
-
+    drawFly(ctx,p0,p1,p2){
+      p1.x=p0.x+100;
+      p1.y=p0.y;
       // 渐变
       function createGradient(ctx,p0,p1){
         let grd = ctx.createLinearGradient(p0.x,p0.y,p1.x,p1.y);
@@ -377,9 +376,6 @@ export default {
         grd.addColorStop(1,'rgb(250,204,136,1)');
         return grd;
       }
-      let p0={'x':100,'y':100};
-      let p1={'x':300,'y':100};
-      let p2={'x':300,'y':300};
 
       // 按百分比算点
       function interpolation(P0,P1,t) {
@@ -402,18 +398,35 @@ export default {
         ctx.lineWidth =2;
         ctx.strokeStyle = createGradient(ctx,Q01,Q11);
         ctx.stroke();
-        ctx.closePath();
+
         percent += 0.005
         if(percent > 1){
-          ctx.beginPath();
           percent = 0.;
+          ctx.clearRect(0,0,ctx.width(),ctx.height());
         }
         setTimeout(function() {
           auto();
         }, 10);
       }
       auto();
-
+    },
+    flying(){
+      let can=this.$refs.sc1,
+        ctx=can.getContext("2d");
+      let p0={'x':100,'y':100};
+      let p1={'x':300,'y':100};
+      let p2={'x':300,'y':300};
+      let inline=[1,10,3,11,3];
+      let inSta=[11,4,11,16,20];
+      let outline=[1,11,3,3,3];
+      let outSta=[2,21,20,20,21]
+      for(let i=0;i<5;i++){
+        p0.x=this.siteInfo[inline[i]][inSta[i]].x;
+        p0.y=this.siteInfo[inline[i]][inSta[i]].y;
+        p2.x=this.siteInfo[outline[i]][outSta[i]].x;
+        p2.y=this.siteInfo[outline[i]][outSta[i]].y;
+        this.drawFly(ctx,p0,p1,p2);
+      }
     },
     showInfo(event) {
       // console.log(this.canvas.getBoundingClientRect().left);
