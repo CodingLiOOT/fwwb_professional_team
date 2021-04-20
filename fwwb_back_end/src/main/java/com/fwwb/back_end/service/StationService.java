@@ -1,5 +1,6 @@
 package com.fwwb.back_end.service;
 
+import com.fwwb.back_end.entity.ODBean;
 import com.fwwb.back_end.entity.StationInfo;
 import com.fwwb.back_end.entity.StrokeBean;
 
@@ -22,4 +23,10 @@ public interface StationService {
     public List<HashMap<String, Integer>> getLineStationInfo();
 
     public ArrayList<Integer> getLine();
+
+    public List<ODBean> getODData();
+
+    public void getStationData();
+
+    public void getStationOutData();
 }

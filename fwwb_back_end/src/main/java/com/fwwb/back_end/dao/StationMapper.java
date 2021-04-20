@@ -1,5 +1,6 @@
 package com.fwwb.back_end.dao;
 
+import com.fwwb.back_end.entity.ODBean;
 import com.fwwb.back_end.entity.StationInfo;
 import com.fwwb.back_end.entity.StrokeBean;
 import org.apache.ibatis.annotations.Mapper;
@@ -75,5 +76,33 @@ public interface StationMapper {
             "from stations " +
             "order by line asc;")
     ArrayList<Integer> getLine();
+
+    @Select(value = "SELECT " +
+            "  DATE_FORMAT( in_time, '%Y-%m-%d' ) time, " +
+            "  COUNT( userID ) num,in_station,out_station  " +
+            "FROM " +
+            "  trips  " +
+            "WHERE " +
+            "  in_station = #{in}  " +
+            "  AND out_station = #{out}  " +
+            "  AND in_time BETWEEN '2020-02-01 00:00:00'  " +
+            "  AND '2020-08-01 00:00:00'  " +
+            "  AND DATE_FORMAT( in_time, '%Y-%m-%d' ) = DATE_FORMAT( out_time, '%Y-%m-%d' )  " +
+            "GROUP BY " +
+            "  time  " +
+            "ORDER BY " +
+            "  in_time")
+    List<ODBean> getStationODByTime(int in,int out);
+
+    @Select(value = "SELECT stationName from stations")
+    List<Integer> getStationList();
+
+    @Select(value = "SELECT DATE_FORMAT(in_time,'%Y-%m-%d') time,COUNT(userID) num from trips WHERE in_station = ${station} GROUP BY time ORDER BY in_time;")
+    List<HashMap<String,String>> getStationData(int station);
+
+
+    @Select(value = "SELECT DATE_FORMAT(out_time,'%Y-%m-%d') time,COUNT(userID) num from trips WHERE out_station = ${station} GROUP BY time ORDER BY out_time;")
+    List<HashMap<String,String>> getStationOutData(int station);
 }
+
 

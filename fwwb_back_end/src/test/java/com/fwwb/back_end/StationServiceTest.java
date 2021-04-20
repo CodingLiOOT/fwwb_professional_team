@@ -25,4 +25,19 @@ public class StationServiceTest extends BackEndApplicationTests{
         System.out.println(list.get(0));
         Assert.assertEquals("登录失败",20L,stationService.getPassengerInfoByHour(null).get(3).get("count(userID)"));
     }
+
+    @Test
+    public void testOD(){
+        //stationService.getODData();
+    }
+
+    @Test
+    public void testStationData(){
+        stationService.getStationData();
+    }
+
+    @Test
+    public void testStationOutData(){
+        stationService.getStationOutData();
+    }
 }
