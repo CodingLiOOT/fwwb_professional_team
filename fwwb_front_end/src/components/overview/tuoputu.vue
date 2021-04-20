@@ -330,9 +330,9 @@ export default {
     c.fillText("10号线", 300, 61);
 
     c.fillStyle = "#EAF1F9";
-    c.fillRect(978, 155, 51, 21);
+    c.fillRect(900, 155, 51, 21);
     c.fillStyle = "#333";
-    c.fillText("4号线", 991, 170);
+    c.fillText("4号线", 912, 170);
 
     c.fillStyle = "#EAF1F9";
     c.fillRect(62, 204, 51, 21);
