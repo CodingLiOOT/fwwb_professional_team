@@ -1395,7 +1395,7 @@ export default {
     this.timeValue=[];
 
     let now=new Date();
-    now.setDate(now.getDate()-1);
+    // now.setDate(now.getDate()-1);
     let y = now.getFullYear();
     let m = now.getMonth() + 1;
     m = m < 10 ? ('0' + m) : m;
@@ -1443,50 +1443,82 @@ export default {
       flex-direction: column;
     }
   }
+  .el-select-dropdown__list {
+    background-color: rgb(57 69 84);
+    color: #f0f2f5;
+  }
+  .el-date-table td.in-range div, .el-date-table td.in-range div:hover, .el-date-table.is-week-mode .el-date-table__row.current div, .el-date-table.is-week-mode .el-date-table__row:hover div {
+    background-color: #676f79;
+    color: #f0f2f5;
+  }
   .el-range-input{
-    background-color: rgba(26, 41, 118, 0.7);
+    background-color: rgba(178, 179, 186, 0.3);
+    color: #f0f2f5;
   }
   .el-input__inner .el-range-editor {
-    background-color: rgba(26, 41, 118, 0.7);
+    background-color: rgba(178, 179, 186, 0.3);
+    //background-color: rgba(26, 41, 118, 0.7);
   }
   .el-input__inner {
-    background-color: rgba(26, 41, 118, 0.7);
+    background-color: rgb(57 69 84);
+    color: #f0f2f5;
+  }
+  .el-date-range-picker__time-header {
+    background-color: rgb(52 59 67);
+    color: #f0f2f5;
   }
   .el-button{
-    background-color: rgba(26, 41, 118, 0.7);
+    background-color: rgba(178, 179, 186, 0.3);
+    //background-color: rgba(26, 41, 118, 0.7);
+    color: #f0f2f5;
   }
-  .el-select-dropdown__list{
-    background-color: rgba(26, 41, 118, 0.7);
+
+  .el-select-dropdown__item{
+    color: #f0f2f5;
   }
-  .el-date-range-picker__time-header{
-    background-color: rgba(26, 41, 118, 0.7);
-    color: white;
+
+  .el-date-editor .el-range-input{
+    color: #f0f2f5;
+  }
+
+  .el-date-range-picker__content.is-left {
+    background-color: rgb(57 69 84);
+    color: #f0f2f5;
+  }
+
+  .el-date-range-picker__content.is-right {
+    background-color: rgb(57 69 84);
+    color: #f0f2f5;
   }
   .el-picker-panel__footer {
-    background-color: rgba(26, 41, 118, 0.7);
-    color: white;
-  }
-  .el-date-range-picker__content.is-left {
-    background-color: rgba(26, 41, 118, 0.7);
-    color: white;
-  }
-  .el-date-range-picker__content.is-right {
-    background-color: rgba(26, 41, 118, 0.7);
-    color: white;
+    background-color: rgb(57 69 84);
+    color: #f0f2f5;
   }
   .el-button.is-disabled.is-plain{
-    background-color: rgba(26, 41, 118, 0.7);
+    background-color: rgba(178, 179, 186, 0.3);
+    //background-color: rgba(26, 41, 118, 0.7);
     .span{
-      color: white;
+      color: #f0f2f5;
     }
   }
-  .el-cascader-menu__list{
-    background-color: rgba(26, 41, 118, 0.7);
-    color: white;
+  .el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+    background-color: #F5F7FA;
   }
-  .el-cascader-node__label{
-    color: white;
+  .el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+    background-color: #B5BCC9;
   }
+  .el-cascader-node:not(.is-disabled):focus, .el-cascader-node:not(.is-disabled):hover {
+    background: #b6bdca;
+  }
+  .el-cascader-menu__list {
+    background-color: rgb(57 69 84);
+    color: #f0f2f5;
+  }
+  .el-range-editor .el-range-input {
+    line-height: 1;
+    background-color: rgb(57 69 84);
+  }
+
   .lineChartBoard {
     margin-top: 2rem;
     margin-left: 3rem;
