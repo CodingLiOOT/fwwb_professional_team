@@ -194,7 +194,7 @@ export default {
     this.timeValue=[];
 
     let now=new Date();
-    now.setDate(now.getDate()+1);
+    // now.setDate(now.getDate()-1);
     let y = now.getFullYear();
     let m = now.getMonth() + 1;
     m = m < 10 ? ('0' + m) : m;

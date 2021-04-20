@@ -241,6 +241,156 @@ export default {
           "num": "1"
         }
       ],
+      rec: [
+        {
+          "out_station": "9",
+          "num": "3"
+        },
+        {
+          "out_station": "12",
+          "num": "1"
+        },
+        {
+          "out_station": "15",
+          "num": "3"
+        },
+        {
+          "out_station": "27",
+          "num": "1"
+        },
+        {
+          "out_station": "30",
+          "num": "1"
+        },
+        {
+          "out_station": "33",
+          "num": "2"
+        },
+        {
+          "out_station": "34",
+          "num": "1"
+        },
+        {
+          "out_station": "40",
+          "num": "1"
+        },
+        {
+          "out_station": "41",
+          "num": "2"
+        },
+        {
+          "out_station": "42",
+          "num": "2"
+        },
+        {
+          "out_station": "47",
+          "num": "3"
+        },
+        {
+          "out_station": "63",
+          "num": "7"
+        },
+        {
+          "out_station": "64",
+          "num": "3"
+        },
+        {
+          "out_station": "65",
+          "num": "1"
+        },
+        {
+          "out_station": "74",
+          "num": "4"
+        },
+        {
+          "out_station": "80",
+          "num": "9"
+        },
+        {
+          "out_station": "81",
+          "num": "1"
+        },
+        {
+          "out_station": "88",
+          "num": "1"
+        },
+        {
+          "out_station": "89",
+          "num": "18"
+        },
+        {
+          "out_station": "107",
+          "num": "4"
+        },
+        {
+          "out_station": "108",
+          "num": "3"
+        },
+        {
+          "out_station": "110",
+          "num": "3"
+        },
+        {
+          "out_station": "115",
+          "num": "2"
+        },
+        {
+          "out_station": "126",
+          "num": "2"
+        },
+        {
+          "out_station": "128",
+          "num": "1"
+        },
+        {
+          "out_station": "129",
+          "num": "1"
+        },
+        {
+          "out_station": "131",
+          "num": "1"
+        },
+        {
+          "out_station": "133",
+          "num": "1"
+        },
+        {
+          "out_station": "141",
+          "num": "1"
+        },
+        {
+          "out_station": "142",
+          "num": "1"
+        },
+        {
+          "out_station": "144",
+          "num": "1"
+        },
+        {
+          "out_station": "149",
+          "num": "1"
+        },
+        {
+          "out_station": "150",
+          "num": "1"
+        },
+        {
+          "out_station": "154",
+          "num": "2"
+        },
+        {
+          "out_station": "159",
+          "num": "1"
+        },
+        {
+          "out_station": "162",
+          "num": "2"
+        },
+        {
+          "out_station": "167",
+          "num": "1"
+        }
+      ],
       val:'',
       selectedValue:'',
       granularity: '',
@@ -1137,8 +1287,8 @@ export default {
           {
             type: 'pie',
             id: 'pie',
-            radius: '30%',
-            center: ['50%', '35%'],
+            radius: '20%',
+            center: ['50%', '30%'],
             color:['#e3e26e','#609fa8','#bca19a','#ac1969'],
             emphasis: {focus: 'data'},
             label: {
@@ -1181,9 +1331,17 @@ export default {
 
       let dataAxis = [];
       let data = [];
-      for(let i=0;i<this.RECORDS.length;i++){
-        dataAxis.push(this.RECORDS[i].out_station);
-        data.push(this.RECORDS[i].num);
+      if(this.granularity==1){
+        for(let i=0;i<this.rec.length;i++){
+          dataAxis.push(this.rec[i].out_station);
+          data.push(this.rec[i].num);
+        }
+      }
+      else if(this.granularity=='天'||this.granularity==2){
+        for(let i=0;i<this.RECORDS.length;i++){
+          dataAxis.push(this.RECORDS[i].out_station);
+          data.push(this.RECORDS[i].num);
+        }
       }
       let yMax = 500;
       let dataShadow = [];
