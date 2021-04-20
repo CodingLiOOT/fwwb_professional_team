@@ -649,7 +649,7 @@ export default {
         if (c.isPointInPath(x, y)) {
           // console.log(c.isPointInPath(x, y)+'----'+i)
           c.clearRect(0,0, this.canvas.width,this.canvas.width);
-          c.fillStyle = "rgb(31,82,186)"
+          c.fillStyle="yellow"
           c.fillRect(x, y, 240, 82)
           c.fillStyle = "#333"
           c.font = 'bold 24px Arial'
