@@ -20,7 +20,7 @@
       size="small"
       show-password>
     </el-input>
-    <el-button type="primary">登录</el-button>
+    <el-button type="primary" @click="signIn">登录</el-button>
 <div>
   <b style="color: white;font-size: 14px;display: inline-block">服务器状态：</b><b style="color: #2de37f;font-size: 14px;display: inline-block">正常</b>
   <b style="color: white;font-size: 14px;display: inline-block;margin-left: 100px">延迟：</b><b style="color: white;font-size: 14px;display: inline-block">5ms</b>
@@ -105,8 +105,8 @@
       canplay() {
         this.vedioCanPlay = true
       },
-      signin(){
-
+      signIn(){
+        this.$router.push('/MainPage/overviewIndex');
       },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {

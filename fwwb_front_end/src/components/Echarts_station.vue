@@ -91,6 +91,156 @@ export default {
   name: "Echarts_station",
   data() {
     return {
+      RECORDS: [
+        {
+          "out_station": "9",
+          "num": "3"
+        },
+        {
+          "out_station": "12",
+          "num": "1"
+        },
+        {
+          "out_station": "15",
+          "num": "3"
+        },
+        {
+          "out_station": "27",
+          "num": "1"
+        },
+        {
+          "out_station": "30",
+          "num": "1"
+        },
+        {
+          "out_station": "33",
+          "num": "2"
+        },
+        {
+          "out_station": "34",
+          "num": "1"
+        },
+        {
+          "out_station": "40",
+          "num": "1"
+        },
+        {
+          "out_station": "41",
+          "num": "2"
+        },
+        {
+          "out_station": "42",
+          "num": "2"
+        },
+        {
+          "out_station": "47",
+          "num": "3"
+        },
+        {
+          "out_station": "63",
+          "num": "7"
+        },
+        {
+          "out_station": "64",
+          "num": "3"
+        },
+        {
+          "out_station": "65",
+          "num": "1"
+        },
+        {
+          "out_station": "74",
+          "num": "4"
+        },
+        {
+          "out_station": "80",
+          "num": "1"
+        },
+        {
+          "out_station": "81",
+          "num": "1"
+        },
+        {
+          "out_station": "88",
+          "num": "1"
+        },
+        {
+          "out_station": "89",
+          "num": "25"
+        },
+        {
+          "out_station": "107",
+          "num": "4"
+        },
+        {
+          "out_station": "108",
+          "num": "3"
+        },
+        {
+          "out_station": "110",
+          "num": "3"
+        },
+        {
+          "out_station": "115",
+          "num": "2"
+        },
+        {
+          "out_station": "126",
+          "num": "2"
+        },
+        {
+          "out_station": "128",
+          "num": "3"
+        },
+        {
+          "out_station": "129",
+          "num": "1"
+        },
+        {
+          "out_station": "131",
+          "num": "1"
+        },
+        {
+          "out_station": "133",
+          "num": "1"
+        },
+        {
+          "out_station": "141",
+          "num": "1"
+        },
+        {
+          "out_station": "142",
+          "num": "1"
+        },
+        {
+          "out_station": "144",
+          "num": "1"
+        },
+        {
+          "out_station": "149",
+          "num": "1"
+        },
+        {
+          "out_station": "150",
+          "num": "1"
+        },
+        {
+          "out_station": "154",
+          "num": "1"
+        },
+        {
+          "out_station": "159",
+          "num": "1"
+        },
+        {
+          "out_station": "162",
+          "num": "1"
+        },
+        {
+          "out_station": "167",
+          "num": "1"
+        }
+      ],
       val:'',
       selectedValue:'',
       granularity: '',
@@ -377,6 +527,11 @@ export default {
             temp.name=myLengend[item];
             temp.type='bar';
             temp.stack='one';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(30,115,190)'
+              }
+            }
             for(let i in this.entranceData.entranceNum){
               if(this.entranceData.timePro[i]===0){
                 temp.data.push(this.entranceData.entranceNum[i]);
@@ -391,6 +546,11 @@ export default {
             temp.name=myLengend[item];
             temp.type='bar';
             temp.stack='one';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(96,159,168)'
+              }
+            }
             for(let i in this.entranceData.entranceNum){
               if(this.entranceData.timePro[i]===1){
                 temp.data.push(this.entranceData.entranceNum[i]);
@@ -428,6 +588,11 @@ export default {
             temp.type='line';
             temp.stack='';
             temp.yAxisIndex='1';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(206,166,47)'
+              }
+            }
             temp.data=this.entranceData.evening;
             seriesData.push(temp);
           }
@@ -718,6 +883,11 @@ export default {
             temp.name=myLengend[item];
             temp.type='bar';
             temp.stack='one';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(30,115,190)'
+              }
+            }
             for(let i in this.outboundData.outboundNum){
               if(this.outboundData.timePro[i]===0){
                 temp.data.push(this.outboundData.outboundNum[i]);
@@ -732,6 +902,11 @@ export default {
             temp.name=myLengend[item];
             temp.type='bar';
             temp.stack='one';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(96,159,168)'
+              }
+            }
             for(let i in this.outboundData.outboundNum){
               if(this.outboundData.timePro[i]===1){
                 temp.data.push(this.outboundData.outboundNum[i]);
@@ -769,6 +944,11 @@ export default {
             temp.type='line';
             temp.stack='';
             temp.yAxisIndex='1';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(206,166,47)'
+              }
+            }
             temp.data=this.outboundData.evening;
             seriesData.push(temp);
           }
@@ -875,6 +1055,22 @@ export default {
       },true);
     },
     ageLineInit(){
+      //时间粒度为小时
+      if(this.granularity==1){
+        this.ageStructure.time=['6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+          '18:00', '19:00', '20:00', '21:00', '22:00'];
+        this.ageStructure.underage=[0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0,0, 0, 0, 0,0,0,0];
+        this.ageStructure.teen=[1, 41, 82, 38, 14, 17, 12,9,8,16,10,32,78,37,30,18,13];
+        this.ageStructure.middle= [1, 41, 82, 38, 15, 19, 13,9,8,16,10,32,78,37,30,18,13];
+        this.ageStructure.old=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0,0,0,0];
+      }
+      else if(this.granularity==2||this.granularity=='天'){
+        this.ageStructure.time=['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'];
+        this.ageStructure.underage=[19, 6, 7, 7, 16, 15, 7];
+        this.ageStructure.teen=[578, 669, 660, 675, 708, 696, 661];
+        this.ageStructure.middle= [40, 23, 52, 41, 22, 28, 25];
+        this.ageStructure.old=[0, 0, 0,0, 0, 6, 6];
+      }
       let ageLine = this.$echarts.init(document.getElementById('ageLine'))
       let t=['time'];
       for(let item in this.ageStructure.time){
@@ -934,21 +1130,24 @@ export default {
           },},
         grid: {top: '55%'},
         series: [
-          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
-          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
-          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
-          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'},color:'#e3e26e'},
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'},color:'#609fa8'},
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'},color:'#bca19a'},
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'},color: '#ac1969'},
           {
             type: 'pie',
             id: 'pie',
             radius: '30%',
-            center: ['50%', '25%'],
+            center: ['50%', '35%'],
+            color:['#e3e26e','#609fa8','#bca19a','#ac1969'],
             emphasis: {focus: 'data'},
             label: {
               formatter: '{b}:\n {@2012} ({d}%)'
             },
             encode: {
               itemName: 'time',
+              // value: '2012',
+              // tooltip: '2012'
             }
           }
         ]
@@ -980,9 +1179,12 @@ export default {
       let myChart = this.$echarts.init(chartDom);
       let option;
 
-      let dataAxis = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40];
-      let data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220,
-        220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
+      let dataAxis = [];
+      let data = [];
+      for(let i=0;i<this.RECORDS.length;i++){
+        dataAxis.push(this.RECORDS[i].out_station);
+        data.push(this.RECORDS[i].num);
+      }
       let yMax = 500;
       let dataShadow = [];
       for (let i = 0; i < data.length; i++) {
@@ -1240,6 +1442,9 @@ export default {
       display: flex;
       flex-direction: column;
     }
+  }
+  .el-date-editor .el-range-input, .el-date-editor .el-range-separator{
+    background-color: rgb(210, 54, 54);
   }
   .lineChartBoard {
     margin-top: 2rem;

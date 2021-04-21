@@ -29,12 +29,13 @@
                 <el-row :gutter="400">
                   <el-col span="9">
                     <div>
-                      <day-chart/>
+                      <today-chart/>
                     </div>
                   </el-col>
                   <el-col span="9">
                     <div>
-                      <today-chart/>
+                      <day-chart/>
+
                     </div>
                   </el-col>
                 </el-row>

@@ -172,10 +172,10 @@ export default {
       },
       ageStructure:{
         time:['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'],
-        teen: [120, 132, 101, 134, 90, 230, 210],
-        middle:  [220, 182, 191, 234, 290, 330, 310],
-        old: [150, 232, 201, 154, 190, 330, 410],
-        underage:  [320, 332, 301, 334, 390, 330, 320],
+        underage: [5, 6, 17, 4, 5, 2, 8],
+        teen:  [617, 613, 587, 389, 345, 593, 581],
+        middle: [43, 53, 60, 32, 38, 59, 65],
+        old:  [0, 0, 0,0, 0, 0, 0],
       },
       lineRatio:{
         line:["Sta43","Sta10","Sta96","Sta132","Sta37","Sta16","Sta69","Sta54"],
@@ -428,6 +428,11 @@ export default {
             temp.name=myLengend[item];
             temp.type='bar';
             temp.stack='one';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(30,115,190)'
+              }
+            }
             for(let i in this.entranceData.entranceNum){
               if(this.entranceData.timePro[i]===0){
                 temp.data.push(this.entranceData.entranceNum[i]);
@@ -442,6 +447,11 @@ export default {
             temp.name=myLengend[item];
             temp.type='bar';
             temp.stack='one';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(96,159,168)'
+              }
+            }
             for(let i in this.entranceData.entranceNum){
               if(this.entranceData.timePro[i]===1){
                 temp.data.push(this.entranceData.entranceNum[i]);
@@ -479,6 +489,11 @@ export default {
             temp.type='line';
             temp.stack='';
             temp.yAxisIndex='1';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(206,166,47)'
+              }
+            }
             temp.data=this.entranceData.evening;
             seriesData.push(temp);
           }
@@ -769,6 +784,11 @@ export default {
             temp.name=myLengend[item];
             temp.type='bar';
             temp.stack='one';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(30,115,190)'
+              }
+            }
             for(let i in this.outboundData.outboundNum){
               if(this.outboundData.timePro[i]===0){
                 temp.data.push(this.outboundData.outboundNum[i]);
@@ -783,6 +803,11 @@ export default {
             temp.name=myLengend[item];
             temp.type='bar';
             temp.stack='one';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(96,159,168)'
+              }
+            }
             for(let i in this.outboundData.outboundNum){
               if(this.outboundData.timePro[i]===1){
                 temp.data.push(this.outboundData.outboundNum[i]);
@@ -820,6 +845,11 @@ export default {
             temp.type='line';
             temp.stack='';
             temp.yAxisIndex='1';
+            temp.itemStyle={
+              normal:{
+                color:'rgb(206,166,47)'
+              }
+            }
             temp.data=this.outboundData.evening;
             seriesData.push(temp);
           }
@@ -926,6 +956,22 @@ export default {
       },true);
     },
     ageLineInit(){
+      //时间粒度为小时
+      if(this.granularity==1){
+        this.ageStructure.time=['6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+          '18:00', '19:00', '20:00', '21:00', '22:00'];
+        this.ageStructure.underage=[0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0,0, 0, 0, 0,0,0,0];
+        this.ageStructure.teen=[1, 39, 95, 26, 11, 17, 10,9,13,12,14,28,75,30,31,19,9];
+        this.ageStructure.middle= [2, 3, 3, 1, 2, 4, 1,1,1,3,2,3,3,3,3,2,0];
+        this.ageStructure.old=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0,0,0,0];
+      }
+      else if(this.granularity==2||this.granularity=='天'){
+        this.ageStructure.time=['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'];
+        this.ageStructure.underage=[5, 6, 17, 4, 5, 2, 8];
+        this.ageStructure.teen=[617, 613, 587, 389, 345, 593, 581];
+        this.ageStructure.middle= [43, 53, 60, 32, 38, 59, 65];
+        this.ageStructure.old=[0, 0, 0,0, 0, 0, 0];
+      }
       let ageLine = this.$echarts.init(document.getElementById('ageLine'))
       let t=['time'];
       for(let item in this.ageStructure.time){
@@ -947,7 +993,8 @@ export default {
       for(let item in this.ageStructure.old){
         o.push(this.ageStructure.old[item]);
       }
-
+      console.log(this.ageStructure.underage[0])
+      console.log(this.ageStructure.underage[1])
        let option = {
         legend: {
           textStyle:{
@@ -985,15 +1032,16 @@ export default {
           },},
         grid: {top: '55%'},
         series: [
-          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
-          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
-          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
-          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'}},
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'},color:'#e3e26e'},
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'},color:'#609fa8'},
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'},color:'#bca19a'},
+          {type: 'line', smooth: true, seriesLayoutBy: 'row', emphasis: {focus: 'series'},color: '#ac1969'},
           {
             type: 'pie',
             id: 'pie',
             radius: '30%',
-            center: ['50%', '30%'],
+            center: ['50%', '35%'],
+            color:['#e3e26e','#609fa8','#bca19a','#ac1969'],
             emphasis: {focus: 'data'},
             label: {
               formatter: '{b}:\n {@2012} ({d}%)'
@@ -1128,6 +1176,22 @@ export default {
       })
     },
     initPie(){
+      //时间粒度为小时
+      if(this.granularity==1){
+        this.ageStructure.time=['6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+          '18:00', '19:00', '20:00', '21:00', '22:00'];
+        this.ageStructure.underage=[0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0,0, 0, 0, 0,0,0,0];
+        this.ageStructure.teen=[1, 39, 95, 26, 11, 17, 10,9,13,12,14,28,75,30,31,19,9];
+        this.ageStructure.middle= [2, 3, 3, 1, 2, 4, 1,1,1,3,2,3,3,3,3,2,0];
+        this.ageStructure.old=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0,0,0,0];
+      }
+      else if(this.granularity==2||this.granularity=='天'){
+        this.ageStructure.time=['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'];
+        this.ageStructure.underage=[5, 6, 17, 4, 5, 2, 8];
+        this.ageStructure.teen=[617, 613, 587, 389, 345, 593, 581];
+        this.ageStructure.middle= [43, 53, 60, 32, 38, 59, 65];
+        this.ageStructure.old=[0, 0, 0,0, 0, 0, 0];
+      }
       let ageLine = this.$echarts.init(document.getElementById('ageLine'));
       let t=['time'];
       for(let item in this.ageStructure.time){
@@ -1455,9 +1519,9 @@ export default {
         .catch(err => {
         })
       // 更新四个图
-       this.inChartInit();
-       this.outChartInit();
-       this.ageLineInit();
+       //this.inChartInit();
+       //this.outChartInit();
+       //this.ageLineInit();
       // // this.pieInit();
     },
   },
@@ -1474,6 +1538,53 @@ export default {
   display: flex;
   flex-direction: column;
 }
+}
+.el-range-input{
+  background-color: rgba(26, 41, 118, 0.7);
+}
+.el-input__inner .el-range-editor {
+  background-color: rgba(26, 41, 118, 0.7);
+}
+.el-input__inner {
+  background-color: rgba(26, 41, 118, 0.7);
+}
+.el-button{
+  background-color: rgba(26, 41, 118, 0.7);
+}
+.el-select-dropdown__list{
+  background-color: rgba(26, 41, 118, 0.7);
+}
+.el-date-range-picker__time-header{
+  background-color: rgba(26, 41, 118, 0.7);
+  color: white;
+}
+.el-picker-panel__footer {
+  background-color: rgba(26, 41, 118, 0.7);
+  color: white;
+}
+.el-date-range-picker__content.is-left {
+  background-color: rgba(26, 41, 118, 0.7);
+  color: white;
+}
+.el-date-range-picker__content.is-right {
+  background-color: rgba(26, 41, 118, 0.7);
+  color: white;
+}
+.el-button.is-disabled.is-plain{
+  background-color: rgba(26, 41, 118, 0.7);
+  .span{
+    color: white;
+  }
+}
+.el-cascader-menu__list{
+  background-color: rgba(26, 41, 118, 0.7);
+  color: white;
+}
+.el-cascader-node__label{
+  color: white;
+}
+.th{
+  color: white;
 }
 .lineChartBoard {
   margin-top: 2rem;
@@ -1563,5 +1674,6 @@ export default {
     align-items: center;
     font-size: 20px;
   }
+
 }
 </style>

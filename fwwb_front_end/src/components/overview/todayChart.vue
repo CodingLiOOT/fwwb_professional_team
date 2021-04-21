@@ -16,7 +16,7 @@ export default {
         title:{
           text: '当天总人次',
           bottom:0,
-          left:'center',
+          left:'150',
           textStyle:{
             color:'white',
           }
@@ -149,9 +149,8 @@ export default {
   .card-item {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
-    margin-left: 0.5rem;
+    margin-left: 2rem;
     margin-top: 1rem;
-    margin-right: 1rem;
     display: flex;
     flex-direction: column;
   }

@@ -98,7 +98,6 @@ export default {
         c.lineTo(this.siteInfo[2][i].x, this.siteInfo[2][i].y);
       }
     }
-    c.lineTo(888, 428);
     c.stroke();
 
     for (let i in this.siteInfo[2]) {
@@ -649,9 +648,9 @@ export default {
         if (c.isPointInPath(x, y)) {
           // console.log(c.isPointInPath(x, y)+'----'+i)
           c.clearRect(0,0, this.canvas.width,this.canvas.width);
-          c.fillStyle = "yellow"
+          c.fillStyle = "rgb(31,82,186)"
           c.fillRect(x, y, 240, 82)
-          c.fillStyle = "#333";
+          c.fillStyle = "#333"
           c.font = 'bold 24px Arial'
           c.fillText('id:'+ this.siteInfo[5][i].id, x, y+20);
           c.fillText('station_name:'+ this.siteInfo[5][i].station_name, x, y+40);
