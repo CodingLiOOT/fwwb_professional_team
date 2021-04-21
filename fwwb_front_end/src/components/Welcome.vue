@@ -4,69 +4,30 @@
     <video :style="fixStyle" autoplay loop class="fillWidth" src="../components/overview/img/bg.mp4" v-on:canplay="canplay" muted="muted">
     </video>
     <img class="title" src="../components/overview/img/title.jpg" alt="">
-<!--    <el-card class="box-card">-->
-<!--      <el-tabs v-model="activeName" stretch="true" @tab-click="handleClick" >-->
-<!--        <el-tab-pane label="登录" name="first" style="font-size: large">-->
-<!--          <div>-->
-<!--            <el-form label-position="top" :model="form" status-icon ref="ruleForm" label-width="100px" class="demo-ruleForm">-->
-<!--              <el-form-item label="用户名">-->
-<!--                <el-input  v-model="form.name"></el-input>-->
-<!--              </el-form-item>-->
-<!--              <el-form-item label="密码" prop="pass">-->
-<!--                <el-input type="password" v-model="form.pass" autocomplete="off"></el-input>-->
-<!--              </el-form-item>-->
-<!--              <el-form-item>-->
-<!--                <el-button type="primary" @click="signin()">登录</el-button>-->
-<!--              </el-form-item>-->
-<!--            </el-form>-->
-<!--          </div>-->
-<!--        </el-tab-pane>-->
-<!--        <el-tab-pane label="注册" name="second">-->
-<!--          <div>-->
-<!--            <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">-->
-<!--              <el-form-item label="用户名">-->
-<!--                <el-input v-model="ruleForm.name"></el-input>-->
-<!--              </el-form-item>-->
-<!--              <el-form-item label="密码" prop="pass">-->
-<!--                <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>-->
-<!--              </el-form-item>-->
-<!--              <el-form-item label="确认密码" prop="checkPass">-->
-<!--                <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>-->
-<!--              </el-form-item>-->
-<!--              <el-form-item>-->
-<!--                <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>-->
-<!--                <el-button @click="resetForm('ruleForm')">重置</el-button>-->
-<!--              </el-form-item>-->
-<!--            </el-form>-->
-<!--          </div>-->
-<!--        </el-tab-pane>-->
-<!--      </el-tabs>-->
-<!--    </el-card>-->
-    <!--      <div class="poster hidden" v-if="!vedioCanPlay">-->
-    <!--        <img :style="fixStyle" src="/Users/Lipyu/Desktop/myGit/fwwb/front_end/fwwb_professional_team/fwwb_front_end/src/components/overview/img/2-2.png" alt="">-->
-    <!--      </div>-->
 <div class="loginPanel" >
-  <div style="width: 350px;margin-left: 50px;margin-left: 65px">
-    <b style="color: white;font-size: 38px;float: left;margin-left: 18px">登录</b>
+  <div style="width: 300px;margin-left: 47px">
+    <b style="color: white;font-size: 25px;float: left;margin-left: 18px">登录</b>
     <el-input
       placeholder="请输入账户"
       prefix-icon="el-icon-user-solid"
+      size="small"
       v-model="account">
     </el-input>
     <el-input
       placeholder="请输入密码"
       prefix-icon="el-icon-s-cooperation"
       v-model="psw"
+      size="small"
       show-password>
     </el-input>
     <el-button type="primary">登录</el-button>
 <div>
-  <b style="color: white;font-size: 18px;display: inline-block">服务器状态：</b><b style="color: #2de37f;font-size: 18px;display: inline-block">正常</b>
-  <b style="color: white;font-size: 18px;display: inline-block;margin-left: 100px">延迟：</b><b style="color: white;font-size: 18px;display: inline-block">5ms</b>
+  <b style="color: white;font-size: 14px;display: inline-block">服务器状态：</b><b style="color: #2de37f;font-size: 14px;display: inline-block">正常</b>
+  <b style="color: white;font-size: 14px;display: inline-block;margin-left: 100px">延迟：</b><b style="color: white;font-size: 14px;display: inline-block">5ms</b>
 </div>
   </div>
   </div>
-    <b class="slogn" style="color: white;font-size: 28px;">生活就像海洋，只有意志坚强的人才能到达彼岸——鲁迅</b>
+    <b class="slogn" style="color: white;font-size: 24px;">生活就像海洋，只有意志坚强的人才能到达彼岸——鲁迅</b>
   </div>
 </template>
 
@@ -235,10 +196,10 @@
   }
   .loginPanel{
     z-index: 10;
-    width: 480px;
+    width: 400px;
     position: absolute;
     top: 32%;
-    left: 35%;
+    left: 36.5%;
     font-size: 50px;
     /* @Key 透明度 R G B Alpha（不透明度为50%） */
     background-color: rgba(4, 12, 40, 0.7);
@@ -248,14 +209,15 @@
     /*-moz-border-radius: 1em;*/
     /*-webkit-border-radius: 1em;*/
     border-radius: 0.2em;
-    padding-bottom: 50px;
-    padding-top: 50px;
+    padding-bottom: 35px;
+    padding-top: 40px;
   }
   .title{
     z-index: 5;
     position: absolute;
-    top: 10%;
-    left: 20%;
+    top: 12%;
+    left: 26.5%;
+    width: 700px;
   }
   .demo-ruleForm{
     font-size: large;
@@ -263,8 +225,8 @@
   .slogn{
     z-index: 5;
     position: absolute;
-    top: 91%;
-    left: 30%;
+    top: 86%;
+    left: 30.5%;
   }
 
 </style>
