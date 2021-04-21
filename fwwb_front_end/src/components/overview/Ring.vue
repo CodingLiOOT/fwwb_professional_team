@@ -116,10 +116,10 @@ export default {
               borderRadius: 8
             },
             data: [
-              {value: 40, name: '青年'},
-              {value: 30, name: '未成年'},
-              {value: 20, name: '中年'},
-              {value: 10, name: '老年'},
+              {value: 6880, name: '青年'},
+              {value: 67, name: '未成年'},
+              {value: 603, name: '中年'},
+              {value: 7, name: '老年'},
             ]
           }
         ]

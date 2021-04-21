@@ -96,18 +96,18 @@ export default {
       granularity: '',
       timeValue: '',
       entranceData:{
-        time: ['4月18日','4月19日','4月20日','4月21日','4月22日','4月23日','4月24日'],
-        timePro:[1,0,0,0,0,0,1],
-        entranceNum: [12,23,12,45,23,21,45],
-        morning:[12,23,12,45,23,21,11],
-        evening:[19,33,22,35,20,11,19],
+        time: ['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'],
+        timePro:[0,0,0,0,1,0,0],
+        entranceNum: [374,347,379,388,390,395,391],
+        morning:[46,44,45,49,46,47,46],
+        evening:[42,40,46,45,43,47,44],
       },
       outboundData:{
-        time:['4月18日','4月19日','4月20日','4月21日','4月22日','4月23日','4月24日'],
-        timePro:[1,0,0,0,0,0,1],
-        outboundNum: [21,34,25,13,23,16,21],
-        morning:[12,32,12,22,14,25,12],
-        evening:[23,21,13,14,15,16,21],
+        time: ['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'],
+        timePro:[0,0,0,0,1,0,0],
+        entranceNum: [318,291,320,332,336,352,358],
+        morning:[39,37,38,42,39,42,42],
+        evening:[36,34,38,39,37,42,40],
       },
       ageStructure:{
         time: ['4月18日','4月19日','4月20日','4月21日','4月22日','4月23日','4月24日'],
@@ -205,9 +205,7 @@ export default {
         this.entranceData.time=['6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
           '18:00', '19:00', '20:00', '21:00', '22:00'];
         // this.entranceData.timePro=[0,0,0,0,1,0,0];
-        this.entranceData.entranceNum=[12,23,12,45,23,21,45];
-        this.entranceData.morning=[12,23,12,45,23,21,11];
-        this.entranceData.evening=[19,33,22,35,20,11,19];
+        this.entranceData.entranceNum=[3,8,9,5,6,6,4,4,3,5,5,5,7,8,4,6];
         // 初始化图例
         myLengend.push('总人次');
         // 初始化早晚高峰范围
@@ -346,9 +344,9 @@ export default {
       else if(this.granularity==2||this.granularity=='天'){
         this.entranceData.time=['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'];
         this.entranceData.timePro=[0,0,0,0,1,0,0];
-        this.entranceData.entranceNum=[12,23,12,45,23,21,45];
-        this.entranceData.morning=[12,23,12,45,23,21,11];
-        this.entranceData.evening=[19,33,22,35,20,11,19];
+        this.entranceData.entranceNum=[374,347,379,388,390,395,391];
+        this.entranceData.morning=[46,44,45,49,46,47,46];
+        this.entranceData.evening=[42,40,46,45,43,47,44];
 
         // 初始化图例
         for(let item in this.entranceData.timePro){
@@ -421,6 +419,7 @@ export default {
             temp.name=myLengend[item];
             temp.type='line';
             temp.stack='';
+            temp.yAxisIndex='1';
             temp.data=this.entranceData.morning;
             seriesData.push(temp);
           }
@@ -428,6 +427,7 @@ export default {
             temp.name=myLengend[item];
             temp.type='line';
             temp.stack='';
+            temp.yAxisIndex='1';
             temp.data=this.entranceData.evening;
             seriesData.push(temp);
           }
@@ -515,16 +515,20 @@ export default {
         yAxis: [
           {
             type: 'value',
-            min: 0,
-            max: 250,
-            interval: 50,
             axisLabel: {
               textStyle: {
                 color: '#ffffff'
               }
             },
-
-          }
+          },
+          {
+            type: 'value',
+            axisLabel: {
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
+          },
         ],
         series:seriesData,
       },true);
@@ -542,9 +546,7 @@ export default {
         this.outboundData.time=['6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
           '18:00', '19:00', '20:00', '21:00', '22:00'];
         // this.entranceData.timePro=[0,0,0,0,1,0,0];
-        this.outboundData.outboundNum=[12,23,12,45,23,21,45];
-        this.outboundData.morning=[12,23,12,45,23,21,11];
-        this.outboundData.evening=[19,33,22,35,20,11,19];
+        this.outboundData.outboundNum=[4,9,8,7,5,6,4,4,4,3,5,5,7,9,4,6];
         // 初始化图例
         myLengend.push('总人次');
         // 初始化早晚高峰范围
@@ -683,9 +685,9 @@ export default {
       else if(this.granularity==2||this.granularity=='天'){
         this.outboundData.time=['4月20日','4月21日','4月22日','4月23日','4月24日','4月25日','4月26日'];
         this.outboundData.timePro=[0,0,0,0,1,0,0];
-        this.outboundData.outboundNum=[12,23,12,45,23,21,45];
-        this.outboundData.morning=[12,23,12,45,23,21,11];
-        this.outboundData.evening=[19,33,22,35,20,11,19];
+        this.outboundData.outboundNum=[318,291,320,332,336,352,358];
+        this.outboundData.morning=[39,37,38,42,39,42,42];
+        this.outboundData.evening=[36,34,38,39,37,42,40];
 
         // 初始化图例
         for(let item in this.outboundData.timePro){
@@ -758,6 +760,7 @@ export default {
             temp.name=myLengend[item];
             temp.type='line';
             temp.stack='';
+            temp.yAxisIndex='1';
             temp.data=this.outboundData.morning;
             seriesData.push(temp);
           }
@@ -765,6 +768,7 @@ export default {
             temp.name=myLengend[item];
             temp.type='line';
             temp.stack='';
+            temp.yAxisIndex='1';
             temp.data=this.outboundData.evening;
             seriesData.push(temp);
           }
@@ -852,16 +856,20 @@ export default {
         yAxis: [
           {
             type: 'value',
-            min: 0,
-            max: 250,
-            interval: 50,
             axisLabel: {
               textStyle: {
                 color: '#ffffff'
               }
             },
-
-          }
+          },
+          {
+            type: 'value',
+            axisLabel: {
+              textStyle: {
+                color: '#ffffff'
+              }
+            },
+          },
         ],
         series:seriesData,
       },true);
@@ -1069,6 +1077,9 @@ export default {
       // 之后删掉！！
       this.inChartInit();
       this.outChartInit();
+      this.ageLineInit();
+      this.initPie();
+      this.odInit();
       // 前后端交互
       this.$API.p_Station({
         line: this.selectedValue[0],

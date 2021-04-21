@@ -30,7 +30,7 @@
           let ODChart = this.$echarts.init(document.getElementById('OD_Analyze'))
           ODChart.setOption({
               title: {
-                text: "站点OD分析",
+                text: "站点进出分析",
                 left: "center",
                 textStyle: {
                   color: '#3fdcdc'

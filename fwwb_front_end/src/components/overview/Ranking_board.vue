@@ -31,32 +31,44 @@
           //排名轮播表
           data: [
             {
-              name: '入站1',
-              value: 55
+              name: 'Sta126',
+              value: 337
             },
             {
-              name: '入站2',
-              value: 120
+              name: 'Sta89',
+              value: 320
             },
             {
-              name: '入站3',
-              value: 78
+              name: 'Sta63',
+              value: 315
             },
             {
-              name: '入站4',
-              value: 66
+              name: 'Sta134',
+              value: 238
             },
             {
-              name: '入站5',
-              value: 80
+              name: 'Sta115',
+              value: 179
             },
             {
-              name: '入站6',
-              value: 45
+              name: 'Sta129',
+              value: 165
             },
             {
-              name: '入站7',
-              value: 29
+              name: 'Sta40',
+              value: 151
+            },
+            {
+              name: 'Sta20',
+              value: 146
+            },
+            {
+              name: 'Sta107',
+              value: 143
+            },
+            {
+              name: 'Sta9',
+              value: 136
             }
           ],
           rowNum:5,
@@ -66,32 +78,44 @@
           //排名轮播表
           data: [
             {
-              name: '周口',
-              value: 55
+              name: 'Sta126',
+              value: 394
             },
             {
-              name: '南阳',
-              value: 120
+              name: 'Sta63',
+              value: 392
             },
             {
-              name: '西峡',
-              value: 78
+              name: 'Sta89',
+              value: 308
             },
             {
-              name: '驻马店',
-              value: 66
+              name: 'Sta115',
+              value: 190
             },
             {
-              name: '新乡',
-              value: 80
+              name: 'Sta129',
+              value: 163
             },
             {
-              name: '信阳',
-              value: 45
+              name: 'Sta20',
+              value: 156
             },
             {
-              name: '漯河',
-              value: 29
+              name: 'Sta134',
+              value: 154
+            },
+            {
+              name: 'Sta9',
+              value: 146
+            },
+            {
+              name: 'Sta30',
+              value: 146
+            },
+            {
+              name: 'Sta5',
+              value: 143
             }
           ]
         }
