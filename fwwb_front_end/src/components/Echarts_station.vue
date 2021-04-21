@@ -1443,8 +1443,49 @@ export default {
       flex-direction: column;
     }
   }
-  .el-date-editor .el-range-input, .el-date-editor .el-range-separator{
-    background-color: rgb(210, 54, 54);
+  .el-range-input{
+    background-color: rgba(26, 41, 118, 0.7);
+  }
+  .el-input__inner .el-range-editor {
+    background-color: rgba(26, 41, 118, 0.7);
+  }
+  .el-input__inner {
+    background-color: rgba(26, 41, 118, 0.7);
+  }
+  .el-button{
+    background-color: rgba(26, 41, 118, 0.7);
+  }
+  .el-select-dropdown__list{
+    background-color: rgba(26, 41, 118, 0.7);
+  }
+  .el-date-range-picker__time-header{
+    background-color: rgba(26, 41, 118, 0.7);
+    color: white;
+  }
+  .el-picker-panel__footer {
+    background-color: rgba(26, 41, 118, 0.7);
+    color: white;
+  }
+  .el-date-range-picker__content.is-left {
+    background-color: rgba(26, 41, 118, 0.7);
+    color: white;
+  }
+  .el-date-range-picker__content.is-right {
+    background-color: rgba(26, 41, 118, 0.7);
+    color: white;
+  }
+  .el-button.is-disabled.is-plain{
+    background-color: rgba(26, 41, 118, 0.7);
+    .span{
+      color: white;
+    }
+  }
+  .el-cascader-menu__list{
+    background-color: rgba(26, 41, 118, 0.7);
+    color: white;
+  }
+  .el-cascader-node__label{
+    color: white;
   }
   .lineChartBoard {
     margin-top: 2rem;
