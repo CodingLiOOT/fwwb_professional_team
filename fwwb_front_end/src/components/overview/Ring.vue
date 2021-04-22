@@ -107,7 +107,7 @@ export default {
             ]
           },
           {
-            name: '面积模式',
+            name: '年龄结构',
             type: 'pie',
             radius: [7, 50],
             center: ['50%', '73%'],

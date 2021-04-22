@@ -6,7 +6,7 @@
     <img class="title" src="../components/overview/img/title.jpg" alt="">
 <div class="loginPanel" >
   <div style="width: 300px;margin-left: 47px">
-    <b style="color: white;font-size: 25px;float: left;margin-left: 18px">登录</b>
+    <b style="color: white;font-size: 25px;float: left;margin-left: 18px">登录/注册</b>
     <el-input
       placeholder="请输入账户"
       prefix-icon="el-icon-user-solid"

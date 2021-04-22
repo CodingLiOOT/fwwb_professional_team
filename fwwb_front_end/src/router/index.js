@@ -47,7 +47,7 @@ const router = new Router({
       name: 'Home',
       meta: {requiresAuth: false},
       component: MainPage,
-      redirect:'MainPage/overviewIndex'
+      redirect:'Welcome'
     },
     {
       path: '/home',
