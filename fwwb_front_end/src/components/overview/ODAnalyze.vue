@@ -1359,7 +1359,7 @@
                 },
                 //     formatter: function(params){return Math.max(params.value,-params.value)}
                 formatter: function (params) {
-                  return params[0].name +
+                  return "Sta"+params[0].name +
                     "<br>进站人数：" + params[0].value +
                     "<br>出站人数：" +  -params[1].value;
                 }

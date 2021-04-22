@@ -485,10 +485,11 @@ export default {
           c.fillRect(x, y, 240, 82)
           c.fillStyle = "#333";
           c.font = 'bold 24px Arial'
-          c.fillText('id:'+ this.siteInfo[1][i].id, x, y+20);
-          c.fillText('station_name:'+ this.siteInfo[1][i].station_name, x, y+40);
-          c.fillText('line_name:'+ this.siteInfo[1][i].line_name, x, y+60);
-          c.fillText('district'+ this.siteInfo[1][i].district, x, y+80);
+          // c.fillText('id:'+ this.siteInfo[1][i].id, x, y+20);
+          c.fillText('station_name:'+ this.siteInfo[1][i].station_name, x, y+20);
+          c.fillText('line_name:'+ this.siteInfo[1][i].line_name, x, y+40);
+          c.fillText('sequence:'+ this.siteInfo[1][i].sequence, x, y+60);
+          c.fillText('district:'+ this.siteInfo[1][i].district, x, y+80);
           return;
         }
         c.closePath();
