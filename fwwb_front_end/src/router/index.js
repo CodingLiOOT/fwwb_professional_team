@@ -7,6 +7,12 @@ import MainPage from "../components/MainPage";
 import data_V from "../components/data_V";
 import baiduMap from "../components/baiduMap";
 import Echarts_station from "../components/Echarts_station";
+import Time from "../components/Time";
+import Overview from "../components/Overview";
+import tuoputu from "../components/overview/tuoputu"
+import OverviewIndex from "../components/overview/OverviewIndex";
+import tryIndex from "../components/overview/tryIndex"
+import Welcome from "../components/Welcome";
 
 Vue.use(Router)
 
@@ -24,10 +30,24 @@ const router = new Router({
   mode: 'history',
   routes: [
     {
+      path: '/OverviewIndex',
+      name: 'Home',
+      meta: {requiresAuth: false},
+      component: OverviewIndex,
+      // redirect:'MainPage/overview/OverviewIndex'
+    },
+    {
+      path: '/welcome',
+      name: 'Welcome',
+      meta: {requiresAuth: false},
+      component: Welcome,
+    },
+    {
       path: '/',
       name: 'Home',
       meta: {requiresAuth: false},
-      component: () => import("../components/Home")
+      component: MainPage,
+      redirect:'Welcome'
     },
     {
       path: '/home',
@@ -56,7 +76,7 @@ const router = new Router({
     {
       path: '/mainPage',
       name: 'mainPage',
-      component: () => import("../components/MainPage"),
+      component: MainPage,
       children: [
         {
           path: 'data_V',
@@ -64,14 +84,19 @@ const router = new Router({
           component: data_V
         },
         {
-          path: 'baiduMap',
-          name: 'baiduMap',
-          component: baiduMap
+          path: 'overviewIndex',
+          name: 'OverviewIndex',
+          component: OverviewIndex
         },
         {
           path: 'echarts',
           name: 'echarts',
           component: Echarts_station
+        },
+        {
+          path: 'overview',
+          name: 'Overview',
+          component: Overview
         },
       ]
     },
