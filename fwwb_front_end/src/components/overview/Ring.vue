@@ -2,7 +2,7 @@
   <div id="cards">
     <div class="card-item">
        <router-link  class="link" :to="{ path: '/Mainpage/data_v' }">查看线路详情</router-link>
-     <div id="lineProportion" :style="{width: '15rem', height: '30rem',}">
+     <div id="lineProportion" :style="{width: '15rem', height: '22.5rem',}">
       </div>
     </div>
   </div>
@@ -68,7 +68,7 @@ export default {
         title:[{
           text:'线路占比',
           left:'center',
-          top:'47%',
+          top:'46%',
           textStyle:{
             color:'white',
           }
@@ -76,47 +76,50 @@ export default {
           {
             text:'年龄结构',
             left:'center',
-            bottom:'2%',
+            bottom:'5%',
             textStyle:{
               color:'white',
             }
           }],
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
         series: [
           {
-            name: '面积模式',
+            name: '线路占比',
             type: 'pie',
             radius: [7,50],
-            center: ['50%', '25%'],
+            center: ['50%', '24%'],
             roseType: 'area',
             itemStyle: {
               borderRadius: 8
             },
             data: [
-              {value: 20, name: 'Line 1'},
-              {value: 36, name: 'Line 2'},
-              {value: 30, name: 'Line 3'},
-              {value: 28, name: 'Line 4'},
-              {value: 26, name: 'Line 5'},
-              {value: 22, name: 'Line 5'},
-              {value: 16, name: 'Line 7'},
-              {value: 16, name: 'Line 8'},
-              {value: 16, name: 'Line 9'}
+              {value: 2417, name: 'Line 1'},
+              {value: 2036, name: 'Line 2'},
+              {value: 3585	, name: 'Line 3'},
+              {value: 158, name: 'Line 4'},
+              {value: 489, name: 'Line 5'},
+              {value: 1351, name: 'Line 10'},
+              {value: 3424, name: 'Line 11'},
+              {value: 1066, name: 'Line 12'}
             ]
           },
           {
-            name: '面积模式',
+            name: '年龄结构',
             type: 'pie',
             radius: [7, 50],
-            center: ['50%', '75%'],
+            center: ['50%', '73%'],
             roseType: 'area',
             itemStyle: {
               borderRadius: 8
             },
             data: [
-              {value: 40, name: '青年'},
-              {value: 30, name: '未成年'},
-              {value: 20, name: '中年'},
-              {value: 10, name: '老年'},
+              {value: 6880, name: '青年'},
+              {value: 67, name: '未成年'},
+              {value: 603, name: '中年'},
+              {value: 7, name: '老年'},
             ]
           }
         ]
@@ -134,18 +137,14 @@ export default {
 #cards {
   display: flex;
   justify-content: space-between;
-  height: 30%;
-  width:100%;
 
   .card-item {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
-    //border-right: 2px solid rgba(1, 153, 209, .5);
-    margin-left: 7%;
-    //margin-top:14%;
+    margin-left: 1rem;
+    margin-bottom: 1.5rem;
     align-items: center;
-    //width: 23%;
-    width: 100%;
+    width:25rem;
     display: flex;
     flex-direction: column;
   }

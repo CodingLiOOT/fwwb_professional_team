@@ -1,7 +1,6 @@
 <template>
   <div id="basic">
     <div class="card-item">
-
       <el-row class="row">
         <el-col >
           <h2 class="nowTime">当前时间:</h2>
@@ -14,10 +13,10 @@
         <div class="num">{{this.number}}</div>人次
       </div>
       <div class="chart-container">
-        <dv-percent-pond :config="config" style="width:200px;height:100px;" />
+        <div class="text">当前客流量拥挤程度</div>
+        <dv-percent-pond :config="config" style="width:200px;height:100px;margin: 1rem auto;"  />
       </div>
     </div>
-
   </div>
 
 </template>
@@ -31,10 +30,10 @@
           time:'',
         },
         config :{
-          value: 66,
+          value: 37,
           lineDash: [15, 2]
         },
-        number:'300',
+        number:'7452',
       }
     },
     methods:{
@@ -68,27 +67,26 @@
   #basic {
     display: flex;
     justify-content: space-between;
-    height:45%;
-    width:100%;
 
     .card-item {
       background-color: rgba(6, 28, 87, 0.5);
       border-top: 2px solid rgba(1, 153, 209, .5);
       //border-right: 2px solid rgba(1, 153, 209, .5);
-      margin-left: 7%;
-      margin-top:14%;
-      width: 100%;
-      height:100%;
+      margin-left: 1rem;
+      margin-top:2.5rem;
+      margin-bottom: 1.5rem;
+      width: 25rem;
+      height:25rem;
       display: flex;
       flex-direction: column;
     }
     .water-level-chart-details {
-      height: 15%;
+      height: 1rem;
       //display: flex;
       justify-content: center;
       font-size: 17px;
       align-items: flex-end;
-      margin-top: 9%;
+      margin-top: 2rem;
       color: white;
 
       .num {
@@ -102,12 +100,17 @@
     }
 
     .chart-container {
-      flex: 1;
-      display: flex;
+      //flex: 1;
+      //display: flex;
+      //justify-content: center;
+      //align-items: center;
+      //margin-top: 1rem;
+      height: 1rem;
       justify-content: center;
+      font-size: 17px;
       align-items: center;
-      margin-top: 1%;
-      margin-bottom: 5%;
+      margin-top: 5rem;
+      color: white;
     }
 
 
@@ -116,7 +119,7 @@
       font-size: 20px;
     }
     .row{
-      margin-top: 0.5rem;
+      margin-top: 0.3rem;
     }
     .text{
       color:white;

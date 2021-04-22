@@ -1,7 +1,7 @@
 <template>
   <div id="today">
     <div class="card-item">
-      <div id="todayChart" :style="{width: '25rem', height: '25rem'}"></div>
+      <div id="todayChart" :style="{width: '27rem', height: '27rem'}"></div>
     </div>
   </div>
 </template>
@@ -16,10 +16,18 @@ export default {
         title:{
           text: '当天总人次',
           bottom:0,
-          left:'center',
+          left:'150',
           textStyle:{
             color:'white',
           }
+        },
+        grid:{
+          x:60,
+          y:60,
+          width:300,
+          height:300,
+          x2:60,
+          y2:60,
         },
         tooltip: {
           trigger: 'axis',
@@ -48,7 +56,8 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            data: ['6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',
+              '18:00', '19:00', '20:00', '21:00', '22:00'],
             axisPointer: {
               type: 'shadow'
             },
@@ -76,12 +85,51 @@ export default {
             },
           }
         ],
+        visualMap: {
+          show: false,
+          dimension: 0,
+          pieces: [{
+            lte: 1,
+            color: 'green'
+          }, {
+            gt: 1,
+            lte: 2,
+            color: 'red'
+          }, {
+            gt: 2,
+            lte: 12,
+            color: 'green'
+          }, {
+            gt: 12,
+            lte: 13,
+            color: 'red'
+          }, {
+            gt: 13,
+            let:21,
+            color: 'green'
+          }]
+        },
         series: [
           {
             name: '人次',
             type: 'line',
-            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
-          }
+            data: [92, 604, 910, 464, 329, 345, 368, 358, 375, 364, 448, 662,827,485,369,333,119],
+            markArea: {
+              itemStyle: {
+                color: 'rgba(255, 173, 177, 0.4)'
+              },
+              data: [ [{
+                name: '早高峰',
+                xAxis: '7:00'
+              }, {
+                xAxis: '8:00'
+              }], [{
+                name: '晚高峰',
+                xAxis: '18:00'
+              }, {
+                xAxis: '19:00'
+              }] ]
+          }},
         ]
       });
     },
@@ -94,23 +142,20 @@ export default {
 
 <style lang="less">
 #today {
-  //display: flex;
+  display: flex;
   justify-content: space-between;
-  height:90%;
-  width:40%;
 
 
   .card-item {
     background-color: rgba(6, 28, 87, 0.5);
     border-top: 2px solid rgba(1, 153, 209, .5);
-    border-right: 2px solid rgba(1, 153, 209, .5);
-    //margin-left: 18%;
-    //margin-top:4%;
-    margin:auto;
-    width: 100%;
-    height:100%;
-    //display: flex;
-    //flex-direction: column;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .row{
+    //margin-top: 3rem;
   }
 
 }
