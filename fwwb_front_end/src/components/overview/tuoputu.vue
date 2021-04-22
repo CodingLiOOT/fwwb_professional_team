@@ -320,44 +320,44 @@ export default {
     }
 
     c.fillStyle = "#EAF1F9";
-    c.fillRect(32, 64, 51, 21);
+    c.fillRect(32, 44, 51, 21);
     c.fillStyle = "#333";
-    c.fillText("11号线", 40, 77);
+    c.fillText("11号线", 40, 57);
 
     c.fillStyle = "#EAF1F9";
-    c.fillRect(293, 48, 51, 21);
+    c.fillRect(293, 28, 51, 21);
     c.fillStyle = "#333";
-    c.fillText("10号线", 300, 61);
+    c.fillText("10号线", 300, 41);
 
     c.fillStyle = "#EAF1F9";
-    c.fillRect(900, 155, 51, 21);
+    c.fillRect(800, 155, 51, 21);
     c.fillStyle = "#333";
-    c.fillText("4号线", 912, 170);
+    c.fillText("4号线", 812, 170);
 
     c.fillStyle = "#EAF1F9";
-    c.fillRect(62, 204, 51, 21);
+    c.fillRect(62, 244, 51, 21);
     c.fillStyle = "#333";
-    c.fillText("1号线", 76, 218);
+    c.fillText("1号线", 76, 258);
 
     c.fillStyle = "#EAF1F9";
-    c.fillRect(248, 503, 51, 21);
+    c.fillRect(248, 523, 51, 21);
     c.fillStyle = "#333";
-    c.fillText("12号线", 260, 519);
+    c.fillText("12号线", 260, 539);
 
     c.fillStyle = "#EAF1F9";
-    c.fillRect(431, 552, 51, 21);
+    c.fillRect(331, 552, 51, 21);
     c.fillStyle = "#333";
-    c.fillText("5号线", 446, 567);
+    c.fillText("5号线", 346, 567);
 
     c.fillStyle = "#EAF1F9";
-    c.fillRect(367, 724, 51, 21);
+    c.fillRect(267, 724, 51, 21);
     c.fillStyle = "#333";
-    c.fillText("2号线", 382, 739);
+    c.fillText("2号线", 282, 739);
 
     c.fillStyle = "#EAF1F9";
-    c.fillRect(896, 730, 51, 21);
+    c.fillRect(741, 750, 51, 21);
     c.fillStyle = "#333";
-    c.fillText("3号线", 910, 747);
+    c.fillText("3号线", 755, 767);
 
     this.canvas = this.$refs.sc2,
     this.c = this.canvas.getContext("2d");

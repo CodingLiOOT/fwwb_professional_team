@@ -1518,6 +1518,19 @@ export default {
     line-height: 1;
     background-color: rgb(57 69 84);
   }
+  .el-time-panel{
+    background-color: rgb(57 69 84);
+    color: #f0f2f5;
+  }
+  .el-time-spinner__item{
+    color: #f0f2f5;
+  }
+  .el-time-spinner__item.active:not(.disabled){
+    color: #ffffff;
+  }
+  .el-time-panel__btn{
+    color: #ffffff;
+  }
 
   .lineChartBoard {
     margin-top: 2rem;
