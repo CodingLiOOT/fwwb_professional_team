@@ -132,11 +132,11 @@ def format_data(dataset, n_in, n_out, n_vars=4):
 
     # 分隔输入X和输出y
     train_X, train_y = values[:, :n_in * n_vars], values[:, n_in * n_vars:]
-    #test_X, test_y = test[:, :n_in * n_vars], test[:, n_in * n_vars:]
+    # test_X, test_y = test[:, :n_in * n_vars], test[:, n_in * n_vars:]
 
     # 将输入X改造为LSTM的输入格式，即[samples,timesteps,features]
     train_X = train_X.reshape((train_X.shape[0], n_in, n_vars))
-    #test_X = test_X.reshape((test_X.shape[0], n_in, n_vars))
+    # test_X = test_X.reshape((test_X.shape[0], n_in, n_vars))
     return train_X, dataset
 
 
@@ -158,7 +158,9 @@ def fit_lstm(data_prepare, n_neurons_1=50, n_neurons_2=100, n_batch=72, n_epoch=
         early_stop = EarlyStopping(monitor='val_loss', patience=1, verbose=1, mode='auto')
         # 拟合神经网络
         history = model.fit(train_X, train_y, epochs=n_epoch, batch_size=n_batch, validation_data=(test_X, test_y),
-                            verbose=1, shuffle=False, callbacks=[early_stop])
+                            verbose=1, shuffle=False
+                            , callbacks=[early_stop]
+                            )
 
         # 画出学习过程
         p1 = plt.plot(history.history['loss'], color='blue', label='train')
@@ -216,20 +218,21 @@ def plot_forecasts(series, forecasts):
 
 if __name__ == '__main__':
     filepath = "resource/12_7_en_weather.csv"
-    n_in = 119
+    # n_in = 119
+    n_in = 118
     n_out = 30
     n_vars = 4
-    n_neuron_1 = 100
-    n_neuron_2 = 50
-    n_batch = 8
-    n_epoch = 400
+    n_neuron_1 = 32
+    n_neuron_2 = 16
+    n_batch = 16
+    n_epoch = 1000
     repeats = 1
     inv_yhat_list = []
     inv_y_list = []
 
     data_prepare = prepare_data(filepath, n_in, n_out)
     scaler, data, train_X, train_y, test_X, test_y, dataset = data_prepare
-    model_list = fit_lstm(data_prepare, n_neuron_1, n_neuron_2,  n_batch=n_batch, n_epoch=n_epoch, repeats=repeats)
+    model_list = fit_lstm(data_prepare, n_neuron_1, n_neuron_2, n_batch=n_batch, n_epoch=n_epoch, repeats=repeats)
 
     model_list[0].save('model/lstm_model')
 
@@ -299,8 +302,7 @@ if __name__ == '__main__':
     pre_df.columns = names_columns
     pre_df = pre_df.round(decimals=2)  # 小数点
 
-    #pre_df_avg = np.zeros(len(pre_df[0]))
-
+    # pre_df_avg = np.zeros(len(pre_df[0]))
 
     actual_df = pd.DataFrame(inv_y)
     names_columns = ['未来%d期' % (i + 1) for i in range(n_out)]
